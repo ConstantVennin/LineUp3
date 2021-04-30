@@ -1,6 +1,6 @@
 package plateauPackage;
 
-/*import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -46,4 +46,4 @@ public class TestPlateau{
         assertArrayEquals(null, plateau.getArray("-1.4"));
         assertArrayEquals(null,plateau.getArray("Test.23"));
     }
-}*/
+}

@@ -18,7 +18,7 @@ public class PartieFinie {
 			}
 		}
 		
-		for(in i = 0 ; i < plateau.getCouches() ; i++ ) {
+		for(int i = 0 ; i < plateau.getCouches() ; i++ ) {
 			for(int j = 0 ; j < plateau.getSommets() / 2 ; j++) {
 				if(verifSommetVarie( i+1 , (j+1)*2 , plateau)) {
 					return true;
