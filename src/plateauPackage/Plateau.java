@@ -1,12 +1,10 @@
-package plateauPackage;
-
 public class Plateau{
 
-    //Trouver un moyen de gérer le blocage des arcs temporaires
+    //Trouver un moyen de gï¿½rer le blocage des arcs temporaires
     int couches;
     int sommets;
     private Situations[][] plateau;
-    private Situations[][] arcs;
+    private boolean[][] arcs;
 
 
     //Constructeur de la classe Plateau 
@@ -17,11 +15,12 @@ public class Plateau{
         creation_plateau(couches, sommets);
     }
 
-    //Créé un plateau avec un nombre de couches et de sommets passé en paramètre ainsi que les arcs qui les relient
+    //Crï¿½ï¿½ un plateau avec un nombre de couches et de sommets passï¿½ en paramï¿½tre ainsi que les arcs qui les relient
     public void creation_plateau(int couches,int sommets){
         plateau=new Situations[couches][sommets];
-        arcs=new Situations[couches][sommets];
+        arcs=new boolean[1][sommets+4];
         remplir_tableau();
+        initialiser_arcs();
 
     }
 
@@ -35,7 +34,7 @@ public class Plateau{
         }
     }
     
-    //Rempli le tableau par défaut avec des cases LIBRES
+    //Rempli le tableau par dï¿½faut avec des cases LIBRES
     private void remplir_tableau() {
     	
        for(int nb_couches=0;nb_couches<couches;nb_couches++){
@@ -45,6 +44,17 @@ public class Plateau{
     		   plateau[nb_couches][nb_sommets]=Situations.LIBRE;
     	   }
        }
+    }
+
+    private void initialiser_arcs(){
+        //System.out.println(arcs[0].length+" "+arcs[1].length);
+        /*for(int nb_couches=0;nb_couches<arcs[0].length;nb_couches++){
+    	   
+            for(int nb_sommets=0;nb_sommets<arcs[1].length;nb_sommets++){
+                
+                arcs[nb_couches][nb_sommets]=false;
+            }
+        }*/  
     }
 
     //Place le pion du joueur sur le plateau
@@ -57,55 +67,55 @@ public class Plateau{
 
     }
 
-    //Libère la case, par exemple lorsqu'un joueur se déplace
+    //Libï¿½re la case, par exemple lorsqu'un joueur se dï¿½place
     public void liberer_plateau(String localisation){
 
         int[] nombre=getArray(localisation);
         plateau[nombre[0]][nombre[1]]=Situations.LIBRE;
     }
 
-    public void liberer_arc(String localisation){ //Y'a peut être moyen de simplifier avec celle d'au dessus
+    public void liberer_arc(double localisation,double localisation2){
         
-        int[] nombre=getArray(localisation);
-        arcs[nombre[0]][nombre[1]]=Situations.LIBRE;
+        int[] result=doubleToArc(localisation, localisation2);
+        arcs[result[0]][result[1]]=false;
     }
 
-    //Regarde si la case donnée en paramètre est libre
+    //Regarde si la case donnï¿½e en paramï¿½tre est libre
     public boolean case_libre(String localisation){
 
         int[] nombre=getArray(localisation);
         return plateau[nombre[0]][nombre[1]]==Situations.LIBRE ? true : false;
     }
 
-    //Bloque l'arc passé en paramètre
-    public void bloquer_arc(String arc){
+    //Bloque l'arc passï¿½ en paramï¿½tre
+    public void bloquer_arc(double localisation,double localisation2){
 
-        int[] nombre=getArray(arc);
-        arcs[nombre[0]][nombre[1]]=Situations.ARC;
+        int[] result=doubleToArc(localisation, localisation2);
+        arcs[result[0]][result[1]]=true;
 
     }
 
-    //Verifie si l'arc donné en paramètre est bloqué
-    public boolean arc_bloque(String arc){ 
+    //Verifie si l'arc donnï¿½ en paramï¿½tre est bloquï¿½
+    public boolean arc_bloque (double localisation,double localisation2){
 
-        int[] nombre=getArray(arc);
+        int[] result=doubleToArc(localisation, localisation2);
 
-        return arcs[nombre[0]][nombre[1]]==Situations.ARC ? true : false;
+        return arcs[result[0]][result[1]];
     }
 
-    //Transforme une chaine de charactère de type 1.1 et la transforme en tableau de int afin de pouvoir obtenir les informations dans le tableau
-    public int[] getArray(String arc){ //public pour les tests, à retirer éventuellement
+    //Transforme une chaine de charactï¿½re de type 1.1 et la transforme en tableau de int afin de pouvoir obtenir les informations dans le tableau
+    public int[] getArray(String arc){ //public pour les tests, ï¿½ retirer ï¿½ventuellement
 
         String[] nombre=arc.split("\\.");
 
-        //Essaye de convertir le String fourni en paramètre en Integer, si cela ne marche pas renvoie null 
+        //Essaye de convertir le String fourni en paramï¿½tre en Integer, si cela ne marche pas renvoie null 
         try{
 
             Integer.parseInt(nombre[0]);
             Integer.parseInt(nombre[1]);
 
         }catch(NumberFormatException nombreInvalide){
-            return null;    //à modifier éventuellement
+            return null;    //ï¿½ modifier ï¿½ventuellement
         }
 
         int a=Integer.parseInt(nombre[0]); //Convertit un String en int
@@ -118,7 +128,24 @@ public class Plateau{
     	
     	return plateau[couche][sommet];
     }
+
+    //Renvoie un tableau de int correspondant Ã  l'emplacement de la liaisions des sommets passÃ©s en paramÃ¨tre
+    private int[] doubleToArc(double localisation,double localisation2){
+        
+        int entier=(int) localisation;
+        int resteLocalisation2=(int) (localisation2-(int)localisation2)*10;
+
+    return new int[]{entier,resteLocalisation2};
+    }
     
+    public void afficher_liaisons(){
+        System.out.println(arcs[0].length);
+        for(int indice=0;indice<arcs[0].length;indice++){
+            for(int i=0;i<arcs[1].length;i++){
+                System.out.println("Couche: "+indice+"Liaison : "+i);
+            }
+        }
+    }
     public int getCouches() {
     	return this.couches;
     }

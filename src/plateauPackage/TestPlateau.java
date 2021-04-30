@@ -1,4 +1,3 @@
-package plateauPackage;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -13,19 +12,20 @@ public class TestPlateau{
 
     @BeforeEach
     public void initialisation(){
-        plateau=new Plateau(20, 20);
+        plateau=new Plateau(4, 6);
     }
 
     @Test
     public void testArcBloque(){
 
-        plateau.bloquer_arc("1.1");
-        assertTrue(plateau.arc_bloque("1.1"),"Arc is not blocked, it should be");
-        assertFalse(plateau.arc_bloque("1.2"),"Arc is blocked, it should not be");
-        plateau.bloquer_arc("1.3");
-        assertTrue(plateau.arc_bloque("1.3"),"Arc is not blocked, it should be");
-        plateau.liberer_arc("1.1");
-        assertFalse(plateau.arc_bloque("1.1"),"Arc is blocked, it should not be");
+        plateau.bloquer_arc(1.1,1.2);
+        assertTrue(plateau.arc_bloque(1.1,1.2));
+        plateau.liberer_arc(1.1,1.2);
+        assertFalse(plateau.arc_bloque(1.1, 1.2));
+       // plateau.bloquer_arc(3.2,3.3);
+        //assertTrue(plateau.arc_bloque(3.2,3.3));
+        plateau.bloquer_arc(3.2,3.9);
+        assertFalse(plateau.arc_bloque(3.10,3.21));
 
     }
 

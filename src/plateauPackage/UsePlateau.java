@@ -14,7 +14,7 @@ public class UsePlateau {
         Scanner Partie=new Scanner(System.in);
         int nombreCouches=Partie.nextInt();
         Plateau plateau=new Plateau(nombreCouches,nombreCouches*nombreCouches-1);
-        System.out.println("Au cours de cette partie, vous devrez écrire la case ou vous voulez vous déplacer sous la forme numéro couche.numéro sommet (ex: 2.3)");
+        System.out.println("Au cours de cette partie, vous devrez ï¿½crire la case ou vous voulez vous dï¿½placer sous la forme numï¿½ro couche.numï¿½ro sommet (ex: 2.3)");
 
         while(true){
             
