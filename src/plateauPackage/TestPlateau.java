@@ -1,3 +1,4 @@
+package plateauPackage;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,33 +10,37 @@ import org.junit.jupiter.api.Test;
 public class TestPlateau{
 
     Plateau plateau;
+    Position p=new Position(1,1);
+    Position p2=new Position(1,2);
+    Position p3=new Position(3,2);
+    Position p4=new Position(3,8);
+    Position p5=new Position(3,7);
+    Position p6=new Position(2,8);
 
     @BeforeEach
     public void initialisation(){
-        plateau=new Plateau(4, 6);
+        plateau=new Plateau(4);
     }
 
     @Test
     public void testArcBloque(){
 
-        plateau.bloquer_arc(1.1,1.2);
-        assertTrue(plateau.arc_bloque(1.1,1.2));
-        plateau.liberer_arc(1.1,1.2);
-        assertFalse(plateau.arc_bloque(1.1, 1.2));
-       // plateau.bloquer_arc(3.2,3.3);
-        //assertTrue(plateau.arc_bloque(3.2,3.3));
-        plateau.bloquer_arc(3.2,3.9);
-        assertFalse(plateau.arc_bloque(3.10,3.21));
+        plateau.bloquer_arc(p,p2);  
+        assertTrue(plateau.arc_bloque(p,p2));
+        plateau.liberer_arc(p,p2);
+        assertFalse(plateau.arc_bloque(p, p2));
+        plateau.bloquer_arc(p3,p4);
+        assertFalse(plateau.arc_bloque(p5,p6));
 
     }
 
     @Test
     public void testJoueur(){
-        plateau.placer_pion("9.1", 1);
-        assertFalse(plateau.case_libre("9.1"),"Position in array is free, it should not be");
-        assertTrue(plateau.case_libre("9.2"),"Position in array is not free, it should be");
-        plateau.liberer_plateau("9.1");
-        assertTrue(plateau.case_libre("9.1"),"Position in array is not free, it should be");
+        plateau.placer_pion(p4,1);
+        assertFalse(plateau.case_libre(p4),"Position in array is free, it should not be");
+        assertTrue(plateau.case_libre(p),"Position in array is not free, it should be");
+        plateau.liberer_plateau(p4);
+        assertTrue(plateau.case_libre(p4),"Position in array is not free, it should be");
     }
 
     @Test
@@ -45,5 +50,15 @@ public class TestPlateau{
         assertArrayEquals(new int[]{12,4},plateau.getArray("12.4.13.42.19"));
         assertArrayEquals(null, plateau.getArray("-1.4"));
         assertArrayEquals(null,plateau.getArray("Test.23"));
+    }
+
+    @Test
+    public void testPassagePossible(){
+        assertTrue(p.passagePossible(p2));
+        assertTrue(p4.passagePossible(p5));
+        assertTrue(p5.passagePossible(p4));
+        assertFalse(p.passagePossible(p6));
+        assertTrue(p4.passagePossible(p6));
+        assertTrue(p6.passagePossible(p4));
     }
 }
