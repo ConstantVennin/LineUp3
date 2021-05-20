@@ -1,24 +1,25 @@
+package plateauPackage;
+
 public class Plateau{
 
     //Trouver un moyen de g�rer le blocage des arcs temporaires
     int couches;
-    int sommets;
+    final int sommets=8;
     private Situations[][] plateau;
     private boolean[][] arcs;
 
 
     //Constructeur de la classe Plateau 
-    Plateau(int couches, int sommets){
+    Plateau(int couches){
     	
         this.couches=couches;
-        this.sommets=sommets;
-        creation_plateau(couches, sommets);
+        creation_plateau(couches);
     }
 
     //Cr�� un plateau avec un nombre de couches et de sommets pass� en param�tre ainsi que les arcs qui les relient
-    public void creation_plateau(int couches,int sommets){
-        plateau=new Situations[couches][sommets];
-        arcs=new boolean[1][sommets+4];
+    public void creation_plateau(int couches){
+        plateau=new Situations[couches+1][8+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
+        arcs=new boolean[couches+1][8+4];
         remplir_tableau();
         initialiser_arcs();
 
@@ -47,58 +48,57 @@ public class Plateau{
     }
 
     private void initialiser_arcs(){
-        //System.out.println(arcs[0].length+" "+arcs[1].length);
-        /*for(int nb_couches=0;nb_couches<arcs[0].length;nb_couches++){
+        for(int nb_couches=0;nb_couches<arcs.length;nb_couches++){
     	   
-            for(int nb_sommets=0;nb_sommets<arcs[1].length;nb_sommets++){
+            for(int nb_sommets=0;nb_sommets<arcs[0].length;nb_sommets++){
                 
                 arcs[nb_couches][nb_sommets]=false;
             }
-        }*/  
+        }  
     }
 
     //Place le pion du joueur sur le plateau
-    public void placer_pion(String localisation,int joueur){
+    public void placer_pion(Position p,int joueur){
 
         String nomJoueur= joueur==1 ? "JOUEUR1" : "JOUEUR2";
-
-        int[]nombre=getArray(localisation);
-        plateau[nombre[0]][nombre[1]]=Situations.valueOf(nomJoueur);
+        System.out.println(p.getCouche()+" Sommet "+p.getSommet());
+        plateau[p.getCouche()][p.getSommet()]=Situations.valueOf(nomJoueur);
 
     }
 
     //Lib�re la case, par exemple lorsqu'un joueur se d�place
-    public void liberer_plateau(String localisation){
+    public void liberer_plateau(Position p){
 
-        int[] nombre=getArray(localisation);
-        plateau[nombre[0]][nombre[1]]=Situations.LIBRE;
+        plateau[p.getCouche()][p.getSommet()]=Situations.LIBRE;
     }
 
-    public void liberer_arc(double localisation,double localisation2){
+    public void liberer_arc(Position p1, Position p2){
         
-        int[] result=doubleToArc(localisation, localisation2);
+        int[] result=doubleToArc(p1,p2);
         arcs[result[0]][result[1]]=false;
     }
 
     //Regarde si la case donn�e en param�tre est libre
-    public boolean case_libre(String localisation){
+    public boolean case_libre(Position p){
 
-        int[] nombre=getArray(localisation);
-        return plateau[nombre[0]][nombre[1]]==Situations.LIBRE ? true : false;
+        return plateau[p.getCouche()][p.getSommet()]==Situations.LIBRE ? true : false;
     }
 
     //Bloque l'arc pass� en param�tre
-    public void bloquer_arc(double localisation,double localisation2){
-
-        int[] result=doubleToArc(localisation, localisation2);
+    public boolean bloquer_arc(Position p1,Position p2){
+        if(!p1.passagePossible(p2)){
+            return false;
+        }
+        int[] result=doubleToArc(p1,p2);
         arcs[result[0]][result[1]]=true;
-
+    
+    return true;
     }
 
     //Verifie si l'arc donn� en param�tre est bloqu�
-    public boolean arc_bloque (double localisation,double localisation2){
+    public boolean arc_bloque (Position p1, Position p2){
 
-        int[] result=doubleToArc(localisation, localisation2);
+        int[] result=doubleToArc(p1,p2);
 
         return arcs[result[0]][result[1]];
     }
@@ -130,12 +130,9 @@ public class Plateau{
     }
 
     //Renvoie un tableau de int correspondant à l'emplacement de la liaisions des sommets passés en paramètre
-    private int[] doubleToArc(double localisation,double localisation2){
-        
-        int entier=(int) localisation;
-        int resteLocalisation2=(int) (localisation2-(int)localisation2)*10;
-
-    return new int[]{entier,resteLocalisation2};
+    private int[] doubleToArc(Position p1,Position p2){
+    
+        return new int[]{p1.getCouche(),p2.getSommet()};
     }
     
     public void afficher_liaisons(){
