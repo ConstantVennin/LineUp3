@@ -1,5 +1,8 @@
 package plateauPackage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Plateau{
 
     //Trouver un moyen de g�rer le blocage des arcs temporaires
@@ -7,6 +10,7 @@ public class Plateau{
     final int sommets=8;
     private Situations[][] plateau;
     private boolean[][] arcs;
+    List<Position> p;
 
 
     //Constructeur de la classe Plateau 
@@ -14,6 +18,8 @@ public class Plateau{
     	
         this.couches=couches;
         creation_plateau(couches);
+        p=new ArrayList<Position>();
+        this.initialiser_positions();
     }
 
     //Cr�� un plateau avec un nombre de couches et de sommets pass� en param�tre ainsi que les arcs qui les relient
@@ -25,6 +31,13 @@ public class Plateau{
 
     }
 
+    public void initialiser_positions(){
+        for(int indice=0;indice<this.couches;indice++){
+            for(int i=0;i<9;i++){ // nb de sommets toujours égal à 8
+                p.add(new Position(indice,i));
+            }
+        }
+    }
     //Fonction qui sert juste a afficher le tableau, ne sert à rien juste à part pour les test, might come in handy comme on dit dans le milieu
     public void Afficher_plateau(){
 
@@ -149,6 +162,10 @@ public class Plateau{
     
     public int getSommets() {
     	return this.sommets;
+    }
+
+    public List<Position> getPosition(){
+        return this.p;
     }
 
 }

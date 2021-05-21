@@ -1,10 +1,22 @@
- package test_affichage;import java.util.Scanner;
+package partie;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import plateauPackage.Plateau;
+import plateauPackage.Position;
 
 
 
-public class menu {
-	
+public class Menu {
+
 static int[] config=new int[] {2,3};//[0]nbjoueur [1]nbcouche
+private Plateau plateau;
+
+public Menu(Plateau plateau){
+	this.plateau=plateau;
+}
+
 static String menu_LineUp3=  "           _      _              _    _         ____           \r\n"
 					+ "          | |    (_)            | |  | |       |___ \\          \r\n"
 					+ "  ______  | |     _ _ __   ___  | |  | |_ __     __) |  ______ \r\n"
@@ -28,19 +40,19 @@ static String menu_regle=	 "------------------------| Règle |------------------
 					+ "\t\t\t(1) Jouer\n"
 					+ "\t\t\t(2) Retour\n";
 public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------------------| Jouer |------------------------\n"
-															+"Nombre de joueur: "+nbjoueur+"\n"
-															+"Nombre de joueur: "+nbcouche+"\n\n"
+															+"\t\t\tNombre de joueur: "+nbjoueur+"\n"
+															+"\t\t\tNombre de joueur: "+nbcouche+"\n\n"
 															+"\t\t\t(1) Lancer la partie\n"
 															+"\t\t\t(2) Changer le nombre de joueur\n"
 															+"\t\t\t(3) Changer le nombre de couche\n"
 			
 															+"\t\t\t(4) Retour\n";}
-static Scanner entry = new Scanner(System.in);
-public static int scanInt () {
-	int num = entry.nextInt();
-	
-	return num;
-}
+	static Scanner entry = new Scanner(System.in);
+	public static int scanInt () {
+		int num = entry.nextInt();
+		
+		return num;
+	}
 
 	public static void affichage_menu() {
 		int num=0;
@@ -109,7 +121,7 @@ public static int scanInt () {
 		/*Affiche un plateau carré
 		 * 
 		 */
-		String res=plateau.getCases()[0][0].getRepresentation()+"——————————"+plateau.getCases()[0][1].getRepresentation()+"——————————"+plateau.getCases()[0][2].getRepresentation()+'\n';
+		String res=plateau.getCases(p1).getRepresentation()+"——————————"+plateau.getCases()[0][1].getRepresentation()+"——————————"+plateau.getCases()[0][2].getRepresentation()+'\n';
 			  res+="|          |          |"+'\n';
 			  res+="|   "+plateau.getCases()[1][0].getRepresentation()+"——————"+plateau.getCases()[1][1].getRepresentation()+"——————"+plateau.getCases()[1][2].getRepresentation()+"   |"+'\n';
 			  res+="|   |      |      |   |"+'\n';

@@ -2,6 +2,8 @@ package plateauPackage;
 
 import java.util.Scanner;
 
+import partie.Menu;
+
 public class UsePlateau {
 
 
@@ -11,9 +13,9 @@ public class UsePlateau {
     	Plateau plateau=new Plateau(menu.getConfig()[1]);
     	
         int joueur=1;
-        menu.affichage_menu();
+        Menu.affichage_menu();
         while(true){
-            ;
+        
         }
     }
 }
