@@ -23,13 +23,59 @@ public class Plateau{
     }
 
     //Cr�� un plateau avec un nombre de couches et de sommets pass� en param�tre ainsi que les arcs qui les relient
-    public void creation_plateau(int couches){
+    public void creation_plateau(int couches, int sommets){
         plateau=new Situations[couches+1][8+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
-        arcs=new boolean[couches+1][8+4];
+        arcs= creation_arcs();
         remplir_tableau();
         initialiser_arcs();
 
     }
+    
+    //Instancie une matrice d'adjacence symbolisant les connexion entre les points, vrai = passage autorisé, faux = passage
+    public void creation_arcs() {
+    	int couches = this.couches;
+    	int sommets = this.sommets;
+		boolean[][] res = new boolean[couches*sommets][couches*sommets];
+		int compteurX1 = 1;
+		int compteurY1 = 0;
+		int compteurX2 = 0;
+		int compteurY2 = 0;
+		
+		for(int c = 0 ; c<(couches*sommets) ; c++) {
+			compteurY1 ++;
+			compteurX2 = 0;
+			if(c%sommets == 0) {
+					compteurX1 ++;
+					compteurY1 = 1;
+			}
+			for(int s = 0 ; s<(couches*sommets) ; s++) {
+				compteurY2 ++;
+				if(s%sommets == 0) {
+					compteurX2 ++;
+					compteurY2 = 1;
+				}
+				res[c][s]=cellulesRelieesAuDepart(compteurX1, compteurY1, compteurX2, compteurY2, couches, sommets);
+			}
+		}
+    }
+
+    //
+	public boolean cellulesRelieesAuDepart(int x1, int y1, int x2, int y2, int couches, int sommets) {
+		if(x1 == x2) {
+			if(y1+1==y2 || y1-1==y2) {
+				return true;
+			}else if(y1==1&&y2==sommets || y2==1&&y1==sommets ) {
+				return true;
+			}else {
+				return false;
+			}
+		}else if((y1==y2) && (y1%2==0) && (y2%2==0)) {
+			if((x1+1==x2) || (x1-1==x2)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
     public void initialiser_positions(){
         for(int indice=0;indice<this.couches;indice++){
