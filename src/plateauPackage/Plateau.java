@@ -6,80 +6,40 @@ import java.util.List;
 public class Plateau{
 
     //Trouver un moyen de g�rer le blocage des arcs temporaires
-    int couches;
-    final int sommets=8;
+    private int couches;
+    private final int sommets;
+    private final static int sommetsCarresDefault=8;
     private Situations[][] plateau;
     private boolean[][] arcs;
     List<Position> p;
 
 
     //Constructeur de la classe Plateau 
-    Plateau(int couches){
+    Plateau(int couches,int nombreCote){
     	
         this.couches=couches;
-        creation_plateau(couches);
+        this.sommets=nombreCote*2;
+        creation_plateau();
         p=new ArrayList<Position>();
         this.initialiser_positions();
     }
 
-    //Cr�� un plateau avec un nombre de couches et de sommets pass� en param�tre ainsi que les arcs qui les relient
-    public void creation_plateau(int couches, int sommets){
-        plateau=new Situations[couches+1][8+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
-        arcs= creation_arcs();
+    Plateau(int couches){
+        this(couches,sommetsCarresDefault);
+    }
+
+    //Creer un plateau avec un nombre de couches et de sommets passe en parametre ainsi que les arcs qui les relient
+    public void creation_plateau(){
+        plateau=new Situations[this.couches+1][this.sommets+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
+        arcs=new boolean[couches+1][this.sommets+4];
         remplir_tableau();
         initialiser_arcs();
 
     }
-    
-    //Instancie une matrice d'adjacence symbolisant les connexion entre les points, vrai = passage autorisé, faux = passage
-    public void creation_arcs() {
-    	int couches = this.couches;
-    	int sommets = this.sommets;
-		boolean[][] res = new boolean[couches*sommets][couches*sommets];
-		int compteurX1 = 1;
-		int compteurY1 = 0;
-		int compteurX2 = 0;
-		int compteurY2 = 0;
-		
-		for(int c = 0 ; c<(couches*sommets) ; c++) {
-			compteurY1 ++;
-			compteurX2 = 0;
-			if(c%sommets == 0) {
-					compteurX1 ++;
-					compteurY1 = 1;
-			}
-			for(int s = 0 ; s<(couches*sommets) ; s++) {
-				compteurY2 ++;
-				if(s%sommets == 0) {
-					compteurX2 ++;
-					compteurY2 = 1;
-				}
-				res[c][s]=cellulesRelieesAuDepart(compteurX1, compteurY1, compteurX2, compteurY2, couches, sommets);
-			}
-		}
-    }
-
-    //trouve les connexions de départ
-	public boolean cellulesRelieesAuDepart(int x1, int y1, int x2, int y2, int couches, int sommets) {
-		if(x1 == x2) {
-			if(y1+1==y2 || y1-1==y2) {
-				return true;
-			}else if(y1==1&&y2==sommets || y2==1&&y1==sommets ) {
-				return true;
-			}else {
-				return false;
-			}
-		}else if((y1==y2) && (y1%2==0) && (y2%2==0)) {
-			if((x1+1==x2) || (x1-1==x2)) {
-				return true;
-			}
-		}
-		return false;
-	}
 
     public void initialiser_positions(){
-        for(int indice=0;indice<this.couches;indice++){
-            for(int i=0;i<9;i++){ // nb de sommets toujours égal à 8
+        for(int indice=1;indice<this.couches;indice++){
+            for(int i=1;i<9;i++){ // nb de sommets toujours égal à 8
                 p.add(new Position(indice,i));
             }
         }
@@ -94,7 +54,7 @@ public class Plateau{
         }
     }
     
-    //Rempli le tableau par d�faut avec des cases LIBRES
+    //Rempli le tableau par defaut avec des cases LIBRES
     private void remplir_tableau() {
     	
        for(int nb_couches=0;nb_couches<couches;nb_couches++){
@@ -125,7 +85,7 @@ public class Plateau{
 
     }
 
-    //Lib�re la case, par exemple lorsqu'un joueur se d�place
+    //Lib�re la case, par exemple lorsqu'un joueur se deplace
     public void liberer_plateau(Position p){
 
         plateau[p.getCouche()][p.getSommet()]=Situations.LIBRE;
@@ -137,13 +97,13 @@ public class Plateau{
         arcs[result[0]][result[1]]=false;
     }
 
-    //Regarde si la case donn�e en param�tre est libre
+    //Regarde si la case donnee en parametre est libre
     public boolean case_libre(Position p){
 
         return plateau[p.getCouche()][p.getSommet()]==Situations.LIBRE ? true : false;
     }
 
-    //Bloque l'arc pass� en param�tre
+    //Bloque l'arc passe en parametre
     public boolean bloquer_arc(Position p1,Position p2){
         if(!p1.passagePossible(p2)){
             return false;
@@ -154,7 +114,7 @@ public class Plateau{
     return true;
     }
 
-    //Verifie si l'arc donn� en param�tre est bloqu�
+    //Verifie si l'arc donne en parametre est bloque
     public boolean arc_bloque (Position p1, Position p2){
 
         int[] result=doubleToArc(p1,p2);
@@ -162,8 +122,8 @@ public class Plateau{
         return arcs[result[0]][result[1]];
     }
 
-    //Transforme une chaine de charact�re de type 1.1 et la transforme en tableau de int afin de pouvoir obtenir les informations dans le tableau
-    public int[] getArray(String arc){ //public pour les tests, � retirer �ventuellement
+    //Transforme une chaine de charactere de type 1.1 et la transforme en tableau de int afin de pouvoir obtenir les informations dans le tableau
+    public int[] getArray(String arc){ //public pour les tests, a retirer eventuellement
 
         String[] nombre=arc.split("\\.");
 
@@ -171,7 +131,7 @@ public class Plateau{
         try{
 
             Integer.parseInt(nombre[0]);
-            Integer.parseInt(nombre[1]);
+            Integer.parseInt(nombre[1]);        //  A METTRE DANS AUTRE CLASSE
 
         }catch(NumberFormatException nombreInvalide){
             return null;    //� modifier �ventuellement

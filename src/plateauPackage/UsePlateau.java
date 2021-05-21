@@ -8,11 +8,11 @@ public class UsePlateau {
 
 
     public static void main(String args[]) {
-    	
+
     	Menu menu=new Menu();
-    	Plateau plateau=new Plateau(menu.getConfig()[1]);
+        int[] config=menu.getConfig();
+        Plateau plateau=new Plateau(config[0],config[3]*2);
     	
-        int joueur=1;
         Menu.affichage_menu();
         while(true){
         

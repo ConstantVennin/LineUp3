@@ -10,12 +10,8 @@ import plateauPackage.Position;
 
 public class Menu {
 
-static int[] config=new int[] {2,3};//[0]nbjoueur [1]nbcouche
-private Plateau plateau;
+private static int[] config=new int[] {2,3,1};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau
 
-public Menu(Plateau plateau){
-	this.plateau=plateau;
-}
 
 static String menu_LineUp3=  "           _      _              _    _         ____           \r\n"
 					+ "          | |    (_)            | |  | |       |___ \\          \r\n"
@@ -45,8 +41,8 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 															+"\t\t\t(1) Lancer la partie\n"
 															+"\t\t\t(2) Changer le nombre de joueur\n"
 															+"\t\t\t(3) Changer le nombre de couche\n"
-			
-															+"\t\t\t(4) Retour\n";}
+															+"\t\t\t(4) Type de plateau\n"
+															+"\t\t\t(5) Retour\n";}
 	static Scanner entry = new Scanner(System.in);
 	public static int scanInt () {
 		int num = entry.nextInt();

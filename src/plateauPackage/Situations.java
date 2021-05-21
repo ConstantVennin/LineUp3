@@ -1,7 +1,7 @@
 package plateauPackage;
 
 public enum Situations {
-    //ARC signifie que l'arc a été bloqué par l'un des joueurs
-    //Ajouté "BLOQUE" pour toute autre raison qui ferait que la case n'est pas accessible
-    JOUEUR1,JOUEUR2,ARC,BLOQUE,LIBRE
+    //ARC signifie que l'arc a ï¿½tï¿½ bloquï¿½ par l'un des joueurs
+    //Ajoutï¿½ "BLOQUE" pour toute autre raison qui ferait que la case n'est pas accessible
+    JOUEUR1("(1)"),JOUEUR2("(2)"),ARC,BLOQUE,LIBRE
 }
