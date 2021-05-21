@@ -3,6 +3,7 @@
 
 
 public class menu {
+	
 static int[] config=new int[] {2,3};//[0]nbjoueur [1]nbcouche
 static String menu_LineUp3=  "           _      _              _    _         ____           \r\n"
 					+ "          | |    (_)            | |  | |       |___ \\          \r\n"
@@ -96,7 +97,7 @@ public static int scanInt () {
 				break;
 		default: System.out.println("Entrée incorrect");}
 		}while(num !=4);
-		return config;
+	return config;
 	}
 	
 	public static void main(String[] args) {
@@ -143,5 +144,7 @@ public static int scanInt () {
 			  System.out.println(res);
 	}
 
-
+	public int[] getConfig() {
+		return this.config;
+	}
 }
