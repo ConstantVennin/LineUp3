@@ -59,7 +59,7 @@ public class Plateau{
 		}
     }
 
-    //
+    //trouve les connexions de départ
 	public boolean cellulesRelieesAuDepart(int x1, int y1, int x2, int y2, int couches, int sommets) {
 		if(x1 == x2) {
 			if(y1+1==y2 || y1-1==y2) {
