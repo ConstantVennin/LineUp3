@@ -143,7 +143,7 @@ public class Plateau{
             }
         }
     }
-    public int getCouches() {
+    public int getCouches() { 
     	return this.couches;
     }
     
