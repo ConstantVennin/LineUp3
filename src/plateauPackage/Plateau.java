@@ -124,9 +124,9 @@ public class Plateau{
     return a<0 || b<0 ? null : new int[]{a,b};
     }
     
-    public Situations getCase(int couche, int sommet) {
+    public Situations getCase(Position p) {
     	
-    	return plateau[couche][sommet];
+    	return plateau[p.getCouche()][p.getSommet()];
     }
 
     //Renvoie un tableau de int correspondant à l'emplacement de la liaisions des sommets passés en paramètre
