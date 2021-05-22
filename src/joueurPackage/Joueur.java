@@ -4,24 +4,19 @@ public class Joueur{
 	
 	private String name;
 	//private Couleur color;
-	private static int id;
+	private static int id=1;
 	private final int joueurId;
 	
-	/*public Joueur(String name,Couleur color) {
+	public Joueur(String name) {
 		this.name = name;
-		this.color = color;
 		this.joueurId=id;
 		id++;
-	}*/
+	}
 
 	public Joueur(){
 		this.joueurId=id;
 		id++;
 	}
-	
-	/*public Joueur(Couleur color) {
-		this("default", color);
-	}*/
 	
 	public String getName() {
 		return this.name;

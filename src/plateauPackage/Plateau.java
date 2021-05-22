@@ -3,13 +3,15 @@ package plateauPackage;
 import java.util.ArrayList;
 import java.util.List;
 
+import Exceptions.PositionNonExistanteException;
+
 
 public class Plateau{
 
     //Trouver un moyen de g�rer le blocage des arcs temporaires
     private int couches;
     private final int sommets;
-    private final static int sommetsCarresDefault=8;
+    private final static int sommetsCarresDefault=9;
     private Situations[][] plateau;
     private boolean[][] arcs;
     List<Position> p;
@@ -26,7 +28,7 @@ public class Plateau{
     }
 
     //Cr�� un plateau avec un nombre de couches et de sommets pass� en param�tre ainsi que les arcs qui les relient
-    public void creation_plateau(int couches, int sommets){
+    public void creation_plateau(int couches, int nbCotes){
         this.plateau=new Situations[couches+1][sommets+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
         this.arcs = creation_arcs();
     }
@@ -217,7 +219,7 @@ public class Plateau{
     }
 
     //Transforme une chaine de charactere de type 1.1 et la transforme en tableau de int afin de pouvoir obtenir les informations dans le tableau
-    public int[] getArray(String arc){ //public pour les tests, a retirer eventuellement
+    public int[] getArray(String arc) throws NumberFormatException { //public pour les tests, a retirer eventuellement
 
         String[] nombre=arc.split("\\.");
 
@@ -228,11 +230,11 @@ public class Plateau{
             Integer.parseInt(nombre[1]);        //  A METTRE DANS AUTRE CLASSE
 
         }catch(NumberFormatException nombreInvalide){
-            return null;    //� modifier �ventuellement
+            throw new NumberFormatException();   
         }
 
         int a=Integer.parseInt(nombre[0]); //Convertit un String en int
-        int b=Integer.parseInt(nombre[1]);
+        int b=Integer.parseInt(nombre[1]);  // JE PENSE QU ON PEUT LE FAIRE DIRECTEMENT DANS LE TRY, A TEST 
 
     return a<0 || b<0 ? null : new int[]{a,b};
     }
@@ -268,14 +270,14 @@ public class Plateau{
         return this.p;
     }
 
-    public boolean positionExiste(Position p){
+    public boolean positionExiste(Position p) throws PositionNonExistanteException{
 
         for(Position position : this.p){
             if(position.equals(p)){
                 return true;
             }
         }
-    return false;
+    throw new PositionNonExistanteException();
     }
 
 }
