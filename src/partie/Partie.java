@@ -42,7 +42,7 @@ public class Partie {
                 System.out.println(e.getMessage()); 
             }
 
-        }while(!verif);
+        }while(!verif); 
 
         joueur++;
         plateau.placer_pion(new Pion(new Joueur(),positionPion));
