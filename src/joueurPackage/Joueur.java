@@ -4,7 +4,7 @@ public class Joueur{
 	
 	private String name;
 	//private Couleur color;
-	private static int id;
+	private static int id=1;
 	private final int joueurId;
 	
 	/*public Joueur(String name,Couleur color) {
