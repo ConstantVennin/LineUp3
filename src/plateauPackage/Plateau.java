@@ -11,7 +11,7 @@ public class Plateau{
     private final int sommets;
     private final static int sommetsCarresDefault=8;
     private Situations[][] plateau;
-    //private boolean[][] arcs;
+    private boolean[][] arcs;
     List<Position> p;
 
 
