@@ -3,6 +3,8 @@ package plateauPackage;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.tools.classfile.TypeAnnotation.Position;
+
 public class Plateau{
 
     //Trouver un moyen de g�rer le blocage des arcs temporaires
@@ -24,8 +26,8 @@ public class Plateau{
 
     //Cr�� un plateau avec un nombre de couches et de sommets pass� en param�tre ainsi que les arcs qui les relient
     public void creation_plateau(int couches, int sommets){
-        plateau=new Situations[couches+1][8+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
-        arcs= creation_arcs();
+        this.plateau=new Situations[couches+1][8+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
+        this.arcs = creation_arcs();
         remplir_tableau();
         initialiser_arcs();
 
@@ -57,6 +59,7 @@ public class Plateau{
 				res[c][s]=cellulesRelieesAuDepart(compteurX1, compteurY1, compteurX2, compteurY2, couches, sommets);
 			}
 		}
+		return res;
     }
 
     //trouve les connexions de départ
@@ -75,6 +78,11 @@ public class Plateau{
 			}
 		}
 		return false;
+	}
+	
+	public boolean deplacementAutorise(Position p1, Position p2) {
+		Situation s = getCase(p2);
+		if()
 	}
 
     public void initialiser_positions(){
