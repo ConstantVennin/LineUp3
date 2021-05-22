@@ -107,18 +107,30 @@ public class Plateau{
 		int y1 = p1.getSommet();
 		int x2 = p2.getCouche();
 		int y2 = p2.getSommet();
-		if(this.arcs[][]) {
+		if(this.arcs[this.getSommets()*x1+y1][this.getSommets()*x2+y2]) {
 			return true;
 		}
 		return false;
 	}
 	
+	//coupe un arc dans arcs[][] entre deux points du plateau, dans un sens comme dans l'autre
 	public void couperArc(Position p1, Position p2) {
-		
+		int x1 = p1.getCouche();
+		int y1 = p1.getSommet();
+		int x2 = p2.getCouche();
+		int y2 = p2.getSommet();
+		this.arcs[this.getSommets()*x1+y1][this.getSommets()*x2+y2] = false;
+		this.arcs[this.getSommets()*x2+y2][this.getSommets()*x1+y1] = false;
 	}
 	
+	//crée un arc dans arcs[][] entre deux points du plateau, dans un sens comme dans l'autre
 	public void creerArc(Position p1, Position p2) {
-		
+		int x1 = p1.getCouche();
+		int y1 = p1.getSommet();
+		int x2 = p2.getCouche();
+		int y2 = p2.getSommet();
+		this.arcs[this.getSommets()*x1+y1][this.getSommets()*x2+y2] = true;
+		this.arcs[this.getSommets()*x2+y2][this.getSommets()*x1+y1] = true;
 	}
 
     public void initialiser_positions(){
