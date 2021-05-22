@@ -64,46 +64,46 @@ public class TestPlateau{
     
     @Test
     public void testCreationArcs() {
-    	Plateau p1 = new Plateau(3,3);
-    	assertTrue(p1.getArcs(0, 1));
-    	assertTrue(p1.getArcs(7, 6));
-    	assertTrue(p1.getArcs(11, 5));
-    	assertTrue(p1.getArcs(7, 13));
-    	assertTrue(p1.getArcs(15, 9));
+    	Plateau pl1 = new Plateau(3,3);
+    	assertTrue(pl1.getArcs(0, 1));
+    	assertTrue(pl1.getArcs(7, 6));
+    	assertTrue(pl1.getArcs(11, 5));
+    	assertTrue(pl1.getArcs(7, 13));
+    	assertTrue(pl1.getArcs(15, 9));
     	
-    	assertFalse(p1.getArcs(0, 4));
-    	assertFalse(p1.getArcs(4, 6));
-    	assertFalse(p1.getArcs(7, 2));
-    	assertFalse(p1.getArcs(12, 7));
-    	assertFalse(p1.getArcs(13, 17));
+    	assertFalse(pl1.getArcs(0, 4));
+    	assertFalse(pl1.getArcs(4, 6));
+    	assertFalse(pl1.getArcs(7, 2));
+    	assertFalse(pl1.getArcs(12, 7));
+    	assertFalse(pl1.getArcs(13, 17));
     }
     
     @Test
     public void testcouperArc() {
-    	Plateau p2 = new Plateau(3,3);
-    	assertTrue(p2.getArcs(2, 3));
-    	assertTrue(p2.getArcs(3, 2));
-    	p2.couperArc(new Position(1,4), new Position(1,3)); //faire +1 à chaque si ça marche pas ^^
-    	assertFalse(p2.getArcs(2, 3));
-    	assertFalse(p2.getArcs(3, 2));
+    	Plateau pl2 = new Plateau(3,3);
+    	assertTrue(pl2.getArcs(2, 3));
+    	assertTrue(pl2.getArcs(3, 2));
+    	pl2.couperArc(new Position(1,4), new Position(1,3)); //faire +1 à chaque si ça marche pas ^^
+    	assertFalse(pl2.getArcs(2, 3));
+    	assertFalse(pl2.getArcs(3, 2));
     }
     
     @Test
     public void testArcsExiste() {
-    	Plateau p3 = new Plateau(3,3);
-    	assertTrue(p3.arcExiste(new Position(2,2), new Position(2,1)));
-    	assertTrue(p3.arcExiste(new Position(2,6), new Position(1,6)));
-    	assertTrue(p3.arcExiste(new Position(3,4), new Position(2,4)));
-    	assertFalse(p3.arcExiste(new Position(2,6), new Position(1,5)));
-    	assertFalse(p3.arcExiste(new Position(3,2), new Position(2,3)));
-    	assertFalse(p3.arcExiste(new Position(1,6), new Position(2,5)));
+    	Plateau pl3 = new Plateau(3,3);
+    	assertTrue(pl3.arcExiste(new Position(2,2), new Position(2,1)));
+    	assertTrue(pl3.arcExiste(new Position(2,6), new Position(1,6)));
+    	assertTrue(pl3.arcExiste(new Position(3,4), new Position(2,4)));
+    	assertFalse(pl3.arcExiste(new Position(2,6), new Position(1,5)));
+    	assertFalse(pl3.arcExiste(new Position(3,2), new Position(2,3)));
+    	assertFalse(pl3.arcExiste(new Position(1,6), new Position(2,5)));
     }
     
     @Test
     public void testCreerArc() {
-    	Plateau p4 = new Plateau(3,3);
-    	assertFalse(p4.getArcs(0, 4));
-    	p4.creerArc(new Position(1,1), new Position(1,5));
-    	assertFalse(p4.getArcs(0, 4));
+    	Plateau pl4 = new Plateau(3,3);
+    	assertFalse(pl4.getArcs(0, 4));
+    	pl4.creerArc(new Position(1,1), new Position(1,5));
+    	assertFalse(pl4.getArcs(0, 4));
     }
 }
