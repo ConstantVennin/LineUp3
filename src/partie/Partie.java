@@ -13,7 +13,7 @@ import plateauPackage.Position;
 
 public class Partie {
     
-    private int joueur=1;
+    private int joueur=0;
     private Scanner deploiement=new Scanner(System.in);
     private boolean verif;
     private int[] positions;
@@ -21,27 +21,32 @@ public class Partie {
     private String entreeJoueur;
     private Position positionPion;
     int nbJoueurs;
+    int nbPions;
     List<Joueur> joueurs;
 
-    public Partie(Plateau plateau,int nbJoueurs){
+    public Partie(Plateau plateau,int nbJoueurs,int nbPions){
         this.plateau=plateau;
         this.nbJoueurs=nbJoueurs;
+        this.nbPions=nbPions*8;  // le nombre de pions correspond aux nombres de couches*8
         joueurs=new ArrayList<Joueur>();
+        initialisationJoueurs();
     }
 
     public void initialisationJoueurs(){ //Initialisation automatique des joueurs, on pourra modif pour laisser la liberté aux joueurs de choisir leurs noms
 
-        for(int indice=0;indice<nbJoueurs;indice++){
+        for(int indice=1;indice<nbJoueurs+1;indice++){
 
             joueurs.add(new Joueur("Joueur "+indice));
         }
     }
 
-    public void PhaseDeploiement(int nbPions){
+    public void PhaseDeploiement(){
 
-        int pionsRestant=nbPions;
+        int pionsRestants=nbPions;
 
-        while(pionsRestant>0){
+        while(pionsRestants>0){
+
+            if(joueur>nbJoueurs-1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
 
             System.out.println("Entrez la case ou vous voulez placer votre pion sous la forme x.y : Joueur "+ joueurs.get(joueur).getName());
 
@@ -69,9 +74,9 @@ public class Partie {
 
             }while(!verif); 
 
-            joueur= nbJoueurs>joueur ? joueur+1 : 1; //Retourne à 1 quand le nombre de joueurs a été dépassé
             plateau.placer_pion(new Pion(joueurs.get(joueur),positionPion));
-            pionsRestant--;
+            joueur++;
+            pionsRestants--;
         }
     System.out.println("\nTous les pions on été placés");
     }

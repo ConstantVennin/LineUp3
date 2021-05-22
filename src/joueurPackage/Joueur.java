@@ -10,7 +10,7 @@ public class Joueur{
 	public Joueur(String name) {
 		this.name = name;
 		this.joueurId=id;
-		id+;
+		id++;
 	}
 
 	public Joueur(){
