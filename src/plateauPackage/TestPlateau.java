@@ -61,4 +61,20 @@ public class TestPlateau{
         assertTrue(p4.passagePossible(p6));
         assertTrue(p6.passagePossible(p4));
     }
+    
+    @Test
+    public void testCreationArcs() {
+    	Plateau p1 = new Plateau(3,3);
+    	assertTrue(p1.getArcs(0, 1));
+    	assertTrue(p1.getArcs(7, 6));
+    	assertTrue(p1.getArcs(11, 5));
+    	assertTrue(p1.getArcs(7, 13));
+    	assertTrue(p1.getArcs(15, 9));
+    	
+    	assertFalse(p1.getArcs(0, 4));
+    	assertFalse(p1.getArcs(4, 6));
+    	assertFalse(p1.getArcs(7, 2));
+    	assertFalse(p1.getArcs(12, 7));
+    	assertFalse(p1.getArcs(13, 17));
+    }
 }

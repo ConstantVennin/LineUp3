@@ -282,5 +282,9 @@ public class Plateau{
         }
     throw new PositionNonExistanteException();
     }
+    
+    public boolean getArcs(int x, int y) {
+    	return this.arcs[x][y];
+    }
 
 }
