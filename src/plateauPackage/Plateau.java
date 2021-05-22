@@ -22,14 +22,14 @@ public class Plateau{
     	
         this.couches=couches;
         this.sommets=nombreCote*2;
-        creation_plateau();
+        this.creation_plateau();
         p=new ArrayList<Position>();
         this.initialiser_positions();
     }
 
     //Cr�� un plateau avec un nombre de couches et de sommets pass� en param�tre ainsi que les arcs qui les relient
     public void creation_plateau(int couches, int nbCotes){
-        this.plateau=new Situations[couches+1][sommets+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
+        this.plateau=new Situations[couches][sommets];
         this.arcs = creation_arcs();
     }
         
@@ -39,7 +39,8 @@ public class Plateau{
 
     //Creer un plateau avec un nombre de couches et de sommets passe en parametre ainsi que les arcs qui les relient
     public void creation_plateau(){
-        plateau=new Situations[this.couches+1][this.sommets+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
+
+        plateau=new Situations[this.couches][this.sommets];
         this.arcs = creation_arcs();
         remplir_tableau();
         initialiser_arcs();
@@ -136,7 +137,7 @@ public class Plateau{
 	}
 
     public void initialiser_positions(){
-        for(int indice=1;indice<this.couches;indice++){
+        for(int indice=1;indice<this.couches+1;indice++){
             for(int i=1;i<9;i++){ // nb de sommets toujours égal à 8
                 p.add(new Position(indice,i));
             }
@@ -271,8 +272,10 @@ public class Plateau{
     }
 
     public boolean positionExiste(Position p) throws PositionNonExistanteException{
+        System.out.println("Couche : "+p.getCouche()+"Sommet "+p.getSommet());
 
         for(Position position : this.p){
+            System.out.println("CoucheL : "+position.getCouche()+"SommetL "+position.getSommet());
             if(position.equals(p)){
                 return true;
             }

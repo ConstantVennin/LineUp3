@@ -11,9 +11,8 @@ public class Position {
     
     public Position(int couche, int sommet){
 
-        this.couche=couche;
-        this.sommet=sommet;
-
+        this.couche=couche-1;
+        this.sommet=sommet-1;
         transition.add(2);
         transition.add(4);
         transition.add(6);
