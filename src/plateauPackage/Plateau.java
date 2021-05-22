@@ -11,7 +11,7 @@ public class Plateau{
     //Trouver un moyen de g�rer le blocage des arcs temporaires
     private int couches;
     private final int sommets;
-    private final static int sommetsCarresDefault=8;
+    private final static int sommetsCarresDefault=9;
     private Situations[][] plateau;
     private boolean[][] arcs;
     List<Position> p;
@@ -28,7 +28,7 @@ public class Plateau{
     }
 
     //Cr�� un plateau avec un nombre de couches et de sommets pass� en param�tre ainsi que les arcs qui les relient
-    public void creation_plateau(int couches, int sommets){
+    public void creation_plateau(int couches, int nbCotes){
         this.plateau=new Situations[couches+1][sommets+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
         this.arcs = creation_arcs();
     }
