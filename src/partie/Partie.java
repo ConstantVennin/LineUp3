@@ -39,7 +39,7 @@ public class Partie {
             }catch(NumberFormatException | ArrayIndexOutOfBoundsException e){
                 System.out.println("Le nombre entré n'est pas sous la forme x.y");
             }catch(PositionNonExistanteException e){
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage()); 
             }
 
         }while(!verif);
