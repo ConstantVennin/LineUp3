@@ -49,7 +49,7 @@ public class Plateau{
     	int couches = this.couches;
     	int sommets = this.sommets;
 		boolean[][] res = new boolean[couches*sommets][couches*sommets];
-		int compteurX1 = 1;
+		int compteurX1 = 0;
 		int compteurY1 = 0;
 		int compteurX2 = 0;
 		int compteurY2 = 0;
@@ -93,9 +93,32 @@ public class Plateau{
 	
 	public boolean deplacementAutorise(Position p1, Position p2) {
 		Situations s = getCase(p2);
-		if() {
-			
+		if(s == Situations.LIBRE) {
+			if(arcExiste(p1, p2)) {
+				return true;
+			}
 		}
+		return false;
+	}
+	
+	//verifie si le passage du premier paramètre vers le second existe, en fonction du tableau arcs[][], attention, la réciproque n'est pas forcément identique.
+	public boolean arcExiste(Position p1, Position p2) {
+		int x1 = p1.getCouche();
+		int y1 = p1.getSommet();
+		int x2 = p2.getCouche();
+		int y2 = p2.getSommet();
+		if(this.arcs[][]) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void couperArc(Position p1, Position p2) {
+		
+	}
+	
+	public void creerArc(Position p1, Position p2) {
+		
 	}
 
     public void initialiser_positions(){
