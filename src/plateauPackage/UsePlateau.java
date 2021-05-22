@@ -20,9 +20,9 @@ public class UsePlateau {
         Partie partie=new Partie(plateau,config[0],config[1]);
         partie.PhaseDeploiement();
         plateau.Afficher_plateau();
-        /*while(true){
+        while(true){
             System.out.println("Entrez la valeur de l'arc sur le quel vous souhaitez vous déplacer");
             //entreeJoueur.nextDouble();
-        }*/
+        }
     }
 }

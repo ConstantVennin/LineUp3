@@ -14,12 +14,11 @@ import plateauPackage.Position;
 public class Partie {
     
     private int joueur=0;
-    private Scanner deploiement=new Scanner(System.in);
+    private Scanner actionJoueur=new Scanner(System.in);
     private boolean verif;
     private int[] positions;
     private Plateau plateau;
     private String entreeJoueur;
-    private Position positionPion;
     int nbJoueurs;
     int nbPions;
     List<Joueur> joueurs;
@@ -50,35 +49,49 @@ public class Partie {
 
             System.out.println("Entrez la case ou vous voulez placer votre pion sous la forme x.y : Joueur "+ joueurs.get(joueur).getName());
 
-                do{
-                    entreeJoueur=deploiement.nextLine();
-                try{
-                    
-                    positions=plateau.getArray(entreeJoueur); //transforme l'entrée du joueur en double afin de le convertir en Position
-                    positionPion=new Position(positions[0],positions[1]);
-                    plateau.positionExiste(positionPion);
-                    verif=true; 
-
-                    if(!plateau.case_libre(positionPion)){
-                        System.out.println("Cette case n'est pas libre");
-                        verif=false;
-                    }
-
-                }catch(NumberFormatException | ArrayIndexOutOfBoundsException | NoSuchElementException e){
-                    System.out.println("Le nombre entré n'est pas sous la forme x.y\n");
-                    verif=false;
-                }catch(PositionNonExistanteException e){
-                    System.out.println(e.getMessage());
-                    verif=false;
-                }
-
-            }while(!verif); 
+            Position positionPion=verificationEntree();
 
             plateau.placer_pion(new Pion(joueurs.get(joueur),positionPion));
             joueur++;
             pionsRestants--;
         }
     System.out.println("\nTous les pions on été placés");
+    }
+
+    public void actionJoueur(){
+        System.out.println("Sur quelle case souhaitez vous vous déplacer?");
+        Position positionPion=verificationEntree();
+    }
+
+    public Position verificationEntree(){
+
+        Position positionPion=null;
+
+        do{
+            entreeJoueur=actionJoueur.nextLine();
+        try{
+            
+            positions=plateau.getArray(entreeJoueur); //transforme l'entrée du joueur en double afin de le convertir en Position
+            positionPion=new Position(positions[0],positions[1]);
+            plateau.positionExiste(positionPion);
+            verif=true; 
+
+            if(!plateau.case_libre(positionPion)){
+                System.out.println("Cette case n'est pas libre");
+                verif=false;
+            }
+
+        }catch(NumberFormatException | ArrayIndexOutOfBoundsException | NoSuchElementException e){
+            System.out.println("Le nombre entré n'est pas sous la forme x.y\n");
+            verif=false;
+        }catch(PositionNonExistanteException e){
+            System.out.println(e.getMessage());
+            verif=false;
+        }
+
+        }while(!verif);
+    
+    return positionPion;
     }
 
 }
