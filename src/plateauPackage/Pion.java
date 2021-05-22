@@ -1,7 +1,6 @@
-package Pion;
+package  plateauPackage;
 
 import joueurPackage.Joueur;
-import plateauPackage.Position;
 
 public class Pion {
 
@@ -12,4 +11,13 @@ public class Pion {
         this.joueur=joueur;
         this.p=p;
     }
+
+    public Position getPosition(){
+        return this.p;
+    }
+
+    public int getJoueurId(){
+        return this.joueur.getJoueurId();
+    }
+
 }
