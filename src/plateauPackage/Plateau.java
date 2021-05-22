@@ -25,12 +25,12 @@ public class Plateau{
         this.initialiser_positions();
     }
 
-<<<<<<< HEAD
     //Cr�� un plateau avec un nombre de couches et de sommets pass� en param�tre ainsi que les arcs qui les relient
     public void creation_plateau(int couches, int sommets){
-        this.plateau=new Situations[couches+1][8+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
+        this.plateau=new Situations[couches+1][sommets+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
         this.arcs = creation_arcs();
-=======
+    }
+        
     Plateau(int couches){
         this(couches,sommetsCarresDefault);
     }
@@ -38,16 +38,14 @@ public class Plateau{
     //Creer un plateau avec un nombre de couches et de sommets passe en parametre ainsi que les arcs qui les relient
     public void creation_plateau(){
         plateau=new Situations[this.couches+1][this.sommets+1]; // J'ai mis les +1 pour éviter les index out of bound quand on met sommet 8, à modifier pour être plus opti
-        arcs=new boolean[couches+1][this.sommets+4];
->>>>>>> branch 'master' of https://gitlab.univ-lille.fr/victor.mougel.etu/lineup.git
+        this.arcs = creation_arcs();
         remplir_tableau();
         initialiser_arcs();
 
     }
-<<<<<<< HEAD
     
     //Instancie une matrice d'adjacence symbolisant les connexion entre les points, vrai = passage autorisé, faux = passage
-    public void creation_arcs() {
+    public boolean[][] creation_arcs() {
     	int couches = this.couches;
     	int sommets = this.sommets;
 		boolean[][] res = new boolean[couches*sommets][couches*sommets];
@@ -94,11 +92,11 @@ public class Plateau{
 	}
 	
 	public boolean deplacementAutorise(Position p1, Position p2) {
-		Situation s = getCase(p2);
-		if()
+		Situations s = getCase(p2);
+		if() {
+			
+		}
 	}
-=======
->>>>>>> branch 'master' of https://gitlab.univ-lille.fr/victor.mougel.etu/lineup.git
 
     public void initialiser_positions(){
         for(int indice=1;indice<this.couches;indice++){
