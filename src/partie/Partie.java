@@ -27,7 +27,7 @@ public class Partie {
 
                 positions=plateau.getArray(deploiement.nextLine());
                 plateau.placer_pion(new Pion(new Joueur(),new Position(positions[0],positions[1])));
-                verif=true;
+                verif=true; 
             }catch(NumberFormatException e){
                 System.out.println("Le nombre entré n'est pas sous la forme x.y");
             }
