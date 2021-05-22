@@ -43,4 +43,8 @@ public class Position {
     public int getSommet(){
         return this.sommet;
     }
+
+    public boolean equals(Position p){
+        return this.couche==p.getCouche() && this.sommet==p.getSommet() ? true : false;
+    }
 }

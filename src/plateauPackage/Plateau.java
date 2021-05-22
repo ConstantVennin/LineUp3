@@ -138,11 +138,9 @@ public class Plateau{
     }
 
     //Place le pion du joueur sur le plateau
-    public void placer_pion(Position p,int joueur){
+    public void placer_pion(Pion pion){
 
-        String nomJoueur= joueur==1 ? "JOUEUR1" : "JOUEUR2";
-        System.out.println(p.getCouche()+" Sommet "+p.getSommet());
-        plateau[p.getCouche()][p.getSommet()]=Situations.valueOf(nomJoueur);
+        plateau[pion.getPosition().getCouche()][pion.getPosition().getSommet()]=Situations.values()[pion.getJoueurId()];
 
     }
 
@@ -233,6 +231,16 @@ public class Plateau{
 
     public List<Position> getPosition(){
         return this.p;
+    }
+
+    public boolean positionExiste(Position p){
+
+        for(Position position : this.p){
+            if(position.equals(p)){
+                return true;
+            }
+        }
+    return false;
     }
 
 }
