@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Exceptions.PositionNonExistanteException;
+import joueurPackage.Pion;
 
 
 public class Plateau{
@@ -11,7 +12,7 @@ public class Plateau{
     //Trouver un moyen de g�rer le blocage des arcs temporaires
     private int couches;
     private final int sommets;
-    private final static int sommetsCarresDefault=9;
+    private final static int cotesCarresDefault=4;
     private Situations[][] plateau;
     private boolean[][] arcs;
     List<Position> p;
@@ -34,7 +35,7 @@ public class Plateau{
     }
         
     Plateau(int couches){
-        this(couches,sommetsCarresDefault);
+        this(couches,cotesCarresDefault);
     }
 
     //Creer un plateau avec un nombre de couches et de sommets passe en parametre ainsi que les arcs qui les relient
@@ -148,8 +149,9 @@ public class Plateau{
 
         for(int nb_couches=0;nb_couches<couches;nb_couches++){
             for(int nb_sommets=0;nb_sommets<sommets;nb_sommets++){
-                System.out.println("Plateau ligne / colonne "+plateau[nb_couches][nb_sommets].name());
+                System.out.print(plateau[nb_couches][nb_sommets].name()+"("+(nb_couches+1)+","+(nb_sommets+1)+") ");
             }
+        System.out.println("\n");
         }
     }
     
@@ -252,10 +254,8 @@ public class Plateau{
     }
     
     public void afficher_liaisons(){
-        System.out.println(arcs[0].length);
         for(int indice=0;indice<arcs[0].length;indice++){
             for(int i=0;i<arcs[1].length;i++){
-                System.out.println("Couche: "+indice+"Liaison : "+i);
             }
         }
     }
@@ -271,20 +271,21 @@ public class Plateau{
         return this.p;
     }
 
-    public boolean positionExiste(Position p) throws PositionNonExistanteException{
-        System.out.println("Couche : "+p.getCouche()+"Sommet "+p.getSommet());
+    public boolean positionExiste(Position p){
 
         for(Position position : this.p){
-            System.out.println("CoucheL : "+position.getCouche()+"SommetL "+position.getSommet());
             if(position.equals(p)){
                 return true;
             }
         }
-    throw new PositionNonExistanteException();
+    return false;
     }
     
     public boolean getArcs(int x, int y) {
     	return this.arcs[x][y];
     }
 
+    public boolean placementPossible(Position positionPion){
+        return this.positionExiste(positionPion) && this.case_libre(positionPion) ? true : false;
+    }
 }
