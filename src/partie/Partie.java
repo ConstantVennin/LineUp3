@@ -162,10 +162,6 @@ public class Partie {
             positions=plateau.getArray(entreeJoueur); //transforme l'entrée du joueur en double afin de le convertir en Position
             positionPion=new Position(positions[0],positions[1]);
 
-            if(!plateau.placementPossible(positionPion)){
-                //System.out.println("Cette case n'est pas libre"); // Ce message ne s'envoie que si il n'y a pas d'excpetion
-            }                                                     // Donc il est sûr que si ce message apparait c'est parce que la case n'est pas libre
-                                                                  //contrairement à ce que l'on pourrait croire en voyant la fonction positionPossible
             verif=true; 
 
         }catch(NumberFormatException | ArrayIndexOutOfBoundsException | NoSuchElementException e){
