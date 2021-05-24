@@ -173,6 +173,10 @@ public class Partie {
     
     return positionPion;
     }
+    
+    public boolean partieFinie() {
+    	
+    }
 
 
 }
