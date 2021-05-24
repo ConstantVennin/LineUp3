@@ -13,6 +13,8 @@ public class Joueur{
 	private final int joueurId;
 	private int nbPions;
 	private List<Pion> pions;
+	private int piegeArc;
+	private int piegeCase;
 	
 	public Joueur(String name, int nbPions) {
 		this.name = name;

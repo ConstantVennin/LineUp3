@@ -19,7 +19,7 @@ public class Plateau{
 
 
     //Constructeur de la classe Plateau 
-    Plateau(int couches,int nombreCote){
+    public Plateau(int couches,int nombreCote){
     	
         this.couches=couches;
         this.sommets=nombreCote*2;
@@ -44,7 +44,7 @@ public class Plateau{
         plateau=new Situations[this.couches][this.sommets];
         this.arcs = creation_arcs();
         remplir_tableau();
-        initialiser_arcs();
+        //initialiser_arcs();
 
     }
     
@@ -287,5 +287,13 @@ public class Plateau{
 
     public boolean placementPossible(Position positionPion){
         return this.positionExiste(positionPion) && this.case_libre(positionPion) ? true : false;
+    }
+    
+    public Situations getPlateau(int x, int y) {
+    	return this.plateau[x][y];
+    }
+    
+    public void setPlateau(int x, int y, Situations s) {
+    	this.plateau[x][y] = s;
     }
 }
