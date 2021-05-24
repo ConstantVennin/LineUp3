@@ -69,4 +69,12 @@ public class Joueur{
 		this.nbPions--;
 	}
 	
+	public List<Position> getPositions(){
+		List<Position> res = new ArrayList<Position>();
+		for(Pion p : this.pions) {
+			res.add(p.getPosition());
+		}
+	return res;
+	}
+	
 }

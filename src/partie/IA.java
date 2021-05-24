@@ -27,7 +27,7 @@ public class IA {
 						if(!(arrive.getCouche()>p.getCouches() || arrive.getSommet()>p.getSommets())) {
 							
 							if(p.arcExiste(pionBouge, arrive)){
-								if(p.getCase(arrive) == Situations.LIBRE) {
+								if(p.case_libre(arrive)) {
 									libreAutour = true;
 								}
 							}
