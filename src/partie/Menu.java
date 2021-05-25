@@ -37,7 +37,7 @@ static String menu_regle=	 "------------------------| Règle |------------------
 					+ "\t\t\t(2) Retour\n";
 public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------------------| Jouer |------------------------\n"
 															+"\t\t\tNombre de joueur: "+nbjoueur+"\n"
-															+"\t\t\tNombre de joueur: "+nbcouche+"\n\n"
+															+"\t\t\tNombre de couche: "+nbcouche+"\n\n"
 															+"\t\t\t(1) Lancer la partie\n"
 															+"\t\t\t(2) Changer le nombre de joueur\n"
 															+"\t\t\t(3) Changer le nombre de couche\n"
@@ -117,38 +117,38 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		/*Affiche un plateau carré
 		 * 
 		 */
-		String res=plateau.getCases(p1).getRepresentation()+"——————————"+plateau.getCases()[0][1].getRepresentation()+"——————————"+plateau.getCases()[0][2].getRepresentation()+'\n';
+		String res=plateau.getCases(p.get(17)).situation+"——————————"+plateau.getCases(p.get(18)).situation+"——————————"+plateau.getCases(p.get(19)).situation+'\n';
 			  res+="|          |          |"+'\n';
-			  res+="|   "+plateau.getCases()[1][0].getRepresentation()+"——————"+plateau.getCases()[1][1].getRepresentation()+"——————"+plateau.getCases()[1][2].getRepresentation()+"   |"+'\n';
+			  res+="|   "+plateau.getCases(p.get(9)).situation+"——————"+plateau.getCases(p.get(10)).situation+"——————"+plateau.getCases(p.get(11)).situation+"   |"+'\n';
 			  res+="|   |      |      |   |"+'\n';
-			  res+="|   |   "+plateau.getCases()[2][0].getRepresentation()+"——"+plateau.getCases()[2][1].getRepresentation()+"——"+plateau.getCases()[2][2].getRepresentation()+"   |   |"+'\n';
+			  res+="|   |   "+plateau.getCases(p.get(1)).situation+"——"+plateau.getCases(p.get(2)).situation+"——"+plateau.getCases(p.get(3)).situation+"   |   |"+'\n';
 			  res+="|   |   |     |   |   |"+'\n';
-			  res+=plateau.getCases()[0][7].getRepresentation()+"———"+plateau.getCases()[1][7].getRepresentation()+"———"+plateau.getCases()[2][7].getRepresentation()+"     "+plateau.getCases()[2][3].getRepresentation()+"———"+plateau.getCases()[1][3].getRepresentation()+"———"+plateau.getCases()[0][3].getRepresentation()+'\n';
+			  res+=plateau.getCases(p.get(24)).situation+"———"+plateau.getCases(p.get(16)).situation+"———"+plateau.getCases(p.get(8)).situation+"     "+plateau.getCases(p.get(4)).situation+"———"+plateau.getCases(p.get(12)).situation+"———"+plateau.getCases(p.get(20)).situation+'\n';
 			  res+="|   |   |     |   |   |"+'\n';
-			  res+="|   |   "+plateau.getCases()[2][6].getRepresentation()+"——"+plateau.getCases()[2][5].getRepresentation()+"——"+plateau.getCases()[2][4].getRepresentation()+"   |   |"+'\n';
+			  res+="|   |   "+plateau.getCases(p.get(7)).situation+"——"+plateau.getCases(p.get(6)).situation+"——"+plateau.getCases(p.get(5)).situation+"   |   |"+'\n';
 			  res+="|   |      |      |   |"+'\n';
-			  res+="|   "+plateau.getCases()[1][6].getRepresentation()+"——————"+plateau.getCases()[1][5].getRepresentation()+"——————"+plateau.getCases()[1][4].getRepresentation()+"   |"+'\n';
+			  res+="|   "+plateau.getCases(p.get(15)).situation+"——————"+plateau.getCases(p.get(14)).situation+"——————"+plateau.getCases(p.get(13)).situation+"   |"+'\n';
 			  res+="|          |          |"+'\n';
-			  res+=plateau.getCases()[0][6].getRepresentation()+"——————————"+plateau.getCases()[0][5].getRepresentation()+"——————————"+plateau.getCases()[0][4].getRepresentation()+'\n';
+			  res+=plateau.getCases(p.get(23)).situation+"——————————"+plateau.getCases(p.get(22)).situation+"——————————"+plateau.getCases(p.get(21)).situation+'\n';
 			  System.out.println(res);
 	}
 	public static void afficherPlateauTriangle(Plateau plateau) {
 		/*
 		 * Renvoie un plateau triangulaire
 		 */
-		String res="            "+plateau.getCases()[0][0].getRepresentation()+"\n";
+		String res="            "+plateau.getCases(p.get(13)).situation+"\n";
 			  res+="           / \\\n";
-			  res+="          / "+plateau.getCases()[1][0].getRepresentation()+" \\\n";
+			  res+="          / "+plateau.getCases(p.get(7)).situation+" \\\n";
 			  res+="         / / \\ \\\n";
-			  res+="        / / "+plateau.getCases()[2][0].getRepresentation()+" \\ \\\n";
+			  res+="        / / "+plateau.getCases(p.get(1)).situation+" \\ \\\n";
 			  res+="       / / / \\ \\ \\\n";
-			  res+="      "+plateau.getCases()[0][5].getRepresentation()+"-"+plateau.getCases()[1][5].getRepresentation()+"-"+plateau.getCases()[2][5].getRepresentation()+"   "+plateau.getCases()[2][1].getRepresentation()+"-"+plateau.getCases()[1][1].getRepresentation()+"-"+plateau.getCases()[0][1].getRepresentation()+"\n";
+			  res+="      "+plateau.getCases(p.get(18)).situation+"-"+plateau.getCases(p.get(12)).situation+"-"+plateau.getCases(p.get(6)).situation+"   "+plateau.getCases(p.get(2)).situation+"-"+plateau.getCases(p.get(8)).situation+"-"+plateau.getCases(p.get(14)).situation+"\n";
 			  res+="     / / /     \\ \\ \\\n";
-			  res+="    / / "+plateau.getCases()[2][4].getRepresentation()+"---"+plateau.getCases()[2][3].getRepresentation()+"---"+plateau.getCases()[2][2].getRepresentation()+" \\ \\\n";
+			  res+="    / / "+plateau.getCases(p.get(5)).situation+"---"+plateau.getCases(p.get(4)).situation+"---"+plateau.getCases(p.get(3)).situation+" \\ \\\n";
 			  res+="   / /      |      \\ \\\n";
-			  res+="  / "+plateau.getCases()[1][4].getRepresentation()+"-------"+plateau.getCases()[1][3].getRepresentation()+"-------"+plateau.getCases()[1][2].getRepresentation()+" \\\n";
+			  res+="  / "+plateau.getCases(p.get(11)).situation+"-------"+plateau.getCases(p.get(10)).situation+"-------"+plateau.getCases(p.get(9)).situation+" \\\n";
 			  res+=" /          |          \\\n";
-			  res+=plateau.getCases()[0][4].getRepresentation()+"-----------"+plateau.getCases()[0][3].getRepresentation()+"-----------"+plateau.getCases()[0][2].getRepresentation()+"\n";
+			  res+=plateau.getCases(p.get(17)).situation+"-----------"+plateau.getCases(p.get(16)).situation+"-----------"+plateau.getCases(p.get(15)).situation+"\n";
 			  System.out.println(res);
 	}
 
