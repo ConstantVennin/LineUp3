@@ -205,7 +205,7 @@ public class Partie {
 
     public boolean checkLineUp3(int idJoueur) {
     	List<Position> positions = joueurs.get(idJoueur).getPositions();
-    	positions = this.plateau.getPosition();
+    	//positions = this.plateau.getPosition();
     	
     	for(Position p1 : positions) {
     		for(Position p2 : positions) {
