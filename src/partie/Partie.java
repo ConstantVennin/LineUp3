@@ -24,6 +24,7 @@ public class Partie {
     int nbJoueurs;
     int nbPions;
     List<Joueur> joueurs;
+    private boolean finPartie;
 
     public Partie(Plateau plateau,int nbJoueurs,int nbcouches){
         this.plateau=plateau;
@@ -65,8 +66,12 @@ public class Partie {
             while(!plateau.placementPossible(positionPion)){
                 
                 System.out.println("Vous ne pouvez pas vous déplacer ici..\n");
-                plateau.placer_pion(pionJoueur,positionPion);
+                positionPion=verificationEntree();
             };
+
+            pionJoueur.setPosition(positionPion);
+            plateau.placer_pion(pionJoueur,positionPion);
+            lineUp3(joueur);
 
             joueur++;
             pionsRestants--;
@@ -106,6 +111,8 @@ public class Partie {
                 positionPion=new Position(couche,sommet);
             }
 
+
+            pionJoueur.setPosition(positionPion);
             plateau.placer_pion(pionJoueur,positionPion);
             joueur++;
             pionsRestants--;
@@ -148,7 +155,9 @@ public class Partie {
         }
 
         plateau.liberer_plateau(pionJoueur.getPosition());
+        pionJoueur.setPosition(positionPion);
         plateau.placer_pion(pionJoueur,positionPion);
+        lineUp3(idJoueur);
     
     }
 
@@ -180,7 +189,7 @@ public class Partie {
         Position positionPion;
         Pion pionJoueur=null;
 
-        System.out.println("Le joueur "+idJoueur+ "a aligné 3 pions, il a donc la possibilité de retier un des pions adverse");
+        System.out.println("Le joueur "+idJoueur+1+ " a aligné 3 pions, il a donc la possibilité de retier un des pions adverse");
         System.out.println("Quel pion souhaitez vous retirer ?");
 
         positionPion=verificationEntree();
@@ -191,7 +200,7 @@ public class Partie {
         };
 
         positionPion=verificationEntree();
-        Situations situation=plateau.getCase(positionPion); //Regarde à quel joueur appartient le pion
+        Situations situation=plateau.getCase(positionPion); //Regarde à quel joueur appartient le pion (utile si + de 2 joueurs)
         Joueur joueur=joueurs.get(situation.ordinal()); //La joueur 1 correspond à l'ordinal 1, donc si situation=JOUEUR1, on va prendre la case 0 du tableau de joueurs
 
         try{
@@ -201,9 +210,12 @@ public class Partie {
 
         plateau.liberer_plateau(positionPion);
         joueur.retirerPion(pionJoueur);
+
+        partiFinie(joueur.getJoueurId());
     }
 
     public boolean checkLineUp3(int idJoueur) {
+        
     	List<Position> positions = joueurs.get(idJoueur).getPositions();
     	//positions = this.plateau.getPosition();
     	
@@ -229,6 +241,14 @@ public class Partie {
         	}
     	}
     	return false;
+    }
+
+    public void partiFinie(int idJoueur){
+        finPartie= joueurs.get(idJoueur).getNbPions()<3 ? true : false;
+    }
+
+    public boolean getStatutPatie(){
+        return finPartie;
     }
 
 
