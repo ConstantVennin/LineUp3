@@ -41,23 +41,38 @@ public class Configuration {
 
 	
 	public static int getNbPiegeCases() throws NumberFormatException, FileNotFoundException, IOException {
-		return Integer.parseInt(readConfig(1));
+		if(readConfig(1)!=null && !readConfig(1).equals("")) {
+			return Integer.parseInt(readConfig(1));
+		}
+		return 0;
 	}
 	
 	public static int getNbPiegeArcs() throws NumberFormatException, FileNotFoundException, IOException {
-		return Integer.parseInt(readConfig(2));
+		if(readConfig(2)!=null && !readConfig(2).equals("")) {
+			return Integer.parseInt(readConfig(2));
+		}
+		return 0;
 	}
 	
 	public static int getNbPionParPers() throws NumberFormatException, FileNotFoundException, IOException {
-		return Integer.parseInt(readConfig(3));
+		if(readConfig(3)!=null && !readConfig(3).equals("")) {
+			return Integer.parseInt(readConfig(3));
+		}
+		return 0;
 	}
 	
 	public static int getNbDeSommets() throws NumberFormatException, FileNotFoundException, IOException {
-		return Integer.parseInt(readConfig(4));
+		if(readConfig(4)!=null && !readConfig(4).equals("")) {
+			return Integer.parseInt(readConfig(4));
+		}
+		return 0;
 	}
 	
 	public static int getNbDeCouches() throws NumberFormatException, FileNotFoundException, IOException {
-		return Integer.parseInt(readConfig(5));
+		if(readConfig(5)!=null && !readConfig(5).equals("")) {
+			return Integer.parseInt(readConfig(5));
+		}
+		return 0;
 	}
 	
 	public static boolean jouerContreIA() throws FileNotFoundException, IOException {
@@ -70,12 +85,12 @@ public class Configuration {
 	}
 	
 //	tests du bon fonctionnement
-//	public static void main(String[] args) throws FileNotFoundException, IOException {
-//		System.out.println("piege cases : " + getNbPiegeCases());
-//		System.out.println("pieges arcs : " + getNbPiegeArcs());
-//		System.out.println("pions par personne : " + getNbPionParPers());
-//		System.out.println("sommets : " + getNbDeSommets());
-//		System.out.println("couches : " + getNbDeCouches());
-//		System.out.println("jouer Contre une IA : " + jouerContreIA());
-//	}
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		System.out.println("piege cases : " + getNbPiegeCases());
+		System.out.println("pieges arcs : " + getNbPiegeArcs());
+		System.out.println("pions par personne : " + getNbPionParPers());
+		System.out.println("sommets : " + getNbDeSommets());
+		System.out.println("couches : " + getNbDeCouches());
+		System.out.println("jouer Contre une IA : " + jouerContreIA());
+	}
 }

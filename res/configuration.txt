@@ -1,5 +1,5 @@
 Ne mettez pas d'espaces
-Ne modifiez pas le fichier
+Ne modifiez pas le fichier sauf juste après les ":"
 
 -------------------------------------------------
 
