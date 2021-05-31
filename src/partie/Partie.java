@@ -71,6 +71,7 @@ public class Partie {
 
             pionJoueur.setPosition(positionPion);
             plateau.placer_pion(pionJoueur,positionPion);
+            System.out.println(checkLineUp3(joueur));
             lineUp3(joueur);
 
             joueur++;
@@ -222,21 +223,23 @@ public class Partie {
     	for(Position p1 : positions) {
     		for(Position p2 : positions) {
     			for(Position p3 : positions) {
-    	    		if(!p1.equals(p2) && !p2.equals(p3) && !p3.equals(p1)) {
-    	    			if(p1.getCouche()==p2.getCouche() && p1.getCouche()==p3.getCouche()) {
-    	    				if(p1.getSommet()+1==p2.getSommet() && p1.getSommet()+2==p3.getSommet()) {
-    	    					return true;
-    	    				}else {
-    	    					if(p1.getSommet()+1==p2.getSommet() && p2.getSommet()==(this.plateau.getSommets()-1) && p3.getSommet()==0) {//si la fonction ne marche pas retirer le "-1" et changer le 0 en 1
-    	    						return true;
-    	    					}
-    	    				}
-    	    			}else if(p1.getSommet()==p2.getSommet() && p1.getSommet()==p3.getSommet() && p1.getCouche()%2==0) {//si la fonction ne marche pas, ajouter "+1" avant le "%"
-    	    				if(p1.getCouche()+1==p2.getCouche() && p1.getCouche()+2==p3.getCouche()) {
-    	    					return true;
-    	    				}
-    	    			}
-    	    		}
+	    			if(p1!=null && p2!= null && p3!=null) {	
+	    	    		if(!p1.equals(p2) && !p2.equals(p3) && !p3.equals(p1)) {
+	    	    			if(p1.getCouche()==p2.getCouche() && p1.getCouche()==p3.getCouche()) {
+	    	    				if(p1.getSommet()+1==p2.getSommet() && p1.getSommet()+2==p3.getSommet()) {
+	    	    					return true;
+	    	    				}else {
+	    	    					if(p1.getSommet()+1==p2.getSommet() && p2.getSommet()==(this.plateau.getSommets()-1) && p3.getSommet()==0) {//si la fonction ne marche pas retirer le "-1" et changer le 0 en 1
+	    	    						return true;
+	    	    					}
+	    	    				}
+	    	    			}else if(p1.getSommet()==p2.getSommet() && p1.getSommet()==p3.getSommet() && p1.getCouche()%2==0) {//si la fonction ne marche pas, ajouter "+1" avant le "%"
+	    	    				if(p1.getCouche()+1==p2.getCouche() && p1.getCouche()+2==p3.getCouche()) {
+	    	    					return true;
+	    	    				}
+	    	    			}
+	    	    		}
+	    			}
     	    	}
         	}
     	}
@@ -244,6 +247,7 @@ public class Partie {
     }
 
     public void partiFinie(int idJoueur){
+    	System.out.println(joueurs.get(idJoueur).getNbPions());
         finPartie= joueurs.get(idJoueur).getNbPions()<3 ? true : false;
     }
 
