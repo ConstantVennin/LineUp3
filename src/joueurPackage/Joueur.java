@@ -76,5 +76,9 @@ public class Joueur{
 		}
 	return res;
 	}
+
+	public void retirerPion(Pion p){
+		pions.remove(p);
+	}
 	
 }

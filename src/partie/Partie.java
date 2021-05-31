@@ -11,6 +11,7 @@ import joueurPackage.Joueur;
 import joueurPackage.Pion;
 import plateauPackage.Plateau;
 import plateauPackage.Position;
+import plateauPackage.Situations;
 
 public class Partie {
     
@@ -61,11 +62,12 @@ public class Partie {
 
             Position positionPion=verificationEntree();
 
-            if(!plateau.placementPossible(positionPion)){
+            while(!plateau.placementPossible(positionPion)){
+                
                 System.out.println("Vous ne pouvez pas vous déplacer ici..\n");
+                plateau.placer_pion(pionJoueur,positionPion);
             };
-            pionJoueur.setPosition(positionPion);
-            plateau.placer_pion(pionJoueur);
+
             joueur++;
             pionsRestants--;
         }
@@ -104,9 +106,7 @@ public class Partie {
                 positionPion=new Position(couche,sommet);
             }
 
-
-            pionJoueur.setPosition(positionPion);
-            plateau.placer_pion(pionJoueur);
+            plateau.placer_pion(pionJoueur,positionPion);
             joueur++;
             pionsRestants--;
         }
@@ -116,19 +116,21 @@ public class Partie {
     }
 
 
+    //Demande au joueur les pion qu'il veut déplacer et ou il veut le déplacer, avec les vérifications
     public void actionJoueur(int idJoueur){
 
         Pion pionJoueur=null;
         Position positionPion=null;
+        Position anciennePosition=null;
         Joueur joueur=joueurs.get(idJoueur);
         boolean pionExistant=false;
 
         do{
             System.out.println("\nQuel pion souhaitez vous déplacer ? : "+joueur.getName());
-            positionPion=verificationEntree();
+            anciennePosition=verificationEntree();
 
             try{
-                pionJoueur=joueur.getPion(positionPion);
+                pionJoueur=joueur.getPion(anciennePosition);
                 pionExistant=true;
             }catch(PionNonExistant e){
                 System.out.println(e.getMessage());
@@ -138,7 +140,7 @@ public class Partie {
         System.out.println("\nSur quelle case souhaitez vous vous déplacer? : "+joueur.getName());
         positionPion=verificationEntree();
 
-        while(!plateau.placementPossible(positionPion)){
+        while(!plateau.placementPossible(positionPion) && plateau.arcExiste(anciennePosition, positionPion)){
 
             System.out.println("Vous ne pouvez pas vous déplacer ici..\n");
             System.out.println("\nSur quelle case souhaitez vous vous déplacer? : "+joueur.getName());
@@ -146,8 +148,7 @@ public class Partie {
         }
 
         plateau.liberer_plateau(pionJoueur.getPosition());
-        pionJoueur.setPosition(positionPion);
-        plateau.placer_pion(pionJoueur);
+        plateau.placer_pion(pionJoueur,positionPion);
     
     }
 
@@ -155,13 +156,13 @@ public class Partie {
 
         Position positionPion=null;
 
+
         do{
             entreeJoueur=actionJoueur.nextLine();
         try{
             
             positions=plateau.getArray(entreeJoueur); //transforme l'entrée du joueur en double afin de le convertir en Position
             positionPion=new Position(positions[0],positions[1]);
-
             verif=true; 
 
         }catch(NumberFormatException | ArrayIndexOutOfBoundsException | NoSuchElementException e){
@@ -174,7 +175,35 @@ public class Partie {
     return positionPion;
     }
     
-    public boolean partieFinie(int idJoueur) {
+    public void lineUp3(int idJoueur){
+
+        Position positionPion;
+        Pion pionJoueur=null;
+
+        System.out.println("Le joueur "+idJoueur+ "a aligné 3 pions, il a donc la possibilité de retier un des pions adverse");
+        System.out.println("Quel pion souhaitez vous retirer ?");
+
+        positionPion=verificationEntree();
+
+        while(plateau.case_libre(positionPion)){
+            positionPion=verificationEntree();
+            System.out.println("Il n'y a aucun joueur sur cette case");
+        };
+
+        positionPion=verificationEntree();
+        Situations situation=plateau.getCase(positionPion); //Regarde à quel joueur appartient le pion
+        Joueur joueur=joueurs.get(situation.ordinal()); //La joueur 1 correspond à l'ordinal 1, donc si situation=JOUEUR1, on va prendre la case 0 du tableau de joueurs
+
+        try{
+
+            pionJoueur=joueur.getPion(positionPion);
+        }catch(PionNonExistant e){} // N'est pas censé se déclencher, donc pas besoin de gérer l'exception
+
+        plateau.liberer_plateau(positionPion);
+        joueur.retirerPion(pionJoueur);
+    }
+
+    public boolean checkLineUp3(int idJoueur) {
     	List<Position> positions = joueurs.get(idJoueur).getPositions();
     	positions = this.plateau.getPosition();
     	

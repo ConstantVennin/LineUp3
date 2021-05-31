@@ -46,7 +46,7 @@ public class UsePlateau {
 
         while(true){
 
-            if(joueurActuel>config[0]-1) {joueurActuel=0;}
+            if(joueurActuel>1) {joueurActuel=0;}
 
             partie.actionJoueur(joueurActuel);
             System.out.print("\n");

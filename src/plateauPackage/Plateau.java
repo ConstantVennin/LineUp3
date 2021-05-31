@@ -3,7 +3,6 @@ package plateauPackage;
 import java.util.ArrayList;
 import java.util.List;
 
-import Exceptions.PositionNonExistanteException;
 import joueurPackage.Pion;
 
 
@@ -178,8 +177,9 @@ public class Plateau{
     }
 
     //Place le pion du joueur sur le plateau
-    public void placer_pion(Pion pion){
+    public void placer_pion(Pion pion,Position p){
 
+        pion.setPosition(p);
         plateau[pion.getPosition().getCouche()][pion.getPosition().getSommet()]=Situations.values()[pion.getJoueurId()];
 
     }
