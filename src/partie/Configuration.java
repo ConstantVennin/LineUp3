@@ -85,12 +85,12 @@ public class Configuration {
 	}
 	
 //	tests du bon fonctionnement
-	public static void main(String[] args) throws FileNotFoundException, IOException {
-		System.out.println("piege cases : " + getNbPiegeCases());
-		System.out.println("pieges arcs : " + getNbPiegeArcs());
-		System.out.println("pions par personne : " + getNbPionParPers());
-		System.out.println("sommets : " + getNbDeSommets());
-		System.out.println("couches : " + getNbDeCouches());
-		System.out.println("jouer Contre une IA : " + jouerContreIA());
-	}
+//	public static void main(String[] args) throws FileNotFoundException, IOException {
+//		System.out.println("piege cases : " + getNbPiegeCases());
+//		System.out.println("pieges arcs : " + getNbPiegeArcs());
+//		System.out.println("pions par personne : " + getNbPionParPers());
+//		System.out.println("sommets : " + getNbDeSommets());
+//		System.out.println("couches : " + getNbDeCouches());
+//		System.out.println("jouer Contre une IA : " + jouerContreIA());
+//	}
 }
