@@ -202,7 +202,6 @@ public class Partie {
             System.out.println("Il n'y a aucun joueur sur cette case");
         };
 
-        positionPion=verificationEntree();
         Situations situation=plateau.getCase(positionPion); //Regarde à quel joueur appartient le pion (utile si + de 2 joueurs)
         Joueur joueur=joueurs.get(situation.ordinal()); //La joueur 1 correspond à l'ordinal 1, donc si situation=JOUEUR1, on va prendre la case 0 du tableau de joueurs
 
