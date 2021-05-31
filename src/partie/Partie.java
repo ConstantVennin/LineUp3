@@ -71,8 +71,10 @@ public class Partie {
 
             pionJoueur.setPosition(positionPion);
             plateau.placer_pion(pionJoueur,positionPion);
-            System.out.println(checkLineUp3(joueur));
-            lineUp3(joueur);
+            
+            if(checkLineUp3(joueur)){
+                lineUp3(joueur);
+            }
 
             joueur++;
             pionsRestants--;
