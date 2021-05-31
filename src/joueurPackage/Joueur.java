@@ -50,8 +50,10 @@ public class Joueur{
 
 	public Pion getPion(Position position) throws PionNonExistant{
 		for(Pion p : this.pions){
-			if(p.getPosition().equals(position)){
-				return p;
+			if(p.getPosition()!=null){
+				if(p.getPosition().equals(position)){
+					return p;
+				}
 			}
 		}
 	throw new PionNonExistant();
