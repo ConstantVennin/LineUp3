@@ -1,5 +1,8 @@
 package partie;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -25,6 +28,10 @@ public class Partie {
     int nbPions;
     List<Joueur> joueurs;
     private boolean finPartie;
+    
+    //Attributs pour la sauvegarde
+    private static String chemin = System.getProperty("user.dir") + File.separator + "res" + File.separator;
+	private static String nom = "sauvergarde.txt";
 
     public Partie(Plateau plateau,int nbJoueurs,int nbcouches){
         this.plateau=plateau;
@@ -262,6 +269,31 @@ public class Partie {
     public boolean getStatutPatie(){
         return finPartie;
     }
+    
+    public void sauvergarder() {
+		String ecriture = "";
+		ecriture += this.nbJoueurs + "\n";
+		ecriture += this.plateau.getCouches() + "\n";
+		ecriture += this.plateau.getSommets() + "\n";
+		for(int j = 0 ; j<this.nbJoueurs ; j++) {
+			Joueur currentPlayer;
+			currentPlayer = this.joueurs.get(j);
+			ecriture += currentPlayer.getName()+"\n";
+			ecriture += currentPlayer.getJoueurId() + "\n";
+			ecriture += currentPlayer.getNbPions() + "\n";
+			for(int p = 0 ; p<currentPlayer.getNbPions() ; p++) {
+				Pion pi = currentPlayer.getPion(p);
+				ecriture += pi.getPosition().getCouche() + "." + pi.getPosition().getSommet() + "\n";
+			}
+		}
+		try(PrintWriter pw = new PrintWriter(new File(chemin + nom))) {
+			pw.println(ecriture);
+			pw.close();
+		
+		} catch(IOException e) {
+			System.out.println("Writing error: " + e.getMessage());e.printStackTrace();
+		}
+	}
 
 
 }
