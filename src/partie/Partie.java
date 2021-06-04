@@ -154,7 +154,7 @@ public class Partie {
         System.out.println("\nSur quelle case souhaitez vous vous déplacer? : "+joueur.getName());
         positionPion=verificationEntree();
 
-        while(!plateau.placementPossible(positionPion) && plateau.arcExiste(anciennePosition, positionPion)){
+        while(!plateau.placementPossible(positionPion) && !plateau.arcExiste(anciennePosition, positionPion)){
 
             System.out.println("Vous ne pouvez pas vous déplacer ici..\n");
             System.out.println("\nSur quelle case souhaitez vous vous déplacer? : "+joueur.getName());
