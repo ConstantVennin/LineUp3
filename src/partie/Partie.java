@@ -236,14 +236,14 @@ public class Partie {
 //	    				System.out.println("p2 " + p2.getCouche() + "//" + p2.getSommet());
 //	    				System.out.println("p3 " + p3.getCouche() + "//" + p3.getSommet());
 	    	    		if(!p1.equals(p2) && !p2.equals(p3) && !p3.equals(p1)) {
-	    	    			if(p1.getCouche()==p2.getCouche() && p1.getCouche()==p3.getCouche()) {
-	    	    				if(p1.getSommet()+1==p2.getSommet() && p1.getSommet()+2==p3.getSommet()) {
+	    	    			if(p1.getCouche()==p2.getCouche() && p1.getCouche()==p3.getCouche()) { //alignement de couche
+	    	    				if(p1.getSommet()+1==p2.getSommet() && p1.getSommet()+2==p3.getSommet()) { //alignement de couche et sommet cohérents
 	    	    					return true;
-	    	    				}else {
+	    	    				}else {//cas où le sommet vaut 6 ou 8 (le 6 ou le 8 est à côté du 1) :
 	    	    					if(p1.getSommet()+1==p2.getSommet() && p2.getSommet()==(this.plateau.getSommets()-1) && p3.getSommet()==0) {//si la fonction ne marche pas retirer le "-1" et changer le 0 en 1
 	    	    						return true;
 	    	    					}
-	    	    				}
+	    	    				}//alignement inter-couche :
 	    	    			}else if(p1.getSommet()==p2.getSommet() && p1.getSommet()==p3.getSommet() && p1.getCouche()%2==0) {//si la fonction ne marche pas, ajouter "+1" avant le "%"
 	    	    				if(p1.getCouche()+1==p2.getCouche() && p1.getCouche()+2==p3.getCouche()) {
 	    	    					return true;
