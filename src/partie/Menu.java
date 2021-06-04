@@ -1,4 +1,8 @@
 package partie;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -113,44 +117,34 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		entry.close();
 	}
 
-	public static void afficherPlateauCarre(Plateau plateau) {
-		/*Affiche un plateau carré
-		 * 
-		 */
-		String res=plateau.getCases(p.get(17)).situation+"——————————"+plateau.getCases(p.get(18)).situation+"——————————"+plateau.getCases(p.get(19)).situation+'\n';
-			  res+="|          |          |"+'\n';
-			  res+="|   "+plateau.getCases(p.get(9)).situation+"——————"+plateau.getCases(p.get(10)).situation+"——————"+plateau.getCases(p.get(11)).situation+"   |"+'\n';
-			  res+="|   |      |      |   |"+'\n';
-			  res+="|   |   "+plateau.getCases(p.get(1)).situation+"——"+plateau.getCases(p.get(2)).situation+"——"+plateau.getCases(p.get(3)).situation+"   |   |"+'\n';
-			  res+="|   |   |     |   |   |"+'\n';
-			  res+=plateau.getCases(p.get(24)).situation+"———"+plateau.getCases(p.get(16)).situation+"———"+plateau.getCases(p.get(8)).situation+"     "+plateau.getCases(p.get(4)).situation+"———"+plateau.getCases(p.get(12)).situation+"———"+plateau.getCases(p.get(20)).situation+'\n';
-			  res+="|   |   |     |   |   |"+'\n';
-			  res+="|   |   "+plateau.getCases(p.get(7)).situation+"——"+plateau.getCases(p.get(6)).situation+"——"+plateau.getCases(p.get(5)).situation+"   |   |"+'\n';
-			  res+="|   |      |      |   |"+'\n';
-			  res+="|   "+plateau.getCases(p.get(15)).situation+"——————"+plateau.getCases(p.get(14)).situation+"——————"+plateau.getCases(p.get(13)).situation+"   |"+'\n';
-			  res+="|          |          |"+'\n';
-			  res+=plateau.getCases(p.get(23)).situation+"——————————"+plateau.getCases(p.get(22)).situation+"——————————"+plateau.getCases(p.get(21)).situation+'\n';
-			  System.out.println(res);
-	}
-	public static void afficherPlateauTriangle(Plateau plateau) {
-		/*
-		 * Renvoie un plateau triangulaire
-		 */
-		String res="            "+plateau.getCases(p.get(13)).situation+"\n";
-			  res+="           / \\\n";
-			  res+="          / "+plateau.getCases(p.get(7)).situation+" \\\n";
-			  res+="         / / \\ \\\n";
-			  res+="        / / "+plateau.getCases(p.get(1)).situation+" \\ \\\n";
-			  res+="       / / / \\ \\ \\\n";
-			  res+="      "+plateau.getCases(p.get(18)).situation+"-"+plateau.getCases(p.get(12)).situation+"-"+plateau.getCases(p.get(6)).situation+"   "+plateau.getCases(p.get(2)).situation+"-"+plateau.getCases(p.get(8)).situation+"-"+plateau.getCases(p.get(14)).situation+"\n";
-			  res+="     / / /     \\ \\ \\\n";
-			  res+="    / / "+plateau.getCases(p.get(5)).situation+"---"+plateau.getCases(p.get(4)).situation+"---"+plateau.getCases(p.get(3)).situation+" \\ \\\n";
-			  res+="   / /      |      \\ \\\n";
-			  res+="  / "+plateau.getCases(p.get(11)).situation+"-------"+plateau.getCases(p.get(10)).situation+"-------"+plateau.getCases(p.get(9)).situation+" \\\n";
-			  res+=" /          |          \\\n";
-			  res+=plateau.getCases(p.get(17)).situation+"-----------"+plateau.getCases(p.get(16)).situation+"-----------"+plateau.getCases(p.get(15)).situation+"\n";
-			  System.out.println(res);
-	}
+	static String myPath=System.getProperty("user.dir")+File.separator+"res"+File.separator;
+    static String Carre3File = "carre3.txt";
+    static String Carre4File = "carre4.txt";
+    static String Triangle3File = "triangle3.txt";
+    static String Triangle4File = "triangle4.txt";
+    
+    public static void afficherPlateauCarre(Plateau plateau) {
+        try {
+            BufferedReader fr = new BufferedReader(new FileReader(myPath+Carre3File));
+            String chaine="";
+            int c = fr.read();
+            while(c!=-1) {
+                if(c>='A' && c<='`') {
+                    chaine+=plateau.getCases(p.get(c-'A';)).situation;
+                }else {
+                    chaine+=(char) c;
+                }
+                c = fr.read();
+            }
+            System.out.println(chaine);
+            fr.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("File not found: "); e.printStackTrace();
+        } catch(IOException e) {
+            System.out.println("Reading error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 	public int[] getConfig() {
 		return this.config;

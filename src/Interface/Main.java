@@ -1,4 +1,4 @@
-package test_affichage_lineup;
+package Interface;
 
 import java.io.IOException;
 import java.net.URL;
