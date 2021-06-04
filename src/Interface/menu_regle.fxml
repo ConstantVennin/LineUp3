@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test_affichage_lineup.Controller">
+   <children>
+      <HBox prefHeight="575.0" prefWidth="900.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="575.0" prefWidth="250.0">
+               <children>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../res/carrelineup.PNG" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="30.0" top="30.0" />
+                     </VBox.margin></ImageView>
+                  <Label text="Plateau Carré" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="Button_carre" mnemonicParsing="false" onAction="#actionButtonCarre" selected="true">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="forme_plateau" />
+                     </toggleGroup></RadioButton>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="260.0" layoutY="10.0" prefHeight="575.0" prefWidth="400.0">
+               <children>
+                  <Label text="Line Up 3">
+                     <font>
+                        <Font size="52.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="30.0" top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="400.0">
+                     <children>
+                        <Button fx:id="button_solo" mnemonicParsing="false" onAction="#actionButtonSolo" prefHeight="30.0" prefWidth="90.0" text="Solo">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="button_multi" mnemonicParsing="false" onAction="#actionButtonMulti" prefHeight="30.0" prefWidth="90.0" text="Multijoueur">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="211.0" prefWidth="364.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="384.0" text="Déroulement d’une partie:" underline="true" />
+                        <Label prefHeight="18.0" prefWidth="387.0" text="Une partie de LineUp3 se déroule en deux phases:" />
+                        <Label prefHeight="18.0" prefWidth="385.0" text="une phase de déploiement et une phase de confrontation." />
+                        <Label prefHeight="18.0" prefWidth="388.0" text="En début de partie le plateau est vierge," />
+                        <Label prefHeight="18.0" prefWidth="393.0" text=" la seule action utilisable par les joueurs est la pose d’un pion." />
+                        <Label prefHeight="18.0" prefWidth="385.0" text="Une fois tous les pions en jeu, la seconde phase est enclenchée." />
+                        <Label prefHeight="18.0" prefWidth="386.0" text="Les joueurs font des actions à tour de rôle afin d’aligner leurs trois pions." />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="133.0" text="Déplacement d'un pion: " underline="true">
+                                 <HBox.margin>
+                                    <Insets left="9.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="18.0" prefWidth="247.0" text="bouger un pion sur une case adjacente" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="133.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="94.0" text="Blocage d'un arc:" underline="true">
+                                 <HBox.margin>
+                                    <Insets left="9.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="18.0" prefWidth="292.0" text=" empeche un joueur d'utiliser cet arc pour se déplacer" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="94.0" text="Pose d'un piège: " underline="true">
+                                 <HBox.margin>
+                                    <Insets left="9.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="18.0" prefWidth="292.0" text="bloque le prochain pion qui passera par cette case" />
+                           </children>
+                        </HBox>
+                        <Label prefHeight="18.0" prefWidth="94.0" underline="true" />
+                        <Label prefHeight="18.0" prefWidth="382.0" text="Conditions de victoire:" underline="true" />
+                        <Label prefHeight="18.0" prefWidth="383.0" text="Un joueur gagne dès que ses trois pions sont alignés." />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="400.0">
+                     <children>
+                        <Button fx:id="button_video" mnemonicParsing="false" onAction="#actionButtonVideo" prefHeight="30.0" prefWidth="90.0" text="Vidéo">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="button_quitter1" mnemonicParsing="false" onAction="#actionButtonQuitter" prefHeight="30.0" prefWidth="90.0" text="Quitter">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></Button>
+                     </children>
+                  </HBox>
+                  <Label text="Par Bastien Lemarié, Victor Mougel et Constant Vennin">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="575.0" prefWidth="250.0">
+               <children>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../res/trianglelineup.PNG" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="30.0" top="30.0" />
+                     </VBox.margin></ImageView>
+                  <Label text="Plateau Triangle" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="Button_triangle" contentDisplay="CENTER" mnemonicParsing="false" onAction="#actionButtonTriangle" prefHeight="18.0" prefWidth="0.0" textAlignment="CENTER" toggleGroup="$forme_plateau">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin></RadioButton>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</Pane>
