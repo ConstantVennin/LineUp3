@@ -12,6 +12,11 @@ import javafx.stage.Stage;
 public class Main extends Application{
 	
 	public void start(Stage stage) throws IOException {
+
+        Media sound = new Media(new File("res/medieval.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+        
         FXMLLoader loader = new FXMLLoader();
         URL fxmlFileUrl = getClass().getResource("menu.fxml");
         if (fxmlFileUrl == null) {

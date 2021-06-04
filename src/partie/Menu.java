@@ -135,7 +135,9 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
             while(c!=-1) {
 
                 if(c>='A' && c<='`') {
-                    chaine+=plateau.getCase(new Position((c-'@')/8+1,(c-'A')%8+1));
+
+					chaine+=plateau.getCase(new Position((c-'A')/8+1,(c-'A')%8+1)).getRepresentations();
+					
                 }else {
 
                     chaine+=(char) c;

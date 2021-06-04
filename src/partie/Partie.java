@@ -78,6 +78,8 @@ public class Partie {
 
             joueur++;
             pionsRestants--;
+
+        Menu.afficherPlateauCarre(plateau);
         }
     System.out.println("\nTous les pions on été placés\n");
     }
@@ -122,7 +124,8 @@ public class Partie {
         }
     System.out.println("\nTous les pions on été placés\n");
 
-    plateau.Afficher_plateau();
+    Menu.afficherPlateauCarre(plateau);
+
     }
 
 
@@ -160,7 +163,7 @@ public class Partie {
         plateau.liberer_plateau(pionJoueur.getPosition());
         pionJoueur.setPosition(positionPion);
         plateau.placer_pion(pionJoueur,positionPion);
-        lineUp3(idJoueur);
+       checkLineUp3(idJoueur);
     
     }
 

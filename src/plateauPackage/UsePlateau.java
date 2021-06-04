@@ -50,7 +50,7 @@ public class UsePlateau {
 
             partie.actionJoueur(joueurActuel);
             System.out.print("\n");
-            plateau.Afficher_plateau();
+            Menu.afficherPlateauCarre(plateau);
             joueurActuel++;
         }
     }

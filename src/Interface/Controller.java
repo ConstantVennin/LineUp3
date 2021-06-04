@@ -24,6 +24,7 @@ public class Controller {
     Button button_solo,button_multi,button_triangle,button_carre,button_regle,button_video,button_quitter;
 	
 	public void actionButtonQuitter(ActionEvent event) {
+
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 	      alert.setHeaderText("�tes vous s�r de vouloir quitter le jeu ?");
 	 
@@ -85,5 +86,6 @@ public class Controller {
         video.show();
 
 	}
+
 	
 }
