@@ -163,7 +163,10 @@ public class Partie {
         plateau.liberer_plateau(pionJoueur.getPosition());
         pionJoueur.setPosition(positionPion);
         plateau.placer_pion(pionJoueur,positionPion);
-       checkLineUp3(idJoueur);
+
+       if(checkLineUp3(idJoueur)){
+        lineUp3(idJoueur);
+       }
     
     }
 
@@ -195,14 +198,14 @@ public class Partie {
         Position positionPion;
         Pion pionJoueur=null;
 
-        System.out.println("Le joueur "+idJoueur+1+ " a aligné 3 pions, il a donc la possibilité de retier un des pions adverse");
-        System.out.println("Quel pion souhaitez vous retirer ?");
+        System.out.println("\nLe joueur "+idJoueur+1+ " a aligné 3 pions, il a donc la possibilité de retier un des pions adverse");
+        System.out.println("\nQuel pion souhaitez vous retirer ?");
 
         positionPion=verificationEntree();
 
         while(plateau.case_libre(positionPion)){
-            positionPion=verificationEntree();
             System.out.println("Il n'y a aucun joueur sur cette case");
+            positionPion=verificationEntree();
         };
 
         Situations situation=plateau.getCase(positionPion); //Regarde à quel joueur appartient le pion
