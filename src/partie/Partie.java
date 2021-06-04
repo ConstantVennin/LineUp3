@@ -232,9 +232,9 @@ public class Partie {
     		for(Position p2 : positions) {
     			for(Position p3 : positions) {
 	    			if(p1!=null && p2!= null && p3!=null) {	
-	    				System.out.println("p1 " + p1.getCouche() + "//" + p1.getSommet());
-	    				System.out.println("p2 " + p2.getCouche() + "//" + p2.getSommet());
-	    				System.out.println("p3 " + p3.getCouche() + "//" + p3.getSommet());
+//	    				System.out.println("p1 " + p1.getCouche() + "//" + p1.getSommet());
+//	    				System.out.println("p2 " + p2.getCouche() + "//" + p2.getSommet());
+//	    				System.out.println("p3 " + p3.getCouche() + "//" + p3.getSommet());
 	    	    		if(!p1.equals(p2) && !p2.equals(p3) && !p3.equals(p1)) {
 	    	    			if(p1.getCouche()==p2.getCouche() && p1.getCouche()==p3.getCouche()) {
 	    	    				if(p1.getSommet()+1==p2.getSommet() && p1.getSommet()+2==p3.getSommet()) {
