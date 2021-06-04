@@ -95,8 +95,8 @@ public class Plateau{
 	}
 	
 	public boolean deplacementAutorise(Position p1, Position p2) {
-		Situations s = getCase(p2);
-		if(s == Situations.LIBRE) {
+        
+		if(case_libre(p2)) {
 			if(arcExiste(p1, p2)) {
 				return true;
 			}
