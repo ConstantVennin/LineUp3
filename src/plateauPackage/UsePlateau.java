@@ -44,7 +44,7 @@ public class UsePlateau {
                 break;
         }
 
-        while(partie.getStatutPatie()){
+        while(!partie.getStatutPatie()){
 
             if(joueurActuel>1) {joueurActuel=0;}
 

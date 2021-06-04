@@ -1,4 +1,4 @@
-package test_affichage_lineup;
+package Interface;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,7 +25,7 @@ public class Controller {
 	
 	public void actionButtonQuitter(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-	      alert.setHeaderText("Êtes vous sûr de vouloir quitter le jeu ?");
+	      alert.setHeaderText("ï¿½tes vous sï¿½r de vouloir quitter le jeu ?");
 	 
 	      // option != null.
 	      Optional<ButtonType> option = alert.showAndWait();
@@ -61,7 +61,7 @@ public class Controller {
 	}
 	@FXML
 	public void actionButtonCarre(ActionEvent event) {
-		System.out.println("Carré choisis");
+		System.out.println("Carrï¿½ choisis");
 	}
 	@FXML
 	public void actionButtonSolo(ActionEvent event) {

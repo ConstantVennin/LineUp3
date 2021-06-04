@@ -1,5 +1,6 @@
 package partie;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +15,14 @@ import plateauPackage.Position;
 
 public class Menu {
 
+
 private static int[] config=new int[] {2,3,1};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau
+
+static String myPath=System.getProperty("user.dir")+File.separator+"res"+File.separator;
+static String Carre3File = "carre3.txt";
+static String Carre4File = "carre4.txt";
+static String Triangle3File = "triangle3.txt";
+static String Triangle4File = "triangle4.txt";
 
 
 static String menu_LineUp3=  "           _      _              _    _         ____           \r\n"
@@ -117,21 +125,19 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		entry.close();
 	}
 
-	static String myPath=System.getProperty("user.dir")+File.separator+"res"+File.separator;
-    static String Carre3File = "carre3.txt";
-    static String Carre4File = "carre4.txt";
-    static String Triangle3File = "triangle3.txt";
-    static String Triangle4File = "triangle4.txt";
-    
     public static void afficherPlateauCarre(Plateau plateau) {
+
         try {
+
             BufferedReader fr = new BufferedReader(new FileReader(myPath+Carre3File));
             String chaine="";
             int c = fr.read();
             while(c!=-1) {
+
                 if(c>='A' && c<='`') {
-                    chaine+=plateau.getCases(p.get(c-'A';)).situation;
+                    chaine+=plateau.getCase(new Position((c-'@')/8+1,(c-'A')%8+1));
                 }else {
+
                     chaine+=(char) c;
                 }
                 c = fr.read();
