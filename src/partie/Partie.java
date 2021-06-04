@@ -43,6 +43,8 @@ public class Partie {
 
     public void PhaseDeploiement(){
 
+        Menu.afficherPlateauCarre(plateau);
+        
         Pion pionJoueur;
         Joueur joueurActuel;
 
@@ -79,7 +81,6 @@ public class Partie {
             joueur++;
             pionsRestants--;
 
-        Menu.afficherPlateauCarre(plateau);
         }
     System.out.println("\nTous les pions on été placés\n");
     }
