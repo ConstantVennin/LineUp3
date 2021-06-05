@@ -362,7 +362,6 @@ public class Partie {
     			j0.setPosition(new Pion(j0), new Position(couchePion,sommetPion));
     			savePlateau.placer_pion(new Pion(j0), new Position(couchePion+1,sommetPion+1));//j0.getPion(pNb)
     		}
-    		savePlateau.Afficher_plateau();
     		joueurList.add(j0);
     	}
     	Partie savePartie = new Partie(savePlateau, nombreJoueur,nombreCouche);
