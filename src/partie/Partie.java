@@ -282,9 +282,9 @@ public class Partie {
 		for(int j = 0 ; j<this.nbJoueurs ; j++) {
 			Joueur currentPlayer;
 			currentPlayer = this.joueurs.get(j);
-			ecriture += "~" + currentPlayer.getName()+"\n";
+			ecriture += "~N" + j + currentPlayer.getName()+"\n";
 			ecriture += "~" + currentPlayer.getJoueurId() + "\n";
-			ecriture += "~" + currentPlayer.getPositions().size() + "\n";
+			ecriture += "~P" + j + currentPlayer.getPositions().size() + "\n";
 			for(int p = 0 ; p<currentPlayer.getPositions().size() ; p++) {
 				ecriture += "~" + currentPlayer.getPositions().get(p).getCouche() + "." + currentPlayer.getPositions().get(p).getSommet() + "\n";
 			}
@@ -315,7 +315,7 @@ public class Partie {
 			System.out.println("Reading error: " + e.getMessage());
 			e.printStackTrace();
 		}
-    	//System.out.println(fichier);
+    	System.out.println(fichier);
     	String[] fichierClasse = fichier.split("~");
     	for(int i = 0 ;i<fichierClasse.length ; i++) {
     		System.out.println(fichierClasse[i]);
@@ -323,19 +323,42 @@ public class Partie {
     	int nombreJoueur = Integer.parseInt(fichierClasse[0]);
     	int nombreCouche = Integer.parseInt(fichierClasse[1]);
     	int nombreSommet = Integer.parseInt(fichierClasse[2]);
-    	//System.out.println("nb joueur : "+nombreJoueur + "\n" + "Couche.sommet : "+nombreCouche + "."+nombreSommet);
-    	List<String> joueurNameList = new ArrayList<String>();
-    	int nombrePion = Integer.parseInt(fichierClasse[5]);
+    	System.out.println("nb joueur : "+nombreJoueur + "\n" + "Couche.sommet : "+nombreCouche + "."+nombreSommet);
+    	
     	List<Joueur> joueurList = new ArrayList<Joueur>();
     	Plateau savePlateau = new Plateau(nombreCouche, nombreSommet/2);
     	for(int compteurJ = 0 ; compteurJ<nombreJoueur ; compteurJ++ ) {
-    		Joueur j0 = new Joueur(fichierClasse[3+compteurJ*(3+Integer.parseInt(fichierClasse[5]))],0);
+    		int nombrePion;
+    		int compteurDetec = 0;
+    		boolean founded = true;
+    		while(founded) {
+    			if(fichierClasse[compteurDetec].length()>3) {
+    				if(fichierClasse[compteurDetec].substring(0, 2).equals("N"+compteurJ)) {
+    					founded = false;
+    				}
+    			}
+    			compteurDetec++;
+    		}
+    		System.out.println(compteurDetec);
+    		String name = fichierClasse[compteurDetec-1].substring(2);
+    		System.out.println(name);
+    		founded = true;
+    		compteurDetec = 0;
+    		while(founded) {
+    			if(fichierClasse[compteurDetec].length()>2) {
+    				if(fichierClasse[compteurDetec].substring(0, 2).equals("P"+compteurJ)) {
+    					founded = false;
+    				}
+    			}
+    			compteurDetec++;
+    		}
+    		nombrePion = Integer.parseInt(fichierClasse[compteurDetec-1].substring(2));
+    		Joueur j0 = new Joueur(name,0);
     		j0.setJoueurId(compteurJ);
-    		//System.out.println(fichierClasse[3+compteurJ*(3+Integer.parseInt(fichierClasse[5]))]);
     		for(int pNb = 0 ; pNb<nombrePion; pNb++) {
-    			int couchePion = Integer.parseInt(fichierClasse[pNb+6+compteurJ*(nombrePion+3)].substring(0, 1));
-    			int sommetPion = Integer.parseInt(fichierClasse[pNb+6+compteurJ*(nombrePion+3)].substring(2, 3));
-    			//System.out.println(couchePion + " ; " + sommetPion);
+    			int couchePion = Integer.parseInt(fichierClasse[pNb+compteurDetec].substring(0, 1));
+    			int sommetPion = Integer.parseInt(fichierClasse[pNb+compteurDetec].substring(2, 3));
+    			System.out.println(couchePion + " ; " + sommetPion);
     			j0.setPosition(new Pion(j0), new Position(couchePion,sommetPion));
     			savePlateau.placer_pion(new Pion(j0), new Position(couchePion+1,sommetPion+1));//j0.getPion(pNb)
     		}
@@ -344,7 +367,7 @@ public class Partie {
     	}
     	Partie savePartie = new Partie(savePlateau, nombreJoueur,nombreCouche);
     	savePartie.joueurs = joueurList;
-    	//Menu.afficherPlateauCarre(savePlateau);
+    	Menu.afficherPlateauCarre(savePlateau);
     	return savePartie;
     }
 

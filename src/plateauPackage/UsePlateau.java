@@ -45,9 +45,9 @@ public class UsePlateau {
         }
 
         while(!partie.getStatutPatie()){
-//        	System.out.println("Sauvegarde");
-//        	partie.sauvergarder();
-//        	Partie test = Partie.dernierePartie();
+        	System.out.println("Sauvegarde");
+        	partie.sauvergarder();
+        	Partie test = Partie.dernierePartie();
             if(joueurActuel>1) {joueurActuel=0;}
 
             partie.actionJoueur(joueurActuel);
