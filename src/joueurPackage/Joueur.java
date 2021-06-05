@@ -10,7 +10,7 @@ public class Joueur{
 	
 	private String name;
 	private static int id=0;
-	private final int joueurId;
+	private int joueurId;
 	private int nbPions;
 	private List<Pion> pions;
 	private int piegeArc;
@@ -24,6 +24,8 @@ public class Joueur{
 		pions=new ArrayList<Pion>();
 		this.initialiserPions();
 	}
+
+	
 
 	private void initialiserPions(){
 
@@ -81,6 +83,10 @@ public class Joueur{
 
 	public void retirerPion(Pion p){
 		pions.remove(p);
+	}
+	
+	public void setJoueurId(int joueurId) {
+		this.joueurId = joueurId;
 	}
 	
 }

@@ -1,7 +1,10 @@
 package partie;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -273,17 +276,17 @@ public class Partie {
     
     public void sauvergarder() {
 		String ecriture = "";
-		ecriture += "j" + this.nbJoueurs + "\n";
-		ecriture += "/" + this.plateau.getCouches() + "\n";
-		ecriture += "/" + this.plateau.getSommets() + "\n";
+		ecriture += this.nbJoueurs + "\n";
+		ecriture += "~" + this.plateau.getCouches() + "\n";
+		ecriture += "~" + this.plateau.getSommets() + "\n";
 		for(int j = 0 ; j<this.nbJoueurs ; j++) {
 			Joueur currentPlayer;
 			currentPlayer = this.joueurs.get(j);
-			ecriture += "." + currentPlayer.getName()+"\n";
-			ecriture += "{" + currentPlayer.getJoueurId() + "\n";
-			ecriture += "p" + currentPlayer.getPositions().size() + "\n";
+			ecriture += "~" + currentPlayer.getName()+"\n";
+			ecriture += "~" + currentPlayer.getJoueurId() + "\n";
+			ecriture += "~" + currentPlayer.getPositions().size() + "\n";
 			for(int p = 0 ; p<currentPlayer.getPositions().size() ; p++) {
-				ecriture += currentPlayer.getPositions().get(p).getCouche() + "." + currentPlayer.getPositions().get(p).getSommet() + "\n";
+				ecriture += "~" + currentPlayer.getPositions().get(p).getCouche() + "." + currentPlayer.getPositions().get(p).getSommet() + "\n";
 			}
 		}
 		System.out.println(ecriture);
@@ -293,9 +296,57 @@ public class Partie {
 			System.out.println("Writing error: " + e.getMessage());
 			e.printStackTrace();
 		}
-	
-
 	}
+    
+    public static Partie dernierePartie() {
+    	String fichier = "";
+    	try(BufferedReader br = new BufferedReader(new FileReader(chemin+nom))) {
+			StringBuilder sb = new StringBuilder();
+			String line = br.readLine();
+			while(line != null) {
+			sb.append(line);
+			line = br.readLine() ;
+			}
+			fichier = sb.toString();
+		} catch(FileNotFoundException e) {
+			System.out.println("File not found: ");
+			e.printStackTrace();
+		} catch(IOException e) {
+			System.out.println("Reading error: " + e.getMessage());
+			e.printStackTrace();
+		}
+    	//System.out.println(fichier);
+    	String[] fichierClasse = fichier.split("~");
+    	for(int i = 0 ;i<fichierClasse.length ; i++) {
+    		System.out.println(fichierClasse[i]);
+    	}
+    	int nombreJoueur = Integer.parseInt(fichierClasse[0]);
+    	int nombreCouche = Integer.parseInt(fichierClasse[1]);
+    	int nombreSommet = Integer.parseInt(fichierClasse[2]);
+    	//System.out.println("nb joueur : "+nombreJoueur + "\n" + "Couche.sommet : "+nombreCouche + "."+nombreSommet);
+    	List<String> joueurNameList = new ArrayList<String>();
+    	int nombrePion = Integer.parseInt(fichierClasse[5]);
+    	List<Joueur> joueurList = new ArrayList<Joueur>();
+    	Plateau savePlateau = new Plateau(nombreCouche, nombreSommet/2);
+    	for(int compteurJ = 0 ; compteurJ<nombreJoueur ; compteurJ++ ) {
+    		Joueur j0 = new Joueur(fichierClasse[3+compteurJ*(3+Integer.parseInt(fichierClasse[5]))],0);
+    		j0.setJoueurId(compteurJ);
+    		//System.out.println(fichierClasse[3+compteurJ*(3+Integer.parseInt(fichierClasse[5]))]);
+    		for(int pNb = 0 ; pNb<nombrePion; pNb++) {
+    			int couchePion = Integer.parseInt(fichierClasse[pNb+6+compteurJ*(nombrePion+3)].substring(0, 1));
+    			int sommetPion = Integer.parseInt(fichierClasse[pNb+6+compteurJ*(nombrePion+3)].substring(2, 3));
+    			//System.out.println(couchePion + " ; " + sommetPion);
+    			j0.setPosition(new Pion(j0), new Position(couchePion,sommetPion));
+    			savePlateau.placer_pion(new Pion(j0), new Position(couchePion+1,sommetPion+1));//j0.getPion(pNb)
+    		}
+    		savePlateau.Afficher_plateau();
+    		joueurList.add(j0);
+    	}
+    	Partie savePartie = new Partie(savePlateau, nombreJoueur,nombreCouche);
+    	savePartie.joueurs = joueurList;
+    	//Menu.afficherPlateauCarre(savePlateau);
+    	return savePartie;
+    }
 
 
 }
