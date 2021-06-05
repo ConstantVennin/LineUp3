@@ -1,8 +1,9 @@
 package partie;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -31,7 +32,7 @@ public class Partie {
     
     //Attributs pour la sauvegarde
     private static String chemin = System.getProperty("user.dir") + File.separator + "res" + File.separator;
-	private static String nom = "sauvergarde.txt";
+	private static String nom = "sauvegarde.txt";
 
     public Partie(Plateau plateau,int nbJoueurs,int nbcouches){
         this.plateau=plateau;
@@ -272,27 +273,28 @@ public class Partie {
     
     public void sauvergarder() {
 		String ecriture = "";
-		ecriture += this.nbJoueurs + "\n";
-		ecriture += this.plateau.getCouches() + "\n";
-		ecriture += this.plateau.getSommets() + "\n";
+		ecriture += "j" + this.nbJoueurs + "\n";
+		ecriture += "/" + this.plateau.getCouches() + "\n";
+		ecriture += "/" + this.plateau.getSommets() + "\n";
 		for(int j = 0 ; j<this.nbJoueurs ; j++) {
 			Joueur currentPlayer;
 			currentPlayer = this.joueurs.get(j);
-			ecriture += currentPlayer.getName()+"\n";
-			ecriture += currentPlayer.getJoueurId() + "\n";
-			ecriture += currentPlayer.getNbPions() + "\n";
-			for(int p = 0 ; p<currentPlayer.getNbPions() ; p++) {
-				Pion pi = currentPlayer.getPion(p);
-				ecriture += pi.getPosition().getCouche() + "." + pi.getPosition().getSommet() + "\n";
+			ecriture += "." + currentPlayer.getName()+"\n";
+			ecriture += "{" + currentPlayer.getJoueurId() + "\n";
+			ecriture += "p" + currentPlayer.getPositions().size() + "\n";
+			for(int p = 0 ; p<currentPlayer.getPositions().size() ; p++) {
+				ecriture += currentPlayer.getPositions().get(p).getCouche() + "." + currentPlayer.getPositions().get(p).getSommet() + "\n";
 			}
 		}
-		try(PrintWriter pw = new PrintWriter(new File(chemin + nom))) {
-			pw.println(ecriture);
-			pw.close();
-		
+		System.out.println(ecriture);
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(chemin+nom))) {
+			bw.write(ecriture);
 		} catch(IOException e) {
-			System.out.println("Writing error: " + e.getMessage());e.printStackTrace();
+			System.out.println("Writing error: " + e.getMessage());
+			e.printStackTrace();
 		}
+	
+
 	}
 
 
