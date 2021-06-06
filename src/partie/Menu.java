@@ -12,7 +12,9 @@ import plateauPackage.Plateau;
 import plateauPackage.Position;
 
 
-
+/**
+ * Classe Menu, pour naviguer dans le menu, avant de joueur dans une partie
+ */
 public class Menu {
 
 
@@ -47,6 +49,11 @@ static String menu_regle=	 "------------------------| Règle |------------------
 					+ "Conditions de victoire: Un joueur gagne dès que ses trois pions sont alignés.\n\n"
 					+ "\t\t\t(1) Jouer\n"
 					+ "\t\t\t(2) Retour\n";
+/**
+ * @param nbjoueur
+ * @param nbcouche
+ * @return menu "Jouer"
+ */
 public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------------------| Jouer |------------------------\n"
 															+"\t\t\tNombre de joueur: "+nbjoueur+"\n"
 															+"\t\t\tNombre de couche: "+nbcouche+"\n\n"
@@ -55,13 +62,21 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 															+"\t\t\t(3) Changer le nombre de couche\n"
 															+"\t\t\t(4) Type de plateau\n"
 															+"\t\t\t(5) Retour\n";}
+	
 	static Scanner entry = new Scanner(System.in);
+	/**
+	 * Scanner d'int
+	 * @return entrée
+	 */
 	public static int scanInt () {
 		int num = entry.nextInt();
 		
 		return num;
 	}
 
+	/**
+	 * Affichage du menu principal
+	 */
 	public static void affichage_menu() {
 		int num=0;
 		do {
@@ -80,6 +95,9 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		}while(num !=3);
 	}
 	
+	/**
+	 * Affichage des règles
+	 */
 	public static void affichage_regle() {
 		int num=0;
 		do {
@@ -95,6 +113,11 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		}while(num !=2);
 	}
 	
+	/**
+	 * Pour sélectionner les paramètres de la partie
+	 * @param config
+	 * @return tableau int
+	 */
 	public static int[] affichage_jouer(int[] config) {
 		int num=0;
 		do {
@@ -120,11 +143,19 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 	return config;
 	}
 	
+	/**
+	 * main de Menu
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		affichage_menu();
 		entry.close();
 	}
 
+	/**
+	 * Affiche le plateau carré
+	 * @param plateau
+	 */
     public static void afficherPlateauCarre(Plateau plateau) {
 
         try {
@@ -154,6 +185,10 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
         }
     }
 
+    /**
+     * getter des configurations choisies
+     * @return
+     */
 	public int[] getConfig() {
 		return this.config;
 	}

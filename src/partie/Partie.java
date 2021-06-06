@@ -20,6 +20,9 @@ import plateauPackage.Plateau;
 import plateauPackage.Position;
 import plateauPackage.Situations;
 
+/**
+ * Classe Partie, organise les éléments nécessaire pour jouer une Partie
+ */
 public class Partie {
     
     private int joueur=0;
@@ -37,6 +40,12 @@ public class Partie {
     private static String chemin = System.getProperty("user.dir") + File.separator + "res" + File.separator;
 	private static String nom = "sauvegarde.txt";
 
+	/**
+	 * Constructeur d'une Partie
+	 * @param plateau
+	 * @param nbJoueurs
+	 * @param nbcouches
+	 */
     public Partie(Plateau plateau,int nbJoueurs,int nbcouches){
         this.plateau=plateau;
         this.nbJoueurs=nbJoueurs;
@@ -45,6 +54,9 @@ public class Partie {
         initialisationJoueurs();
     }
 
+    /**
+     * Initialise des joueur en prenant en compte les configurations
+     */
     public void initialisationJoueurs(){ //Initialisation automatique des joueurs, on pourra modif pour laisser la liberté aux joueurs de choisir leurs noms
 
         for(int indice=1;indice<nbJoueurs+1;indice++){
@@ -52,6 +64,9 @@ public class Partie {
         }
     }
 
+    /**
+     * Phase de déploiement du Jeu, les joueurs posent un à un leur pion
+     */
     public void PhaseDeploiement(){
 
         Menu.afficherPlateauCarre(plateau);
@@ -96,6 +111,9 @@ public class Partie {
     System.out.println("\nTous les pions on été placés\n");
     }
 
+    /**
+     * Place aléatoirement les pions
+     */
     public void PhaseDeploiementAleatoire(){
 
         Pion pionJoueur;
@@ -141,7 +159,10 @@ public class Partie {
     }
 
 
-    //Demande au joueur les pion qu'il veut déplacer et ou il veut le déplacer, avec les vérifications
+    /**
+     * Demande au joueur les pions qu'il veut déplacer et où il veut le déplacer, avec les vérifications
+     * @param idJoueur
+     */
     public void actionJoueur(int idJoueur){
 
         Pion pionJoueur=null;
@@ -182,6 +203,10 @@ public class Partie {
     
     }
 
+    /**
+     * Sécurise l'entrée dans le terminal
+     * @return Posisition de l'entrée
+     */
     public Position verificationEntree(){
 
         Position positionPion=null;
@@ -205,6 +230,10 @@ public class Partie {
     return positionPion;
     }
     
+    /**
+     * Lorsqu'un joueur aligne 3 pions, cette focntion est lancée
+     * @param idJoueur
+     */
     public void lineUp3(int idJoueur){
 
         Position positionPion;
@@ -234,6 +263,11 @@ public class Partie {
         partiFinie(joueur.getJoueurId());
     }
 
+    /**
+     * Verifie si le joueur a aligné 3 pions
+     * @param idJoueur
+     * @return boolean
+     */
     public boolean checkLineUp3(int idJoueur) {
         
     	List<Position> positions = joueurs.get(idJoueur).getPositions();
@@ -265,15 +299,26 @@ public class Partie {
     	return false;
     }
 
+    /**
+     * Vérifie si la partie est finie
+     * @param idJoueur
+     */
     public void partiFinie(int idJoueur){
     	System.out.println(joueurs.get(idJoueur).getNbPions());
         finPartie= joueurs.get(idJoueur).getNbPions()<3 ? true : false;
     }
 
+    /**
+     * getter statut de la partie
+     * @return
+     */
     public boolean getStatutPatie(){
         return finPartie;
     }
     
+    /**
+     * sauvegarde l'état présent de la partie
+     */
     public void sauvergarder() {
 		String ecriture = "";
 		ecriture += this.nbJoueurs + "\n";
@@ -316,6 +361,10 @@ public class Partie {
 		}
 	}
     
+    /**
+     * retourne la dernière partie sauvegardée
+     * @return Partie
+     */
     public static Partie dernierePartie() {
     	String fichier = "";
     	try(BufferedReader br = new BufferedReader(new FileReader(chemin+nom))) {
@@ -423,7 +472,6 @@ public class Partie {
     			savePlateau.setPlateau(x, y, Situations.BLOQUE);
     		}
     	}
-    	
 //    	for(int p1 = 0 ; p1<nombreCouche*nombreSommet; p1++) {
 //			for(int p2 = 0 ; p2<nombreCouche*nombreSommet; p2++) {
 //				if(savePlateau.getArcs(p1, p2)) {

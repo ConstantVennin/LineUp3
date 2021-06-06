@@ -7,9 +7,15 @@ import joueurPackage.Joueur;
 import partie.Menu;
 import partie.Partie;
 
+/**
+ * Classe d'utilisation du plateau
+ */
 public class UsePlateau {
 
-
+	/**
+	 * Main de UsePlateau
+	 * @param args
+	 */
     public static void main(String args[]) {
 
         int joueurActuel=0;

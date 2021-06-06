@@ -6,10 +6,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Classe Configuration, utilisable pour choisir les options de la Partie avant le lancemenent du programme
+ */
 public class Configuration {
 	private static String chemin = System.getProperty("user.dir") + File.separator + "res" + File.separator;
 	private static String nom = "configuration.txt";
 	
+	/**
+	 * Liseuse du fichier de configuration
+	 * @param nbConfig
+	 * @return contenu du fichier de configuration
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	private static String readConfig(int nbConfig) throws FileNotFoundException, IOException {
 		String res = "";
 		try(BufferedReader br = new BufferedReader(new FileReader(chemin+nom))) {
@@ -39,7 +49,13 @@ public class Configuration {
 	}
 	
 
-	
+	/**
+	 * Getter du nombre de piege de case utilisable par joueur, indiqué dans le fichier de configuration
+	 * @return Nombre de piege pour case par joueur
+	 * @throws NumberFormatException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static int getNbPiegeCases() throws NumberFormatException, FileNotFoundException, IOException {
 		if(readConfig(1)!=null && !readConfig(1).equals("")) {
 			return Integer.parseInt(readConfig(1));
@@ -47,6 +63,13 @@ public class Configuration {
 		return 0;
 	}
 	
+	/**
+	 * Getter du nombre de piege d'arc utilisable par joueur, indiqué dans le fichier de configuration
+	 * @return nombre de piege d'arc par joueur
+	 * @throws NumberFormatException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static int getNbPiegeArcs() throws NumberFormatException, FileNotFoundException, IOException {
 		if(readConfig(2)!=null && !readConfig(2).equals("")) {
 			return Integer.parseInt(readConfig(2));
@@ -54,6 +77,13 @@ public class Configuration {
 		return 0;
 	}
 	
+	/**
+	 * Getter du nombre de pions par joueur disponible en début de partie, indiqué dans le fichier de configuration
+	 * @return nombre de pions par joueur disponible en début de partie
+	 * @throws NumberFormatException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static int getNbPionParPers() throws NumberFormatException, FileNotFoundException, IOException {
 		if(readConfig(3)!=null && !readConfig(3).equals("")) {
 			return Integer.parseInt(readConfig(3));
@@ -61,6 +91,13 @@ public class Configuration {
 		return 0;
 	}
 	
+	/**
+	 * Getter du nombre de sommet du plateau
+	 * @return nombre de sommet du plateau
+	 * @throws NumberFormatException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static int getNbDeSommets() throws NumberFormatException, FileNotFoundException, IOException {
 		if(readConfig(4)!=null && !readConfig(4).equals("")) {
 			return Integer.parseInt(readConfig(4));
@@ -68,6 +105,13 @@ public class Configuration {
 		return 0;
 	}
 	
+	/**
+	 * Getter du nombre de couche du plateau, indiqué dans le fichier de configuration
+	 * @return nombre de couche du plateau
+	 * @throws NumberFormatException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static int getNbDeCouches() throws NumberFormatException, FileNotFoundException, IOException {
 		if(readConfig(5)!=null && !readConfig(5).equals("")) {
 			return Integer.parseInt(readConfig(5));
@@ -75,6 +119,12 @@ public class Configuration {
 		return 0;
 	}
 	
+	/**
+	 * Indique si le joueur adverse est une IA, mettre oui ou non dans le fichier de configuration
+	 * @return presence d'une IA
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static boolean jouerContreIA() throws FileNotFoundException, IOException {
 		String choixIA = readConfig(6).toUpperCase();
 		if(choixIA.equals("OUI")) {

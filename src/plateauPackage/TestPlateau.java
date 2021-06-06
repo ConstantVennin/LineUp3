@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import joueurPackage.Joueur;
 
+/**
+ * Classe de test
+ */
 public class TestPlateau{
 
     Plateau plateau;

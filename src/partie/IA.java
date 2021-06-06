@@ -8,8 +8,17 @@ import plateauPackage.Plateau;
 import plateauPackage.Position;
 import plateauPackage.Situations;
 
-
+/**
+ * Classe IA
+ */
 public class IA {
+	
+	/**
+	 * IA choisissant de manière aléatoire quel pion elle joue et où elle le déplace
+	 * @param p
+	 * @param s
+	 * @return position de départ et d'arrivé du pion dans un tableau
+	 */
 	public Position[] placerPionIA(Plateau p, Situations s) {
 		ArrayList<Position> pionPossede = trouverPion(p,s);
 		Position pionBouge = null;
@@ -43,6 +52,12 @@ public class IA {
 		return res;
 	}
 	
+	/**
+	 * Trouve les pions qui appartiennent à l'IA
+	 * @param p
+	 * @param s
+	 * @return Pion appartenant à l'ia
+	 */
 	public static ArrayList<Position> trouverPion(Plateau p, Situations s){
 		ArrayList<Position> res = new ArrayList<Position>();
 		for(int x = 0 ; x<p.getCouches(); x++) {
