@@ -295,6 +295,18 @@ public class Partie {
 				ecriture += this.plateau.getArcs(p1, p2) + " ";
 			}
 		}
+		ecriture += "\n~PIEGE";
+		int nombrePiege = 0;
+		String placePiege = "";
+		for(int p1 = 0 ; p1<this.plateau.getCouches(); p1++) {
+			for(int p2 = 0 ; p2<this.plateau.getSommets(); p2++) {
+				if(this.plateau.getPlateau(p1, p2).equals(Situations.BLOQUE)) {
+					nombrePiege++;
+					placePiege += "~" + p1 + " " + p2;
+				}
+			}
+		}
+		ecriture += "~" + nombrePiege + "~" + placePiege;
 		//System.out.println(ecriture);
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(chemin+nom))) {
 			bw.write(ecriture);
@@ -397,6 +409,19 @@ public class Partie {
     			savePlateau.setArcs(false, coucheX, coucheY);
     		}
     		coucheX++;
+    	}
+    	int compteurPiege = 0;
+    	while(!fichierClasse[compteurPiege].equals("PIEGE")) {
+    		compteurPiege++;
+    	}
+    	int nombreDePiege = Integer.parseInt(fichierClasse[compteurPiege+1]);
+    	if(nombreDePiege>0) {
+    		for(int i = 0 ; i<nombreDePiege; i++) {
+    			String[] positionPiege = fichierClasse[compteurPiege+2+i].split(" ");
+    			int x = Integer.parseInt(positionPiege[0]);
+    			int y = Integer.parseInt(positionPiege[1]);
+    			savePlateau.setPlateau(x, y, Situations.BLOQUE);
+    		}
     	}
     	
 //    	for(int p1 = 0 ; p1<nombreCouche*nombreSommet; p1++) {

@@ -299,6 +299,8 @@ public class Plateau{
 	public void setArcs(boolean b, int x, int y) {
 		this.arcs[x][y] = b;
 	}
+
+	
     
     
 }
