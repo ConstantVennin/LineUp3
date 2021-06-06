@@ -178,9 +178,7 @@ public class Plateau{
 
     //Place le pion du joueur sur le plateau
     public void placer_pion(Pion pion,Position p){
-    	System.out.println("position not set");
         pion.setPosition(p);
-        System.out.println("position set");
         plateau[pion.getPosition().getCouche()][pion.getPosition().getSommet()]=Situations.values()[pion.getJoueurId()];
 
     }
@@ -297,4 +295,10 @@ public class Plateau{
     public void setPlateau(int x, int y, Situations s) {
     	this.plateau[x][y] = s;
     }
+
+	public void setArcs(boolean b, int x, int y) {
+		this.arcs[x][y] = b;
+	}
+    
+    
 }

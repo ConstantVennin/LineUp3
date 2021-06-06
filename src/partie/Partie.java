@@ -289,7 +289,13 @@ public class Partie {
 				ecriture += "~" + currentPlayer.getPositions().get(p).getCouche() + "." + currentPlayer.getPositions().get(p).getSommet() + "\n";
 			}
 		}
-		System.out.println(ecriture);
+		ecriture += "~ARC~";
+		for(int p1 = 0 ; p1<this.plateau.getCouches()*this.plateau.getSommets(); p1++) {
+			for(int p2 = 0 ; p2<this.plateau.getCouches()*this.plateau.getSommets(); p2++) {
+				ecriture += this.plateau.getArcs(p1, p2) + " ";
+			}
+		}
+		//System.out.println(ecriture);
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(chemin+nom))) {
 			bw.write(ecriture);
 		} catch(IOException e) {
@@ -309,21 +315,21 @@ public class Partie {
 			}
 			fichier = sb.toString();
 		} catch(FileNotFoundException e) {
-			System.out.println("File not found: ");
+			//System.out.println("File not found: ");
 			e.printStackTrace();
 		} catch(IOException e) {
-			System.out.println("Reading error: " + e.getMessage());
+			//System.out.println("Reading error: " + e.getMessage());
 			e.printStackTrace();
 		}
-    	System.out.println(fichier);
+    	//System.out.println(fichier);
     	String[] fichierClasse = fichier.split("~");
     	for(int i = 0 ;i<fichierClasse.length ; i++) {
-    		System.out.println(fichierClasse[i]);
+    		//System.out.println(fichierClasse[i]);
     	}
     	int nombreJoueur = Integer.parseInt(fichierClasse[0]);
     	int nombreCouche = Integer.parseInt(fichierClasse[1]);
     	int nombreSommet = Integer.parseInt(fichierClasse[2]);
-    	System.out.println("nb joueur : "+nombreJoueur + "\n" + "Couche.sommet : "+nombreCouche + "."+nombreSommet);
+    	//System.out.println("nb joueur : "+nombreJoueur + "\n" + "Couche.sommet : "+nombreCouche + "."+nombreSommet);
     	
     	List<Joueur> joueurList = new ArrayList<Joueur>();
     	Plateau savePlateau = new Plateau(nombreCouche, nombreSommet/2);
@@ -339,9 +345,9 @@ public class Partie {
     			}
     			compteurDetec++;
     		}
-    		System.out.println(compteurDetec);
+    		//System.out.println(compteurDetec);
     		String name = fichierClasse[compteurDetec-1].substring(2);
-    		System.out.println(name);
+    		//System.out.println(name);
     		founded = true;
     		compteurDetec = 0;
     		while(founded) {
@@ -358,15 +364,54 @@ public class Partie {
     		for(int pNb = 0 ; pNb<nombrePion; pNb++) {
     			int couchePion = Integer.parseInt(fichierClasse[pNb+compteurDetec].substring(0, 1));
     			int sommetPion = Integer.parseInt(fichierClasse[pNb+compteurDetec].substring(2, 3));
-    			System.out.println(couchePion + " ; " + sommetPion);
+    			//System.out.println(couchePion + " ; " + sommetPion);
     			j0.setPosition(new Pion(j0), new Position(couchePion,sommetPion));
     			savePlateau.placer_pion(new Pion(j0), new Position(couchePion+1,sommetPion+1));//j0.getPion(pNb)
     		}
     		joueurList.add(j0);
     	}
+    	int compteurDetec = 0;
+    	boolean founded = true;
+    	while(founded) {
+    		if(fichierClasse[compteurDetec].length()>2) {
+    			
+    			if(fichierClasse[compteurDetec].equals("ARC")) {
+    				founded = false;
+    			}
+    		}
+    		compteurDetec++;
+    	}
+    	//System.out.println(fichierClasse[compteurDetec] + " : " + compteurDetec);
+    	String[] etatArcs = fichierClasse[compteurDetec].split(" ");
+    	int coucheX = 0;
+    	int coucheY = 0;
+    	//System.out.println(etatArcs.length);
+    	for(int i = 0 ; i<etatArcs.length ; i++) {
+    		if(coucheX==nombreCouche*nombreSommet) {
+    			coucheY++;
+    			coucheX = 0;
+    		}
+    		if(etatArcs[i].equals("true")) {
+    			savePlateau.setArcs(true, coucheX, coucheY);
+    		}else {
+    			savePlateau.setArcs(false, coucheX, coucheY);
+    		}
+    		coucheX++;
+    	}
+    	
+//    	for(int p1 = 0 ; p1<nombreCouche*nombreSommet; p1++) {
+//			for(int p2 = 0 ; p2<nombreCouche*nombreSommet; p2++) {
+//				if(savePlateau.getArcs(p1, p2)) {
+//					System.out.print("1 ");
+//				}else {
+//					System.out.print("0 ");
+//				}
+//			}
+//			System.out.println("");
+//		}
     	Partie savePartie = new Partie(savePlateau, nombreJoueur,nombreCouche);
     	savePartie.joueurs = joueurList;
-    	Menu.afficherPlateauCarre(savePlateau);
+    	//Menu.afficherPlateauCarre(savePlateau);
     	return savePartie;
     }
 
