@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test_affichage_lineup.Controller_2">
+   <children>
+      <Polygon fill="#1f93ff00" points="-50.0, 400.0, 500, 400.0, 225, -50" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" translateX="100.0" translateY="100.0" />
+      <Polygon fill="#1f93ff00" points="41.600006103515625, 352.0, 413.5999755859375, 352.0, 227.20001220703125, 35.19999694824219" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" translateX="100.0" translateY="100.0" />
+      <Polygon fill="#1f93ff00" points="172.0, 216.0, 172.0, 216.0, 148.0, 78.40000915527344, 148.0, 78.40000915527344" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" translateX="100.0" translateY="100.0" />
+      <Polygon fill="#1f93ff00" points="224.79998779296875, 403.20001220703125, 224.79998779296875, 281.6000061035156, 224.79998779296875, 403.20001220703125, 224.79998779296875, 281.6000061035156" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" translateX="100.0" translateY="100.0" />
+	  <Button fx:id="button_23" layoutX="494.0" layoutY="432.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_31" layoutX="305.0" layoutY="23.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_21" layoutX="308.0" layoutY="115.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_33" layoutX="580.0" layoutY="484.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_24" layoutX="305.0" layoutY="423.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_34" layoutX="305.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_25" layoutX="122.0" layoutY="432.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_35" layoutX="30.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+     
+      
+      <ToggleButton fx:id="button_deplacement" layoutX="630.0" layoutY="90.0" onAction="#actionButtonDeplacement" prefHeight="40.0" prefWidth="124.0" selected="true" text="Déplacement">
+         <toggleGroup>
+            <ToggleGroup fx:id="choix_du_tour" />
+         </toggleGroup>
+      </ToggleButton>
+        <ToggleButton fx:id="button_posepiege" layoutX="630.0" layoutY="180.0" onAction="#actionButtonPosepiege" prefHeight="40.0" prefWidth="124.0" text="Pose piège" toggleGroup="$choix_du_tour" />
+      <ToggleButton fx:id="button_bloquage" layoutX="630.0" layoutY="280.0" mnemonicParsing="false" onAction="#actionButtonBlocage" prefHeight="40.0" prefWidth="124.0" text="Blocage arc" toggleGroup="$choix_du_tour" />
+        <ToggleButton fx:id="button_save" layoutX="630.0" layoutY="380.0" onAction="#actionButtonSave" prefHeight="40.0" prefWidth="124.0" text="Sauvegarder" toggleGroup="$choix_du_tour" />
+        <ToggleButton fx:id="button_quitter" layoutX="630.0" layoutY="473.0" onAction="#actionButtonQuitter" prefHeight="40.0" prefWidth="124.0" text="Quitter" toggleGroup="$choix_du_tour" />
+      <Label layoutX="25.0" layoutY="530.0" prefHeight="40.0" prefWidth="168.0" text="Nombre de pion :">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="530.0" prefHeight="40.0" prefWidth="40.0" text="J1:" textFill="#fa0606">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="380.0" layoutY="530.0" prefHeight="40.0" prefWidth="40.0" text="J2:" textFill="#3307fa">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_pionj1" layoutX="259.0" layoutY="530.0" prefHeight="40.0" prefWidth="23.0" text="6" textFill="#fa0606">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_pionj2" layoutX="409.0" layoutY="530.0" prefHeight="40.0" prefWidth="23.0" text="6" textFill="#3307fa">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="110.0" prefHeight="40.0" prefWidth="168.0" text="Tour du joueur n°">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Group layoutX="190.0" layoutY="110.0">
+         <children>
+            <Label fx:id="tabel_tourj1" layoutX="-8.0" prefHeight="40.0" prefWidth="23.0" text="1" textFill="#fa0606" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_tourj2" layoutX="-8.0" prefHeight="40.0" prefWidth="23.0" text="2" textFill="#3307fa">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Polygon fill="#1f93ff00" layoutX="10.0" layoutY="10.0" points="230.79998779296875, 371.6000061035156, 400.4000244140625, 371.6000061035156, 315.0, 204.99998474121094" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" />
+      <Button fx:id="button_11" layoutX="305.0" layoutY="202.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_15" layoutX="230.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_13" layoutX="380.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_14" layoutX="305.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Polygon fill="#1f93ff00" layoutX="10.0" layoutY="10.0" points="370.0, 297.0, 370.0, 297.0, 390.0, 159.99998474121094, 390.0, 159.99998474121094" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Button fx:id="button_12" layoutX="360.0" layoutY="287.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_22" layoutX="370.0" layoutY="225.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_32" layoutX="380.0" layoutY="150.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_16" layoutX="255.0" layoutY="287.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_26" layoutX="240.0" layoutY="225.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      <Button fx:id="button_36" layoutX="225.0" layoutY="150.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50;" />
+      
+     
+   </children>
+</Pane>
