@@ -54,7 +54,7 @@ public class Controller_2 {
 	@FXML
 	public void actionButtonQuitter(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-	      alert.setHeaderText("Êtes vous sûr de vouloir quitter le jeu ?");
+	      alert.setHeaderText("Êtes vous sûr de vouloir quitter le jeu ?\nAvez-vous sauvegardé ?");
 	 
 	      // option != null.
 	      Optional<ButtonType> option = alert.showAndWait();
