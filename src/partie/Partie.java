@@ -327,7 +327,7 @@ public class Partie {
 
         }while(!verif);
 
-    return Integer.parseInt(choixJoueur); oui
+    return Integer.parseInt(choixJoueur);
     }
 
     /**
