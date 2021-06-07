@@ -222,7 +222,7 @@ public class Partie {
             couperArc();
         }
         else if(action==4){
-            sauvergarder();
+            Sauvegarde.sauvergarder(this);
         }
     }
 
