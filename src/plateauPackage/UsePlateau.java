@@ -56,11 +56,7 @@ public class UsePlateau {
         	//Partie test = Partie.dernierePartie();
 
             if(joueurActuel>1) {joueurActuel=0;}
-
-            partie.actionJoueur(joueurActuel);
-
-            System.out.print("\n");
-
+            
             if(config[2]==4){
 
                 Menu.afficherPlateauCarre(plateau);
@@ -69,6 +65,12 @@ public class UsePlateau {
 
                 Menu.afficherPlateauTriangle(plateau);
             }
+            
+            partie.actionJoueur(joueurActuel);
+
+            System.out.print("\n");
+
+            
             joueurActuel++;
         }
     }
