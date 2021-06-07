@@ -18,14 +18,11 @@ import plateauPackage.Position;
 public class Menu {
 
 
-private static int[] config=new int[] {2,3,1};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau
+private static int[] config=new int[] {2,3,4};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau
 
 static String myPath=System.getProperty("user.dir")+File.separator+"res"+File.separator;
-static String Carre3File = "carre3.txt";
-static String Carre4File = "carre4.txt";
-static String Triangle3File = "triangle3.txt";
-static String Triangle4File = "triangle4.txt";
-
+private static String typePlateau="carre3.txt";
+private static boolean finMenu=false;
 
 static String menu_LineUp3=  "           _      _              _    _         ____           \r\n"
 					+ "          | |    (_)            | |  | |       |___ \\          \r\n"
@@ -54,14 +51,11 @@ static String menu_regle=	 "------------------------| Règle |------------------
  * @param nbcouche
  * @return menu "Jouer"
  */
-public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------------------| Jouer |------------------------\n"
-															+"\t\t\tNombre de joueur: "+nbjoueur+"\n"
-															+"\t\t\tNombre de couche: "+nbcouche+"\n\n"
+public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------------------| Jouer |------------------------\n\n"
 															+"\t\t\t(1) Lancer la partie\n"
 															+"\t\t\t(2) Changer le nombre de joueur\n"
-															+"\t\t\t(3) Changer le nombre de couche\n"
-															+"\t\t\t(4) Type de plateau\n"
-															+"\t\t\t(5) Retour\n";}
+															+"\t\t\t(3) Type de plateau\n"
+															+"\t\t\t(4) Retour\n";}
 	
 	static Scanner entry = new Scanner(System.in);
 	/**
@@ -78,11 +72,20 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 	 * Affichage du menu principal
 	 */
 	public static void affichage_menu() {
+
 		int num=0;
+
 		do {
+
+		if(finMenu){
+			return;
+		}
+		
 		System.out.println(menu_LineUp3);
 		System.out.println(menu_base);
+
 		num=scanInt();
+
 		switch(num) {
 		case 1: affichage_jouer(config);
 				break;
@@ -118,39 +121,33 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 	 * @param config
 	 * @return tableau int
 	 */
-	public static int[] affichage_jouer(int[] config) {
+	public static void affichage_jouer(int[] config) {
 		int num=0;
 		do {
+
 		System.out.println(menu_jouer(config[0],config[1]));
 		num=scanInt();
+
 		switch(num) {
-		case 1: System.out.println("Lancement de la partie en cours ...");
-				break;
-			
-		case 2 : System.out.println("Entrée nombre de joueur");
+		case 1: finMenu=true;
+				return;
+
+		case 2 : System.out.println("Entrez le nombre de joueur");
 				num=scanInt();
 				config[0]=num;
 				break;
 		case 3:
-				System.out.println("Entrée nombre de couche");
+				System.out.println("Quel type de plateau souhaitez vous?\n\n1-Carre couche 3\n2-Carre couche 4\n3-Triangle couche 3\n4-Triangle couche 4");
 				num=scanInt();
-				config[1]=num;
+				typePlateau(num);
 				break;
+
 		case 4: affichage_menu();
 				break;
 		default: System.out.println("Entrée incorrect");}
-		}while(num !=4);
-	return config;
+		}while(num !=5);
 	}
 	
-	/**
-	 * main de Menu
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		affichage_menu();
-		entry.close();
-	}
 
 	/**
 	 * Affiche le plateau carré
@@ -160,7 +157,7 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 
         try {
 
-            BufferedReader fr = new BufferedReader(new FileReader(myPath+Carre3File));
+            BufferedReader fr = new BufferedReader(new FileReader(myPath+typePlateau));
             String chaine="";
             int c = fr.read();
             while(c!=-1) {
@@ -185,11 +182,75 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
         }
     }
 
+	/**
+	 * Affiche le plateau Triangulaire
+	 * @param plateau
+	 */
+    public static void afficherPlateauTriangle(Plateau plateau) {
+
+		System.out.println(plateau.getCouches());
+		System.out.println(plateau.getSommets());
+        try {
+
+            BufferedReader fr = new BufferedReader(new FileReader(myPath+typePlateau));
+            String chaine="";
+            int c = fr.read();
+            while(c!=-1) {
+
+                if(c>='A' && c<='X') {
+					
+					chaine+=plateau.getCase(new Position((c-'A')/6+1,(c-'A')%6+1)).getRepresentations();
+					
+                }else {
+
+                    chaine+=(char) c;
+                }
+                c = fr.read();
+            }
+            System.out.println(chaine);
+            fr.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("File not found: "); e.printStackTrace();
+        } catch(IOException e) {
+            System.out.println("Reading error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+	public static void typePlateau(int idx){
+
+		switch(idx){
+
+			case 1:
+				typePlateau="carre3.txt";
+				config[1]=3;
+				config[2]=4;
+				break;
+
+			case 2:
+				typePlateau="carre4.txt";
+				config[1]=4;
+				config[2]=4;
+				break;
+
+			case 3:
+				typePlateau="triangle3.txt";
+				config[1]=3;
+				config[2]=3;
+				break;
+
+			case 4:
+				typePlateau="triangle4.txt";
+				config[1]=4;
+				config[2]=3;
+				break;
+		}
+	}
     /**
      * getter des configurations choisies
      * @return
      */
 	public int[] getConfig() {
-		return this.config;
+		return config;
 	}
 }

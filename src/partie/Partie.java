@@ -39,9 +39,9 @@ public class Partie {
     List<Joueur> joueurs;
     private boolean finPartie;
     
-
-   
-	
+    //Attributs pour la sauvegarde
+    private static String chemin = System.getProperty("user.dir") + File.separator + "res" + File.separator;
+	private static String nom = "sauvegarde.txt";
 
 	/**
 	 * Constructeur d'une Partie
@@ -52,7 +52,7 @@ public class Partie {
     public Partie(Plateau plateau,int nbJoueurs,int nbcouches){
         this.plateau=plateau;
         this.nbJoueurs=nbJoueurs;
-        this.nbPions=plateau.getCouches()*6;  // le nombre de pions correspond aux nombres de couches*3
+        this.nbPions= plateau.getCotes()==4 ? plateau.getCouches()*6 : plateau.getCouches()*4;
         joueurs=new ArrayList<Joueur>();
         initialisationJoueurs();
     }
@@ -70,9 +70,7 @@ public class Partie {
     /**
      * Phase de déploiement du Jeu, les joueurs posent un à un leur pion
      */
-    public void PhaseDeploiement(){
-
-        Menu.afficherPlateauCarre(plateau);
+    public void PhaseDeploiement(int typePlateau){
         
         Pion pionJoueur;
         Joueur joueurActuel;
@@ -82,7 +80,6 @@ public class Partie {
         while(pionsRestants>0){
 
             System.out.println("\n");
-            plateau.Afficher_plateau();
 
             if(joueur>nbJoueurs-1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
 
@@ -110,6 +107,12 @@ public class Partie {
             joueur++;
             pionsRestants--;
 
+            if(typePlateau==1){
+                Menu.afficherPlateauCarre(plateau);
+            }
+            else{
+                Menu.afficherPlateauTriangle(plateau);
+            }
         }
     System.out.println("\nTous les pions on été placés\n");
     }
@@ -117,9 +120,8 @@ public class Partie {
     /**
      * Place aléatoirement les pions
      */
-    public void PhaseDeploiementAleatoire(){
+    public void PhaseDeploiementAleatoire(int typePlateau){
 
-        System.out.println("RESET");
         Pion pionJoueur;
         Joueur joueurActuel;
 
@@ -158,15 +160,24 @@ public class Partie {
             joueur++;
             pionsRestants--;
         }
-        
+    
+    if(typePlateau==1){
+        Menu.afficherPlateauCarre(plateau);
+    }
+    else{
+        Menu.afficherPlateauTriangle(plateau);
+    }
     System.out.println("\nTous les pions on été placés\n");
-
-    Menu.afficherPlateauCarre(plateau);
 
     }
 
 
-
+    /**
+     * Deplace un pion
+     * @param anciennePosition
+     * @param positionPion
+     * @param idJoueur
+     */
     public void deplacerPion(Position anciennePosition,Position positionPion, int idJoueur){
         
         Joueur joueur=joueurs.get(idJoueur);
@@ -189,15 +200,13 @@ public class Partie {
     
     }
 
-
+    /**
+     * Realise les diffentes actions que le joueur peut choisir (appelle les fonctions)
+     * @param idJoueur
+     */
     public void actionJoueur(int idJoueur){
 
-        int action=demanderAction(idJoueur);
-        
-        if(action==4) {
-        	System.out.println("Partie sauvegardée");
-        	Sauvegarde.sauvergarder(this);
-        }
+        int action=demanderAction(idJoueur,4);
 
         if(action==1){
             deplacementPion(idJoueur);
@@ -210,6 +219,10 @@ public class Partie {
         }
         else if(action==3){
             System.out.println("Entrez les 2 position qui formenty l'arc que vous souahitez couper");
+            couperArc();
+        }
+        else if(action==4){
+            sauvergarder();
         }
     }
 
@@ -226,6 +239,9 @@ public class Partie {
     plateau.placerPiege(p);
     }
 
+    /**
+     * Romp la liaison entre deux positions
+     */
     public void couperArc(){
 
         Position p=verificationEntree();
@@ -284,25 +300,30 @@ public class Partie {
     deplacerPion(anciennePosition,positionPion,idJoueur);
     }
 
-    public int demanderAction(int idJoueur){
+    public int demanderAction(int idJoueur, int nbChoix){
 
         boolean verif=false;
         String choixJoueur="";
-
+        int choix;
         System.out.println("\nQuel action souhaitez vous effectuer ? : "+joueurs.get(idJoueur).getName()+"\n");
-        System.out.println("1-Déplacer un pion\n2-Poser un piège\n3-Couper un arc\n4-Sauvegarder la partie");
+        System.out.println("1-Déplacer un pion\n2-Poser un piège\n3-Couper un arc\n4-Sauvegarder");
 
         do{
 
             try{
 
                 choixJoueur=actionJoueur.nextLine();
-                Integer.parseInt(choixJoueur);
+                choix=Integer.parseInt(choixJoueur);
+
+                if(choix<0 || choix>nbChoix){
+                    throw new NumberFormatException(); // Pour afficher le message Entree invalide
+                }
+
                 verif=true;
 
             }catch(NumberFormatException e){
-                System.out.println("\nEntree invalide, veuillez entrer 1, 2 ou 3");
-            }
+                System.out.println("\nEntree invalide, veuillez entrer un nombre compris entre 1 et "+nbChoix);
+            }catch(NoSuchElementException e){} //Quand on fait ctrl+C pour fermer le programme, elle se déclenche
 
         }while(!verif);
 
@@ -319,6 +340,7 @@ public class Partie {
 
 
         do{
+
             entreeJoueur=actionJoueur.nextLine();
         try{
             
@@ -326,10 +348,10 @@ public class Partie {
             positionPion=new Position(positions[0],positions[1]);
             verif=true; 
 
-        }catch(NumberFormatException | ArrayIndexOutOfBoundsException | NoSuchElementException e){
+        }catch(NumberFormatException | ArrayIndexOutOfBoundsException e){
             System.out.println("Le nombre entré n'est pas sous la forme x.y");
             verif=false;
-        }
+        }catch(NoSuchElementException e){} //Quand on fait ctrl+C pour fermer le programme, elle se déclenche
 
         }while(!verif);
     
@@ -342,7 +364,11 @@ public class Partie {
      */
     public void lineUp3(int idJoueur){
 
-        Menu.afficherPlateauCarre(plateau);
+        if(plateau.getCouches()==3){
+            Menu.afficherPlateauTriangle(plateau);
+        }else{
+            Menu.afficherPlateauCarre(plateau);
+        }
 
         Position positionPion;
         Pion pionJoueur=null;
