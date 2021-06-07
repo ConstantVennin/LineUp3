@@ -32,7 +32,7 @@ public class UsePartie{
 
         if(joueur>nbJoueurs-1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
 
-        joueurs=partie.getlistJoueurs();
+        joueurs=partie.getJoueurs();
 
         Pion pionJoueur=null; 
 
