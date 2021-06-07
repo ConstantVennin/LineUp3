@@ -235,7 +235,7 @@ public class Partie {
             p2=verificationEntree();
         }
 
-    plateau.bloquer_arc(p, p2);
+    plateau.couperArc(p, p2);
     }
 
     /**
@@ -430,6 +430,7 @@ public class Partie {
      * sauvegarde l'état présent de la partie
      */
     public void sauvergarder() {
+
 		String ecriture = "";
 		ecriture += this.nbJoueurs + "\n";
 		ecriture += "~" + this.plateau.getCouches() + "\n";
@@ -476,6 +477,7 @@ public class Partie {
      * @return Partie
      */
     public static Partie dernierePartie() {
+
     	String fichier = "";
     	try(BufferedReader br = new BufferedReader(new FileReader(chemin+nom))) {
 			StringBuilder sb = new StringBuilder();

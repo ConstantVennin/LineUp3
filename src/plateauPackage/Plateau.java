@@ -13,6 +13,7 @@ public class Plateau{
     //Trouver un moyen de g�rer le blocage des arcs temporaires
     private int couches;
     private final int sommets;
+    private int nbCotes;
     private final static int cotesCarresDefault=4;
     private Situations[][] plateau;
     private boolean[][] arcs;
@@ -27,6 +28,7 @@ public class Plateau{
     public Plateau(int couches,int nombreCote){
     	
         this.couches=couches;
+        this.nbCotes=nombreCote;
         this.sommets=nombreCote*2;
         this.creation_plateau();
         p=new ArrayList<Position>();
@@ -41,6 +43,14 @@ public class Plateau{
     public void creation_plateau(int couches, int nbCotes){
         this.plateau=new Situations[couches][sommets];
         this.arcs = creation_arcs();
+    }
+
+    /**
+     * getter qui retourne le nombre de cotes du plateau
+     * @return nbCotes
+     */
+    public int getCotes(){
+        return this.nbCotes;
     }
     
     /**
@@ -245,6 +255,10 @@ public class Plateau{
 
     }
 
+    public void placerPiege(Position p){
+        plateau[p.getCouche()][p.getSommet()]=Situations.PIEGE;
+    }
+
     /**
      * Libère la case, par exemple lorsqu'un joueur se deplace
      * @param p
@@ -447,8 +461,5 @@ public class Plateau{
 	public void setArcs(boolean b, int x, int y) {
 		this.arcs[x][y] = b;
 	}
-
-	
-    
-    
+   
 }
