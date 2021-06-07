@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test_affichage_lineup.Controller_2">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller_2">
    <children>
       <Polygon fill="#1f93ff00" points="-50.0, 400.0, 500, 400.0, 225, -50" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" translateX="100.0" translateY="100.0" />
       <Polygon fill="#1f93ff00" points="41.600006103515625, 352.0, 413.5999755859375, 352.0, 227.20001220703125, 35.19999694824219" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" translateX="100.0" translateY="100.0" />
