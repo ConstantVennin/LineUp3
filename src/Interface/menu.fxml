@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -30,13 +30,15 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="Button_carre" mnemonicParsing="false" onAction="#actionButtonCarre" selected="true">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
+                  <ToggleButton fx:id="Button_carre3" mnemonicParsing="false" onAction="#actionButtonCarre3" selected="true" text="3">
                      <toggleGroup>
                         <ToggleGroup fx:id="forme_plateau" />
-                     </toggleGroup></RadioButton>
+                     </toggleGroup>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="Button_carre4" mnemonicParsing="false" onAction="#actionButtonCarre4" text="4" toggleGroup="$forme_plateau" />
                </children>
             </VBox>
             <VBox alignment="CENTER" layoutX="260.0" layoutY="10.0" prefHeight="575.0" prefWidth="400.0">
@@ -95,11 +97,16 @@
                      <font>
                         <Font size="24.0" />
                      </font>
-                  </Label>
-                  <RadioButton fx:id="Button_triangle" contentDisplay="CENTER" mnemonicParsing="false" onAction="#actionButtonTriangle" prefHeight="18.0" prefWidth="0.0" textAlignment="CENTER" toggleGroup="$forme_plateau">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></RadioButton>
+                        <Insets top="90.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ToggleButton fx:id="Button_triangle3" mnemonicParsing="false" onAction="#actionButtonTriangle3" text="3" toggleGroup="$forme_plateau">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="Button_triangle4" mnemonicParsing="false" onAction="#actionButtonTriangle4" text="4" toggleGroup="$forme_plateau" />
                </children>
             </VBox>
          </children>
