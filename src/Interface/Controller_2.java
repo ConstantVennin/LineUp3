@@ -1,4 +1,4 @@
-package test_affichage_lineup;
+package Interface;
 
 import java.util.Optional;
 
@@ -11,8 +11,17 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
+import partie.UsePartie;
+import plateauPackage.Position;
 
 public class Controller_2 {
+
+	private int[] config=checkConfig(Controller.getConfig());
+
+	UsePartie partie=new UsePartie(config[1], config[0], 2);
+	
+	private String action;
+
 	@FXML
 	Button button_11,button_12,button_13,button_14,button_15,button_16,button_17,button_18;
 	@FXML
@@ -28,33 +37,41 @@ public class Controller_2 {
 	
 	@FXML
 	public void actionButtonCase(ActionEvent event) {
+		
 		String num= event.getSource().toString().substring(17,19);
-		System.out.println("Case n°"+num+" choisis");
+		
+		Position p=new Position(Integer.parseInt(num.substring(0,1)),Integer.parseInt(num.substring(1, 2)));
+
+		partie.placerPion(p);
+
+		
 	}
+
 	@FXML
 	public void actionButtonDeplacement(ActionEvent event) {
-		System.out.println("Deplacement choisis");
+		action="deplacement";
 	}
+
 	@FXML
 	public void actionButtonPosepiege(ActionEvent event) {
-		System.out.println("Pose Piege choisis");
+		action="piege";
 	}
 
 	@FXML
 	public void actionButtonBlocage(ActionEvent event) {
-		System.out.println("Blocage d'arc choisis");
+		action="blocage";
 	}
 	
 	@FXML
 	public void actionButtonSave(ActionEvent event) {
-		System.out.println("Sauvegarde choisis");
+		action="save";
 	}
 
 
 	@FXML
 	public void actionButtonQuitter(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-	      alert.setHeaderText("Êtes vous sûr de vouloir quitter le jeu ?\nAvez-vous sauvegardé ?");
+	      alert.setHeaderText("ï¿½tes vous sï¿½r de vouloir quitter le jeu ?\nAvez-vous sauvegardï¿½ ?");
 	 
 	      // option != null.
 	      Optional<ButtonType> option = alert.showAndWait();
@@ -67,6 +84,24 @@ public class Controller_2 {
 	      }
 	}
 
+	public int[] checkConfig(String config){
 
+		int[] configs=new int[2];
 
+		if(config.equals("carre3")){
+
+			configs[0]=3;			
+			configs[1]=4;
+
+		}else if(config.equals("carre4")){
+			configs[0]=4;			
+			configs[1]=4;
+		}
+		else{
+			configs[0]= config.equals("triangle3") ? 3 : 4;
+			configs[1]= 3;
+		}
+
+	return configs;
+	}
 }

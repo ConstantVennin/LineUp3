@@ -17,6 +17,7 @@ public class Joueur{
 	private List<Pion> pions;
 	private int piegeArc;
 	private int piegeCase;
+	private int nbPionsPhaseDeploiement;
 	
 	/**
 	 * Constructeur Joueur
@@ -27,6 +28,7 @@ public class Joueur{
 		this.name = name;
 		this.joueurId=id;
 		this.nbPions=nbPions;
+		this.nbPionsPhaseDeploiement=nbPions;
 		id++;
 		pions=new ArrayList<Pion>();
 		this.initialiserPions();
@@ -101,6 +103,21 @@ public class Joueur{
 	}
 	
 	/**
+	 * getter nombre de pions restant avec diminution autoùmatique du nombre de pions
+	 * @return nombre de pions restants lors de la phase de deploiement
+	 */
+	public int getNbPionsDeploiement(){
+		return this.nbPionsPhaseDeploiement;
+	}
+
+	public void diminuerPionsDeploiement(){
+		this.nbPionsPhaseDeploiement--;
+	}
+
+	public void resetNbPionsDeploiement(){
+		this.nbPionsPhaseDeploiement=nbPions;
+	}
+	/**
 	 * setter d'une position sur un pion
 	 * @param pion
 	 * @param position
@@ -134,6 +151,7 @@ public class Joueur{
 	 */
 	public void retirerPion(Pion p){
 		pions.remove(p);
+		this.nbPions--;
 	}
 	
 	/**

@@ -1,4 +1,4 @@
-package test_affichage_lineup;
+package Interface;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +26,7 @@ public class Controller {
 	
 	public void actionButtonQuitter(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-	      alert.setHeaderText("Êtes vous sûr de vouloir quitter le jeu ?");
+	      alert.setHeaderText("ï¿½tes vous sï¿½r de vouloir quitter le jeu ?");
 	 
 	      // option != null.
 	      Optional<ButtonType> option = alert.showAndWait();
@@ -59,7 +59,7 @@ public class Controller {
 	@FXML
 	public void actionButtonCarre3(ActionEvent event) {
 		plateau="carre3";
-		System.out.println("Carré 3 choisis");	
+		System.out.println("Carrï¿½ 3 choisis");	
 	}
 	@FXML
 	public void actionButtonTriangle4(ActionEvent event) {
@@ -69,7 +69,7 @@ public class Controller {
 	@FXML
 	public void actionButtonCarre4(ActionEvent event) {
 		plateau="carre4";
-		System.out.println("Carré 4 choisis");	
+		System.out.println("Carrï¿½ 4 choisis");	
 	}
 	@FXML
 	public void actionButtonSolo(ActionEvent event) throws IOException{
@@ -140,6 +140,10 @@ public class Controller {
         video.setScene(scene);
         video.show();
 
+	}
+
+	public static String getConfig(){
+		return plateau;
 	}
 	
 }
