@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import plateauPackage.Plateau;
@@ -18,7 +16,7 @@ import plateauPackage.Position;
 public class Menu {
 
 
-private static int[] config=new int[] {2,3,4};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau
+private static int[] config=new int[] {2,3,4,0};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau
 
 static String myPath=System.getProperty("user.dir")+File.separator+"res"+File.separator;
 private static String typePlateau="carre3.txt";
@@ -55,7 +53,8 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 															+"\t\t\t(1) Lancer la partie\n"
 															+"\t\t\t(2) Changer le nombre de joueur\n"
 															+"\t\t\t(3) Type de plateau\n"
-															+"\t\t\t(4) Retour\n";}
+															+"\t\t\t(4) Charger la partie\n"
+															+"\t\t\t(5) Retour\n";}
 	
 	static Scanner entry = new Scanner(System.in);
 	/**
@@ -141,8 +140,12 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 				num=scanInt();
 				typePlateau(num);
 				break;
+		
+		case 4:
+			config[3]=1;
+			break;
 
-		case 4: affichage_menu();
+		case 5: affichage_menu();
 				break;
 		default: System.out.println("Entrée incorrect");}
 		}while(num !=5);
