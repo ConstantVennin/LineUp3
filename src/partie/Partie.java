@@ -193,6 +193,11 @@ public class Partie {
     public void actionJoueur(int idJoueur){
 
         int action=demanderAction(idJoueur);
+        
+        if(action==4) {
+        	System.out.println("Partie sauvegardée");
+        	Sauvegarde.sauvergarder(this);
+        }
 
         if(action==1){
             deplacementPion(idJoueur);

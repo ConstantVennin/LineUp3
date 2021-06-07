@@ -190,7 +190,7 @@ public class Sauvegarde {
 //		}
     	Partie savePartie = new Partie(savePlateau, nombreJoueur,nombreCouche);
     	savePartie.joueurs = joueurList;
-    	//Menu.afficherPlateauCarre(savePlateau);
+    	//Menu.afficherPlateauCarre(savePartie.getPlateau());
     	return savePartie;
     }
 
