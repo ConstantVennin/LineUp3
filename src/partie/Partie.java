@@ -84,8 +84,8 @@ public class Partie {
             if(joueur>nbJoueurs-1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
 
             joueurActuel=joueurs.get(joueur);
-            pionJoueur=joueurActuel.getPion(joueurActuel.getNbPions()-1);
-            joueurActuel.diminuerPionsRestants();
+            pionJoueur=joueurActuel.getPion(joueurActuel.getNbPionsDeploiement()-1);
+            joueurActuel.diminuerPionsDeploiement();
             
             System.out.println("Entrez la case ou vous voulez placer votre pion sous la forme x.y : Joueur "+ joueurs.get(joueur).getName());
 

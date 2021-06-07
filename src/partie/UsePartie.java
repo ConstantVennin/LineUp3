@@ -3,6 +3,8 @@ package partie;
 import java.util.List;
 
 import Exceptions.PionNonExistant;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import joueurPackage.Joueur;
 import joueurPackage.Pion;
 import plateauPackage.Plateau;
@@ -25,8 +27,47 @@ public class UsePartie{
         this.nbJoueurs=nbJoueurs;
         plateau=new Plateau(nbCouches,nbCotes);
         partie=new Partie(plateau,2,nbCouches);
+        this.joueurs=partie.getJoueurs();
     }
 
+    public int phaseDeploiement(Position positionPion){
+
+        int joueur=0;
+
+        if(!plateau.placementPossible(positionPion)){
+                
+            Alert alert=new Alert(AlertType.WARNING,"Vous ne pouvez pas placer votre pion ici");
+            alert.show();
+            
+        return -1;
+        };
+
+        Pion pionJoueur;
+        Joueur joueurActuel;
+
+        int pionsRestants=joueurs.get(0).getNbPions()*2;
+
+        if(joueur>nbJoueurs-1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
+
+        joueurActuel=joueurs.get(joueur);
+    
+        pionJoueur=joueurActuel.getPion(joueurActuel.getNbPionsDeploiement()-1);
+
+        joueurActuel.diminuerPionsDeploiement();
+
+
+        pionJoueur.setPosition(positionPion);
+        plateau.placer_pion(pionJoueur,positionPion);
+            
+        if(partie.checkLineUp3(joueur)){
+            lineUp3(positionPion);
+        }
+
+        joueur++;
+        pionsRestants--;
+
+    return 1;
+    }
 
     public void placerPion(Position positionPion){
 

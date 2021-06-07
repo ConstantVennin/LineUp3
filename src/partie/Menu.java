@@ -16,7 +16,7 @@ import plateauPackage.Position;
 public class Menu {
 
 
-private static int[] config=new int[] {2,3,4,0};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau
+private static int[] config=new int[] {2,3,4,0};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau //[3] charger partie 0:non 1:oui 
 
 static String myPath=System.getProperty("user.dir")+File.separator+"res"+File.separator;
 private static String typePlateau="carre3.txt";
@@ -157,7 +157,7 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 				System.out.println("Quel type de plateau souhaitez vous?\n\n1-Carre couche 3\n2-Carre couche 4\n3-Triangle couche 3\n4-Triangle couche 4");
 
 				num=scanInt();
-				
+
 				do{
 					System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 2");
 					num=scanInt();
