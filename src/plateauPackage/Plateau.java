@@ -205,7 +205,7 @@ public class Plateau{
     }
     
     /**
-     * Fonction qui sert juste a afficher le tableau, ne sert à rien juste à part pour les test, might come in handy comme on dit dans le milieu
+     * Fonction qui sert à afficher un tableau test du plateau
      */
     public void Afficher_plateau(){
 
@@ -218,7 +218,7 @@ public class Plateau{
     }
     
     /**
-     * Rempli le tableau par defaut avec des cases LIBRES
+     * Remplit le tableau par defaut avec des cases LIBRES
      */
     private void remplir_tableau() {
     	
