@@ -128,6 +128,7 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		num=scanInt();
 
 		switch(num) {
+
 		case 1: finMenu=true;
 				return;
 
@@ -143,10 +144,12 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		
 		case 4:
 			config[3]=1;
+			finMenu=true;
 			break;
 
 		case 5: affichage_menu();
 				break;
+
 		default: System.out.println("Entrée incorrect");}
 		}while(num !=5);
 	}

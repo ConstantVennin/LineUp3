@@ -31,10 +31,14 @@ public class UsePlateau {
         Plateau plateau=new Plateau(config[1],config[2]);
         Partie partie=new Partie(plateau,config[0],config[1]);
         int typePlateau= config[2]==4 ? 1 : 2;
+
         if(config[3]==1) {
+
         	partie = Sauvegarde.dernierePartie();
         	plateau = partie.getPlateau();
+
 	    }else {
+            
 	        do{
 	            try{
 	                System.out.println("\nSouhaitez vous que la phase de deploiement soit aléatoire ? 1: Oui 2: Non");
