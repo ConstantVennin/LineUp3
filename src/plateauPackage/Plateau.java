@@ -350,7 +350,6 @@ public class Plateau{
      * @return Situation
      */
     public Situations getCase(Position p) {
-    	
     	return plateau[p.getCouche()][p.getSommet()];
     }
 

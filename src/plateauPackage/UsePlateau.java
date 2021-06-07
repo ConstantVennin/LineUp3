@@ -36,7 +36,24 @@ public class UsePlateau {
 
         	partie = Sauvegarde.dernierePartie();
         	plateau = partie.getPlateau();
-
+        	if(plateau.getSommets()==6 && plateau.getCouches()==3) {
+        		config[2]=3;
+        		config[1]=3;
+        		Menu.setTypePlateau("triangle3.txt");
+        	}else if(plateau.getSommets()==6 && plateau.getCouches()==4) {
+        		config[2]=3;
+        		config[1]=4;
+        		Menu.setTypePlateau("triangle4.txt");
+        	}else if(plateau.getSommets()==8 && plateau.getCouches()==3) {
+        		config[2]=4;
+        		config[1]=3;
+        		Menu.setTypePlateau("carre3.txt");
+        	}else if(plateau.getSommets()==8 && plateau.getCouches()==4) {
+        		config[2]=4;
+        		config[1]=4;
+        		Menu.setTypePlateau("carre4.txt");
+        	}
+        	
 	    }else {
             
 	        do{
@@ -65,7 +82,7 @@ public class UsePlateau {
         	//Partie test = Partie.dernierePartie();
 
             if(joueurActuel>1) {joueurActuel=0;}
-            
+            System.out.println(config[2] + " " + config[3]);
             if(config[2]==4){
 
                 Menu.afficherPlateauCarre(plateau);

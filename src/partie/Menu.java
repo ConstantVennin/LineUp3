@@ -189,6 +189,20 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
     }
 
 	/**
+	 * @return the typePlateau
+	 */
+	public static String getTypePlateau() {
+		return typePlateau;
+	}
+
+	/**
+	 * @param typePlateau the typePlateau to set
+	 */
+	public static void setTypePlateau(String typePlateau) {
+		Menu.typePlateau = typePlateau;
+	}
+
+	/**
 	 * Affiche le plateau Triangulaire
 	 * @param plateau
 	 */
@@ -204,7 +218,6 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
             while(c!=-1) {
 
                 if(c>='A' && c<='X') {
-					
 					chaine+=plateau.getCase(new Position((c-'A')/6+1,(c-'A')%6+1)).getRepresentations();
 					
                 }else {
