@@ -86,7 +86,7 @@
       <Button fx:id="button_16" layoutX="255.0" layoutY="287.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
       <Button fx:id="button_26" layoutX="240.0" layoutY="225.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
       <Button fx:id="button_36" layoutX="225.0" layoutY="150.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
-      <Group fx:id="phase_confrontation" layoutX="624.0" layoutY="69.0" nodeOrientation="RIGHT_TO_LEFT">
+      <Group fx:id="phase_confrontation" layoutX="624.0" layoutY="69.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
          <children>
             <VBox alignment="CENTER" layoutX="-36.0" layoutY="28.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="308.0" prefWidth="204.0">
                <children>
@@ -114,7 +114,7 @@
             </VBox>
          </children>
       </Group>
-      <Group fx:id="phase_deploiement" layoutX="724.0" layoutY="76.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
+      <Group fx:id="phase_deploiement" layoutX="724.0" layoutY="76.0" nodeOrientation="RIGHT_TO_LEFT">
          <children>
             <VBox alignment="TOP_CENTER" layoutX="-136.0" layoutY="28.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="308.0" prefWidth="204.0">
                <children>
