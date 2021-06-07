@@ -6,6 +6,7 @@ import java.util.Scanner;
 import joueurPackage.Joueur;
 import partie.Menu;
 import partie.Partie;
+import partie.Sauvegarde;
 
 /**
  * Classe d'utilisation du plateau
@@ -30,25 +31,29 @@ public class UsePlateau {
         Plateau plateau=new Plateau(config[1],config[2]);
         Partie partie=new Partie(plateau,config[0],config[1]);
         int typePlateau= config[2]==4 ? 1 : 2;
-        
-        do{
-            try{
-                System.out.println("\nSouhaitez vous que la phase de deploiement soit aléatoire ? 1: Oui 2: Non");
-                choix=entreeJoueur.nextInt();
-                verif=true;
-            }catch(InputMismatchException e){
-                System.out.println("Veuillez entrez 1 ou 2");
-            }
-        }while(!verif);
-
-        switch(choix){
-            case 1:
-                partie.PhaseDeploiementAleatoire(typePlateau);
-                break;
-            case 2:
-                partie.PhaseDeploiement(typePlateau);
-                break;
-        }
+        if(config[3]==1) {
+        	partie = Sauvegarde.dernierePartie();
+        	plateau = partie.getPlateau();
+	    }else {
+	        do{
+	            try{
+	                System.out.println("\nSouhaitez vous que la phase de deploiement soit aléatoire ? 1: Oui 2: Non");
+	                choix=entreeJoueur.nextInt();
+	                verif=true;
+	            }catch(InputMismatchException e){
+	                System.out.println("Veuillez entrez 1 ou 2");
+	            }
+	        }while(!verif);
+	
+	        switch(choix){
+	            case 1:
+	                partie.PhaseDeploiementAleatoire(typePlateau);
+	                break;
+	            case 2:
+	                partie.PhaseDeploiement(typePlateau);
+	                break;
+	        }
+	    }
 
         while(!partie.getStatutPatie()){
 
