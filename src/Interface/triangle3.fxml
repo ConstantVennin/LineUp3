@@ -128,7 +128,11 @@
                         <Insets bottom="20.0" top="40.0" />
                      </VBox.margin>
                   </ToggleButton>
-                  <ToggleButton fx:id="button_alea" onAction="#actionButtonAlea" prefHeight="40.0" prefWidth="124.0" text="Placement aléatoire" toggleGroup="$choix_du_tour" />
+                  <ToggleButton fx:id="button_alea" onAction="#actionButtonAlea" prefHeight="40.0" prefWidth="124.0" text="Placement aléatoire" toggleGroup="$choix_du_tour">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </ToggleButton>
                </children>
             </VBox>
          </children>
