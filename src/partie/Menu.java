@@ -159,9 +159,9 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 				num=scanInt();
 
 				do{
-					System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 2");
+					System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 4");
 					num=scanInt();
-				}while(num<0 || num>2);
+				}while(num<0 || num>4);
 
 				typePlateau(num);
 				break;
