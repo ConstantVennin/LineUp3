@@ -290,7 +290,7 @@ public class Partie {
         String choixJoueur="";
 
         System.out.println("\nQuel action souhaitez vous effectuer ? : "+joueurs.get(idJoueur).getName()+"\n");
-        System.out.println("1-Déplacer un pion\n2-Poser un piège\n3-Couper un arc");
+        System.out.println("1-Déplacer un pion\n2-Poser un piège\n3-Couper un arc\n4-Sauvegarder la partie");
 
         do{
 
