@@ -51,14 +51,20 @@ public class UsePlateau {
         }
 
         while(!partie.getStatutPatie()){
-        	System.out.println("Sauvegarde");
-        	partie.sauvergarder();
-        	Partie test = Partie.dernierePartie();
+
+            Position[] positionsJoueurs;
+
+        	//partie.sauvergarder();
+        	//Partie test = Partie.dernierePartie();
+
             if(joueurActuel>1) {joueurActuel=0;}
 
             partie.actionJoueur(joueurActuel);
+
             System.out.print("\n");
+
             Menu.afficherPlateauCarre(plateau);
+
             joueurActuel++;
         }
     }
