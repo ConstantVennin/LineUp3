@@ -111,10 +111,16 @@ public class Joueur{
 		return this.nbPionsPhaseDeploiement;
 	}
 
+	/**
+	 * Diminue de nombre de pion lors de la phase de déploiement
+	 */
 	public void diminuerPionsDeploiement(){
 		this.nbPionsPhaseDeploiement--;
 	}
 
+	/**
+	 * Reset le nombre de pion lors de la phase de déploiement
+	 */
 	public void resetNbPionsDeploiement(){
 		this.nbPionsPhaseDeploiement=nbPions;
 	}
