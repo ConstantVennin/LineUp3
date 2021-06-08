@@ -5,6 +5,7 @@ import java.util.Optional;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -32,6 +33,14 @@ public class Controller_2 {
 
 	private String phase="deploiement";
 
+	private Position anciennePosition;
+
+	private Position positionPion;
+
+	private int compteur;
+
+	private int prev;
+
 	@FXML
 	Button button_11,button_12,button_13,button_14,button_15,button_16,button_17,button_18;
 	@FXML
@@ -44,7 +53,22 @@ public class Controller_2 {
 	ToggleButton button_deplacement,button_posepiege,button_bloquage,button_save,button_quitter,button_charger;
 	@FXML
 	Label label_pionj1,label_pionj2,label_tourj1,label_tourj2;
+	@FXML
+	Group phase_deploiement,phase_confrontation;
 	
+
+	public void changerJoueur(){
+
+		if(joueur==0){
+			label_tourj1.setVisible(false);
+			label_tourj2.setVisible(true);
+		}
+		if(joueur==1){
+			label_tourj1.setVisible(true);
+			label_tourj2.setVisible(false);
+		}
+	}
+
 	/**
 	 * Bouton d'action pour Case
 	 * @param event
@@ -52,7 +76,11 @@ public class Controller_2 {
 	@FXML
 	public void actionButtonCase(ActionEvent event) {
 
+		int deploiement;
+
 		if(joueur>1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
+		
+		changerJoueur();
 
 		String num= event.getSource().toString().substring(17,19);
 		
@@ -62,22 +90,60 @@ public class Controller_2 {
 
 		if(phase.equals("deploiement")){
 
-			System.out.println(joueur);
+			deploiement=partie.phaseDeploiement(p);
 
-			if(partie.phaseDeploiement(p)==0){
+			if(deploiement==0){
 
 				phase="confrontation";
+				phase_deploiement.setVisible(false);
+				phase_confrontation.setVisible(true);
+				changerJoueur();
 			}
 
-			if(joueur==0){
-				b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3; -fx-background-color: orange;");
-			}
-			else{
-				b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3; -fx-background-color: darkcyan;");
-			}
+			else if(deploiement==1){
 
+				setStyle(b);
+
+				joueur++;
+			}
 		}
-	joueur++;
+
+		else if(phase.equals("confrontation")){
+
+			System.out.println(compteur);
+
+			if(compteur==1){
+
+				positionPion=p;
+				
+				compteur=-1;
+
+				System.out.println(p.getCouche()+" "+p.getSommet());
+
+				if(partie.deplacerPion(anciennePosition, positionPion, joueur)==0){
+
+					setStyle(b);
+					System.out.println("ntmqgqgqh");
+
+					joueur++;
+				}
+
+
+			}
+
+			else{
+
+				if(partie.pionJoueur(p, joueur)){
+
+					System.out.println(p.getCouche()+" "+p.getSommet());
+					anciennePosition=p;
+				}
+
+				else{
+					compteur++;
+				}
+			}
+		}
 	}
 
 	@FXML
@@ -177,4 +243,16 @@ public class Controller_2 {
 
 	return configs;
 	}
+
+	public void setStyle(Button b){
+
+		if(joueur==0){
+
+			b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3; -fx-background-color: orange;");
+		}
+		else{
+			b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3; -fx-background-color: darkcyan;");
+		}
+	}
 }
+

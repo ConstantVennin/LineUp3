@@ -21,6 +21,7 @@ public class UsePartie{
     Joueur joueurActuel;
     private int joueur=0;
     List<Joueur> joueurs;
+    private int pionsRestants;
 
     Plateau plateau;
     Partie partie;
@@ -38,6 +39,7 @@ public class UsePartie{
         plateau=new Plateau(nbCouches,nbCotes);
         partie=new Partie(plateau,2,nbCouches);
         this.joueurs=partie.getJoueurs();
+        pionsRestants=joueurs.get(0).getNbPions()*2;
     }
 
     /**
@@ -47,22 +49,23 @@ public class UsePartie{
      */
     public int phaseDeploiement(Position positionPion){
 
-        int joueur=0;
+        if(joueur>1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
+
+        System.out.println(joueur);
 
         if(!plateau.placementPossible(positionPion)){
                 
             Alert alert=new Alert(AlertType.WARNING,"Vous ne pouvez pas placer votre pion ici");
             alert.show();
-            
         return -1;
-        };
+        
+        }
+        if(pionsRestants==0){
+            return 0;
+        }
 
         Pion pionJoueur;
         Joueur joueurActuel;
-
-        int pionsRestants=joueurs.get(0).getNbPions()*2;
-
-        if(joueur>nbJoueurs-1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
 
         joueurActuel=joueurs.get(joueur);
     
@@ -110,6 +113,20 @@ public class UsePartie{
 
     }
 
+    public int deplacerPion(Position anciennePosition,Position position,int idJoueur){
+
+        if(!plateau.arcExiste(anciennePosition,position)){
+
+            Alert alert=new Alert(AlertType.WARNING,"Vous ne pouvez pas deplacer votre pion ici");
+            alert.show();
+        return -1;
+        }
+
+        partie.deplacerPion(anciennePosition, position, idJoueur);
+        System.out.println("deplacé");
+    return 0;
+    }
+
     /**
      * indique si une case est libre
      * @param p
@@ -145,5 +162,20 @@ public class UsePartie{
 
     }
 
+    public boolean pionJoueur(Position p, int joueur){
+
+        try {
+            joueurs.get(joueur).getPion(p);
+
+        } catch (PionNonExistant e) {
+
+            Alert alert=new Alert(AlertType.WARNING,"Ce n'est pas votre pion");
+            alert.show();
+
+            return false;
+        }
+
+    return true;
+    }
 
 }
