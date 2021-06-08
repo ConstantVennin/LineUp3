@@ -1,5 +1,6 @@
 package Interface;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -7,6 +8,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 /**
  * classe main, pour jouer au mode graphique
