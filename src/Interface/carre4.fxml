@@ -61,22 +61,22 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="230.0" layoutY="530.0" prefHeight="40.0" prefWidth="40.0" text="J1:" textFill="#fa0606">
+      <Label layoutX="230.0" layoutY="530.0" prefHeight="40.0" prefWidth="40.0" text="J1:" textFill="#ff7f00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="380.0" layoutY="530.0" prefHeight="40.0" prefWidth="40.0" text="J2:" textFill="#3307fa">
+      <Label layoutX="380.0" layoutY="530.0" prefHeight="40.0" prefWidth="40.0" text="J2:" textFill="DARKCYAN">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="259.0" layoutY="530.0" prefHeight="40.0" prefWidth="23.0" text="9" textFill="#fa0606">
+      <Label layoutX="259.0" layoutY="530.0" prefHeight="40.0" prefWidth="23.0" text="9" textFill="#ff7f00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="409.0" layoutY="530.0" prefHeight="40.0" prefWidth="23.0" text="9" textFill="#3307fa">
+      <Label layoutX="409.0" layoutY="530.0" prefHeight="40.0" prefWidth="23.0" text="9" textFill="DARKCYAN">
          <font>
             <Font size="20.0" />
          </font>
@@ -93,12 +93,12 @@
       <ToggleButton fx:id="button_quitter" layoutX="618.0" layoutY="483.0" onAction="#actionButtonQuitter" prefHeight="40.0" prefWidth="124.0" text="Quitter" toggleGroup="$choix_du_tour" />
       <Group layoutX="369.0" layoutY="22.0">
          <children>
-            <Label fx:id="label_tourj1" prefHeight="40.0" prefWidth="23.0" text="1" textFill="#fa0606">
+            <Label fx:id="label_tourj1" prefHeight="40.0" prefWidth="23.0" text="1" textFill="#ff7f00">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="label_tourj21" prefHeight="40.0" prefWidth="23.0" text="2" textFill="#3307fa" visible="false">
+            <Label fx:id="label_tourj21" prefHeight="40.0" prefWidth="23.0" text="2" textFill="DARKCYAN" visible="false">
                <font>
                   <Font size="20.0" />
                </font>
@@ -145,6 +145,11 @@
                   <ToggleButton fx:id="button_placer" onAction="#actionButtonPlacer" prefHeight="40.0" prefWidth="124.0" selected="true" text="Placer pion" toggleGroup="$choix_du_tour">
                      <VBox.margin>
                         <Insets bottom="20.0" top="40.0" />
+                     </VBox.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="button_alea" onAction="#actionButtonAlea" prefHeight="40.0" prefWidth="124.0" text="Placement aléatoire" toggleGroup="$choix_du_tour">
+                     <VBox.margin>
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </ToggleButton>
                </children>

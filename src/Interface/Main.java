@@ -12,9 +12,18 @@ import javafx.stage.Stage;
  * classe main, pour jouer au mode graphique
  */
 public class Main extends Application{
-	
+
+	String musicFile = "res/medieval.wav";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+
 	public void start(Stage stage) throws IOException {
+                
+        mediaPlayer.play();
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
         FXMLLoader loader = new FXMLLoader();
+
         URL fxmlFileUrl = getClass().getResource("menu.fxml");
         if (fxmlFileUrl == null) {
                 System.out.println("Impossible de charger le fichier fxml");

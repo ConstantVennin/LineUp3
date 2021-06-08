@@ -140,6 +140,15 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		case 3:
 				System.out.println("Quel type de plateau souhaitez vous?\n\n1-Carre couche 3\n2-Carre couche 4\n3-Triangle couche 3\n4-Triangle couche 4");
 				num=scanInt();
+<<<<<<< HEAD
+=======
+
+				do{
+					System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 4");
+					num=scanInt();
+				}while(num<0 || num>4);
+
+>>>>>>> branch 'master' of https://gitlab.univ-lille.fr/victor.mougel.etu/lineup.git
 				typePlateau(num);
 				break;
 		
