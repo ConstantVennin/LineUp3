@@ -112,16 +112,10 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		
 		num=scanInt();
 		
-		do{
+		while(num<0 || num>2){
 			System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 2");
 			num=scanInt();
-		}while(num<0 || num>2);
-		
-		
-		do{
-			System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 2");
-			num=scanInt();
-		}while(num<0 || num>2);
+		}
 
 		switch(num) {
 		case 1:affichage_jouer(config);
@@ -144,10 +138,10 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		System.out.println(menu_jouer(config[0],config[1]));
 		num=scanInt();
 		
-		do{
+		while(num<1 || num>5){
 			System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 5");
 			num=scanInt();
-		}while(num<1 || num>5);
+		}
 
 		switch(num) {
 
@@ -162,10 +156,10 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 				System.out.println("Quel type de plateau souhaitez vous?\n\n1-Carre couche 3\n2-Carre couche 4\n3-Triangle couche 3\n4-Triangle couche 4");
 				num=scanInt();
 				
-				do{
+				while(num<0 || num>4){
 					System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 4");
 					num=scanInt();
-				}while(num<0 || num>4);
+				}
 				
 				typePlateau(num);
 				break;

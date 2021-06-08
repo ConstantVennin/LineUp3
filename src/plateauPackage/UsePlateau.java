@@ -7,6 +7,7 @@ import joueurPackage.Joueur;
 import partie.Menu;
 import partie.Partie;
 import partie.Sauvegarde;
+import partie.IA;
 
 /**
  * Classe d'utilisation du plateau
@@ -32,7 +33,8 @@ public class UsePlateau {
         Plateau plateau=new Plateau(config[1],config[2]);
         Partie partie=new Partie(plateau,config[0],config[1]);
         int typePlateau= config[2]==4 ? 1 : 2;
-
+        boolean ia=false;
+        
         if(config[3]==1) {
 
         	partie = Sauvegarde.dernierePartie();
@@ -56,25 +58,32 @@ public class UsePlateau {
         	}
         	
 	    }else {
-            
-	        do{
-	            try{
-	                System.out.println("\nSouhaitez vous que la phase de deploiement soit aléatoire ? 1: Oui 2: Non");
-	                choix=entreeJoueur.nextInt();
-	                verif=true;
-	            }catch(InputMismatchException e){
-	                System.out.println("Veuillez entrez 1 ou 2");
-	            }
-	        }while(!verif);
-	
-	        switch(choix){
-	            case 1:
-	                partie.PhaseDeploiementAleatoire(typePlateau);
-	                break;
-	            case 2:
-	                partie.PhaseDeploiement(typePlateau);
-	                break;
-	        }
+//	    	System.out.println("Jouez vous à deux ou contre une IA ? 1:Oui 2:Non");
+//        	choix=entreeJoueur.nextInt();
+//        	if(choix==1) {
+//        		ia = true;
+//        		partie.PhaseDeploiementAleatoire(typePlateau);
+//        	}else {
+		        do{
+		            try{
+		            	
+		                System.out.println("\nSouhaitez vous que la phase de deploiement soit aléatoire ? 1: Oui 2: Non");
+		                choix=entreeJoueur.nextInt();
+		                verif=true;
+		            }catch(InputMismatchException e){
+		                System.out.println("Veuillez entrez 1 ou 2");
+		            }
+		        }while(!verif);
+		
+		        switch(choix){
+		            case 1:
+		                partie.PhaseDeploiementAleatoire(typePlateau);
+		                break;
+		            case 2:
+		                partie.PhaseDeploiement(typePlateau);
+		                break;
+		        }
+//        	}
 	    }
 
         while(!partie.getStatutPatie()){
@@ -92,8 +101,13 @@ public class UsePlateau {
 
                 Menu.afficherPlateauTriangle(plateau);
             }
+            if(joueurActuel==1&&ia) {
+            	Position[] pos = IA.placerPionIA(partie.getPlateau(), Situations.JOUEUR2);
+            	partie.deplacerPion(pos[0], pos[1], joueurActuel);;
+            }else {
+            	partie.actionJoueur(joueurActuel);
+            }
             
-            partie.actionJoueur(joueurActuel);
 
             System.out.print("\n");
 

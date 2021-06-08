@@ -20,7 +20,7 @@ public class IA {
 	 * @param s
 	 * @return position de départ et d'arrivé du pion dans un tableau
 	 */
-	public Position[] placerPionIA(Plateau p, Situations s) {
+	public static Position[] placerPionIA(Plateau p, Situations s) {
 		ArrayList<Position> pionPossede = trouverPion(p,s);
 		Position pionBouge = null;
 		Position arrive = null;
