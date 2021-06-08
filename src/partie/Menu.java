@@ -46,6 +46,7 @@ static String menu_regle=	 "------------------------| Règle |------------------
 					+ "\t\t\t(1) Jouer\n"
 					+ "\t\t\t(2) Retour\n";
 /**
+ * Ecriture du menu jouer
  * @param nbjoueur
  * @param nbcouche
  * @return menu "Jouer"
@@ -216,6 +217,7 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
     }
 
 	/**
+	 * Retourne un typePlateau
 	 * @return the typePlateau
 	 */
 	public static String getTypePlateau() {
@@ -223,6 +225,7 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 	}
 
 	/**
+	 * Setter de typePlateau
 	 * @param typePlateau the typePlateau to set
 	 */
 	public static void setTypePlateau(String typePlateau) {
@@ -263,6 +266,10 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
         }
     }
 
+    /**
+     * Créé les bonnes configurations pour jouer la partie
+     * @param idx
+     */
 	public static void typePlateau(int idx){
 
 		switch(idx){
