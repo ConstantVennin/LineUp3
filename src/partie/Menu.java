@@ -135,7 +135,6 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 	/**
 	 * Pour sélectionner les paramètres de la partie
 	 * @param config
-	 * @return tableau int
 	 */
 	public static void affichage_jouer(int[] config) {
 		int num=0;
