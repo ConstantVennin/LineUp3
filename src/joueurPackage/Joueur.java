@@ -7,6 +7,7 @@ import Exceptions.PionNonExistant;
 import plateauPackage.Position;
 
 /**Classe Joueur, pour manipuler des objets de type Joueur, dans le cadre du jeu LineUp3
+ * @author Victor_Bastien_Constant
  */
 public class Joueur{
 	

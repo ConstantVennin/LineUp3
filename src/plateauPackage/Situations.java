@@ -2,6 +2,7 @@ package plateauPackage;
 
 /**
  * Classe Situation, qui permet de préciser ce qu'il y a sur une case du plateau
+ * @author Victor_Bastien_Constant
  */
 public enum Situations {
     //ARC signifie que l'arc a ete bloque par l'un des joueurs

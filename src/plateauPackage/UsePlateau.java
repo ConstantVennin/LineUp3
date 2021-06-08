@@ -10,11 +10,12 @@ import partie.Sauvegarde;
 
 /**
  * Classe d'utilisation du plateau
+ * @author Victor_Bastien_Constant
  */
 public class UsePlateau {
 
 	/**
-	 * Main de UsePlateau
+	 * Main de UsePlateau pour partie textuelle
 	 * @param args
 	 */
     public static void main(String args[]) {

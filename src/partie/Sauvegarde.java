@@ -16,6 +16,11 @@ import plateauPackage.Plateau;
 import plateauPackage.Position;
 import plateauPackage.Situations;
 
+/**
+ * Classe sauvegarde, pour sauvegarder une partie en cours, afin de la continuer plus tard
+ * @author Victor_Bastien_Constant
+ *
+ */
 public class Sauvegarde {
     private static String chemin = System.getProperty("user.dir") + File.separator + "res" + File.separator;
 	private static String nom = "sauvegarde.txt";

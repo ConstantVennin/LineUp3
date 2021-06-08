@@ -13,6 +13,7 @@ import joueurPackage.Joueur;
 
 /**
  * Classe de test
+ * @author Victor_Bastien_Constant
  */
 public class TestPlateau{
 

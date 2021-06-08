@@ -8,7 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+/**
+ * classe main, pour jouer au mode graphique
+ */
 public class Main extends Application{
 	
 	public void start(Stage stage) throws IOException {
@@ -27,7 +29,10 @@ public class Main extends Application{
 	}
 	
 	
-
+	/**
+	 * main version graphique
+	 * @param args
+	 */
 	public static void main(String[] args) {
                 Application.launch(args);
 	}

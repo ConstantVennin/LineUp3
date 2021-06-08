@@ -11,6 +11,10 @@ import plateauPackage.Plateau;
 import plateauPackage.Position;
 import plateauPackage.Situations;
 
+/**
+ * Permet de jouer une partie
+ * @author Victor_Bastien_Constant
+ */
 public class UsePartie{
 
     int nbCotes,nbCouches,nbJoueurs;
@@ -21,6 +25,12 @@ public class UsePartie{
     Plateau plateau;
     Partie partie;
 
+    /**
+     * Constructeur UsePartie
+     * @param nbCotes
+     * @param nbCouches
+     * @param nbJoueurs
+     */
     public UsePartie(int nbCotes,int nbCouches,int nbJoueurs){
         this.nbCotes=nbCotes;
         this.nbCouches=nbCouches;
@@ -30,6 +40,11 @@ public class UsePartie{
         this.joueurs=partie.getJoueurs();
     }
 
+    /**
+     * Permet d'effectuer la phase de déploiement
+     * @param positionPion
+     * @return int
+     */
     public int phaseDeploiement(Position positionPion){
 
         int joueur=0;
@@ -69,6 +84,10 @@ public class UsePartie{
     return 1;
     }
 
+    /**
+     * Place un Pion sur le plateau à partir d'une position
+     * @param positionPion
+     */
     public void placerPion(Position positionPion){
 
         if(joueur>nbJoueurs-1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
@@ -91,10 +110,19 @@ public class UsePartie{
 
     }
 
+    /**
+     * indique si une case est libre
+     * @param p
+     * @return case libre vaut true
+     */
     public boolean caseLibre(Position p){
        return plateau.case_libre(p); 
     }
 
+    /**
+     * Vérifie l'alignement
+     * @param p
+     */
     public void lineUp3(Position p){
 
         Pion pionJoueur=null;

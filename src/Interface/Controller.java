@@ -19,11 +19,19 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+/**
+ * Classe Controller : Pour interragir avec le menu
+ * @author Victor_Bastien_Constant
+ */
 public class Controller {
 	public static String plateau="carre3";
 	@FXML
     Button button_solo,button_multi,button_triangle,button_carre,button_regle,button_video,button_quitter;
 	
+	/**
+	 * Bouton pour quitter le programme
+	 * @param event
+	 */
 	public void actionButtonQuitter(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 	      alert.setHeaderText("�tes vous s�r de vouloir quitter le jeu ?");
@@ -38,6 +46,12 @@ public class Controller {
 	      } else {
 	      }
 	}
+	
+	/**
+	 * Bouton d'affichage des règles
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	public void actionButtonRegle(ActionEvent event) throws IOException {
 		Stage stage = (Stage) button_regle.getScene().getWindow();
@@ -51,26 +65,51 @@ public class Controller {
         stage.show();
 		System.out.println("Regle choisis");
 	}
+	/**
+	 * Bouton de sélection du triangle à 3 couches
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonTriangle3(ActionEvent event) {
 		plateau="triangle3";
 		System.out.println("Triangle 3 choisis");
 	}
+	
+	/**
+	 * Bouton de sélection du carré à 3 couches
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonCarre3(ActionEvent event) {
 		plateau="carre3";
 		System.out.println("Carr� 3 choisis");	
 	}
+	
+	/**
+	 * Bouton de sélection du triangle à 4 couches
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonTriangle4(ActionEvent event) {
 		plateau="triangle4";
 		System.out.println("Triangle 4 choisis");
 	}
+	
+	/**
+	 * Bouton de sélection du carré à 4 couches
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonCarre4(ActionEvent event) {
 		plateau="carre4";
 		System.out.println("Carr� 4 choisis");	
 	}
+	
+	/**
+	 * Bouton pour lancer une partie solo
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	public void actionButtonSolo(ActionEvent event) throws IOException{
 		Stage stage = (Stage) button_regle.getScene().getWindow();
@@ -99,6 +138,12 @@ public class Controller {
 				 System.out.println("Carre 3 solo choisis");	
 		}
 	}
+	
+	/**
+	 * Bouton pour lancer une partie multijoueur
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	public void actionButtonMulti(ActionEvent event) throws IOException {
 		Stage stage = (Stage) button_regle.getScene().getWindow();
@@ -127,6 +172,11 @@ public class Controller {
 				 System.out.println("Carre 3 multi choisis");	
 		}
 	}
+	
+	/**
+	 * Bouton pour lancer une vidéo de démonstration
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonVideo(ActionEvent event) {
 		Stage video = new Stage();
@@ -142,6 +192,10 @@ public class Controller {
 
 	}
 
+	/**
+	 * Récupère la configuration
+	 * @return plateau sous forme textuelle
+	 */
 	public static String getConfig(){
 		return plateau;
 	}

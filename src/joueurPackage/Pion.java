@@ -4,6 +4,7 @@ import plateauPackage.Position;
 
 /**
  * Classe Pion, Les Pion sont des objets appartenants à des joueur, et sont posés sur un plateau
+ * @author Victor_Bastien_Constant
  */
 public class Pion {
 

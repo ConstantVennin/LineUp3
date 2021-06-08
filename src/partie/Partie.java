@@ -25,6 +25,7 @@ import plateauPackage.Situations;
 
 /**
  * Classe Partie, organise les éléments nécessaire pour jouer une Partie
+ * @author Victor_Bastien_Constant
  */
 public class Partie {
     

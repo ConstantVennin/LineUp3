@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Classe Position, symbolise la position d'un Pion
+ * @author Victor_Bastien_Constant
  */
 public class Position {
     

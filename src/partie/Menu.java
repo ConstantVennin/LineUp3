@@ -12,11 +12,12 @@ import plateauPackage.Position;
 
 /**
  * Classe Menu, pour naviguer dans le menu, avant de joueur dans une partie
+ * @author Victor_Bastien_Constant
  */
 public class Menu {
 
 
-private static int[] config=new int[] {2,3,4,0};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau //[3] charger partie 0:non 1:oui 
+private static int[] config=new int[] {2,3,4,0};//[0]nbjoueur [1]nbcouche //[2] nombre de cote, ce qui va determiner le type du plateau
 
 static String myPath=System.getProperty("user.dir")+File.separator+"res"+File.separator;
 private static String typePlateau="carre3.txt";
@@ -101,28 +102,17 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 	 * Affichage des règles
 	 */
 	public static void affichage_regle() {
-
 		int num=0;
-
 		do {
-
 		System.out.println(menu_regle);
-
 		num=scanInt();
-		
-		do{
-			System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 2");
-			num=scanInt();
-		}while(num<0 || num>2);
-
 		switch(num) {
-	
 		case 1:affichage_jouer(config);
 				break;
 			
 		case 2 : affichage_menu();
 				break;
-		}
+		default: System.out.println("Entrée incorrect");}
 		}while(num !=2);
 	}
 	
@@ -136,13 +126,7 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 		do {
 
 		System.out.println(menu_jouer(config[0],config[1]));
-
 		num=scanInt();
-
-		do{
-			System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 5");
-			num=scanInt();
-		}while(num<1 || num>5);
 
 		switch(num) {
 
@@ -155,14 +139,7 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 				break;
 		case 3:
 				System.out.println("Quel type de plateau souhaitez vous?\n\n1-Carre couche 3\n2-Carre couche 4\n3-Triangle couche 3\n4-Triangle couche 4");
-
 				num=scanInt();
-
-				do{
-					System.out.println("Entree invalide, veuillez sélectionner un chiffre compris entre 1 et 2");
-					num=scanInt();
-				}while(num<0 || num>2);
-
 				typePlateau(num);
 				break;
 		

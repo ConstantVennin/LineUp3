@@ -7,6 +7,7 @@ import joueurPackage.Pion;
 
 /**
  * Classe Plateau, contient tous les éléments et options du plateau
+ * @author Victor_Bastien_Constant
  */
 public class Plateau{
 

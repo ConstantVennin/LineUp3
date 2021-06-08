@@ -8,6 +8,7 @@ import java.io.IOException;
 
 /**
  * Classe Configuration, utilisable pour choisir les options de la Partie avant le lancemenent du programme
+ * @author Victor_Bastien_Constant
  */
 public class Configuration {
 	private static String chemin = System.getProperty("user.dir") + File.separator + "res" + File.separator;

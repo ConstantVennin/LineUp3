@@ -10,6 +10,7 @@ import plateauPackage.Situations;
 
 /**
  * Classe IA
+ * @author Victor_Bastien_Constant
  */
 public class IA {
 	

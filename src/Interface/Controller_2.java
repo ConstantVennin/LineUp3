@@ -14,6 +14,10 @@ import javafx.scene.control.Alert.AlertType;
 import partie.UsePartie;
 import plateauPackage.Position;
 
+/**
+ * Classe Controller_2 : pour utiliser les boutons de l'interface lors du jeu
+ * @author Victor_Bastien_Constant
+ */
 public class Controller_2 {
 
 	private int[] config=checkConfig(Controller.getConfig());
@@ -35,6 +39,10 @@ public class Controller_2 {
 	@FXML
 	Label label_pionj1,label_pionj2,label_tourj1,label_tourj2;
 	
+	/**
+	 * Bouton d'action pour Case
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonCase(ActionEvent event) {
 		
@@ -46,28 +54,47 @@ public class Controller_2 {
 
 		
 	}
-
+	/**
+	 * Bouton d'action de déplacement
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonDeplacement(ActionEvent event) {
 		action="deplacement";
 	}
 
+	/**
+	 * Bouton d'action pour pose de piège
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonPosepiege(ActionEvent event) {
 		action="piege";
 	}
 
+	/**
+	 * Bouton d'action pour blocage
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonBlocage(ActionEvent event) {
 		action="blocage";
 	}
 	
+	/**
+	 * Bouton d'action pour sauvegarde
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonSave(ActionEvent event) {
 		action="save";
 	}
 
 
+	/**
+	 * Bouton d'action pour quitter
+	 * @param event
+	 */
 	@FXML
 	public void actionButtonQuitter(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -84,6 +111,11 @@ public class Controller_2 {
 	      }
 	}
 
+	/**
+	 * Vérification des configurations
+	 * @param config
+	 * @return Tableau de configuration, int[]
+	 */
 	public int[] checkConfig(String config){
 
 		int[] configs=new int[2];
