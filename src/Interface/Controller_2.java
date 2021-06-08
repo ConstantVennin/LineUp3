@@ -26,6 +26,12 @@ public class Controller_2 {
 	
 	private String action;
 
+	private int nbPions;
+
+	private int joueur=0;
+
+	private String phase="deploiement";
+
 	@FXML
 	Button button_11,button_12,button_13,button_14,button_15,button_16,button_17,button_18;
 	@FXML
@@ -35,7 +41,7 @@ public class Controller_2 {
 	@FXML
 	Button button_41,button_42,button_43,button_44,button_45,button_46,button_47,button_48;
 	@FXML
-	ToggleButton button_deplacement,button_posepiege,button_bloquage,button_save,button_quitter;
+	ToggleButton button_deplacement,button_posepiege,button_bloquage,button_save,button_quitter,button_charger;
 	@FXML
 	Label label_pionj1,label_pionj2,label_tourj1,label_tourj2;
 	
@@ -45,14 +51,49 @@ public class Controller_2 {
 	 */
 	@FXML
 	public void actionButtonCase(ActionEvent event) {
-		
+
+		if(joueur>1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
+
 		String num= event.getSource().toString().substring(17,19);
 		
 		Position p=new Position(Integer.parseInt(num.substring(0,1)),Integer.parseInt(num.substring(1, 2)));
+		
+		Button b=(Button) event.getSource();
 
-		partie.placerPion(p);
+		if(phase.equals("deploiement")){
+
+			System.out.println(joueur);
+
+			if(partie.phaseDeploiement(p)==0){
+
+				phase="confrontation";
+			}
+
+			if(joueur==0){
+				b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3; -fx-background-color: orange;");
+			}
+			else{
+				b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3; -fx-background-color: darkcyan;");
+			}
+
+		}
+	joueur++;
+	}
+
+	@FXML
+	public void actionButtonPlacer(ActionEvent event){
 
 		
+	}
+
+	@FXML
+	public void actionButtonAlea(ActionEvent event){
+
+	}
+
+	@FXML 
+	public void actionButtonCharger(ActionEvent event){
+
 	}
 	/**
 	 * Bouton d'action de déplacement
