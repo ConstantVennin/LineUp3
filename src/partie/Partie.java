@@ -227,6 +227,9 @@ public class Partie {
         }
     }
 
+    /**
+     * Permet à un joueur de placer un piège à un endroit désigné
+     */
     public void placerPiege(){
 
         Position p=verificationEntree();
@@ -459,6 +462,7 @@ public class Partie {
     }
 
 	/**
+	 * getter du plateau
 	 * @return the plateau
 	 */
 	public Plateau getPlateau() {
@@ -466,6 +470,7 @@ public class Partie {
 	}
 
 	/**
+	 * getter de la liste de joueurs
 	 * @return the joueurs
 	 */
 	public List<Joueur> getJoueurs() {
