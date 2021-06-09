@@ -13,8 +13,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
+import joueurPackage.Joueur;
 import partie.UsePartie;
 import plateauPackage.Position;
+import plateauPackage.Situations;
 
 /**
  * Classe Controller_2 : pour utiliser les boutons de l'interface lors du jeu
@@ -26,9 +28,7 @@ public class Controller_2 {
 
 	UsePartie partie=new UsePartie(config[1], config[0], 2);
 	
-	private String action;
-
-	private int nbPions;
+	private String action="";
 
 	private int joueur=0;
 
@@ -39,19 +39,16 @@ public class Controller_2 {
 	private Position positionPion;
 
 	private int compteur;
+	
+	private int nombrePosition=0;
 
-	private int prev;
+	private int compteurDeTours=0;
+
+	private int tourActuel;
+
 
 	@FXML
-	Button button_11,button_12,button_13,button_14,button_15,button_16,button_17,button_18;
-	@FXML
-	Button button_21,button_22,button_23,button_24,button_25,button_26,button_27,button_28;
-	@FXML
-	Button button_31,button_32,button_33,button_34,button_35,button_36,button_37,button_38;
-	@FXML
-	Button button_41,button_42,button_43,button_44,button_45,button_46,button_47,button_48;
-	@FXML
-	ToggleButton button_deplacement,button_posepiege,button_bloquage,button_save,button_quitter,button_charger;
+	ToggleButton button_deplacement,button_posepiege,button_bloquage,button_save,button_quitter,button_charger,button_alea;
 	@FXML
 	Label label_pionj1,label_pionj2,label_tourj1,label_tourj2;
 	@FXML
@@ -60,13 +57,15 @@ public class Controller_2 {
 
 	public void changerJoueur(){
 
-		if(joueur==1){
-			label_tourj1.setVisible(false);
-			label_tourj2.setVisible(true);
-		}
+		if(joueur>1){joueur=0;}  //Retourne à 1 quand le nombre de joueurs a été dépassé
+
 		if(joueur==0){
 			label_tourj1.setVisible(true);
 			label_tourj2.setVisible(false);
+		}
+		if(joueur==1){
+			label_tourj1.setVisible(false);
+			label_tourj2.setVisible(true);
 		}
 	
 	}
@@ -78,10 +77,8 @@ public class Controller_2 {
 	@FXML
 	public void actionButtonCase(ActionEvent event) {
 
-		int deploiement;
+		compteurDeTours++;
 
-		if(joueur>1){joueur=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
-		
 		changerJoueur();
 
 		String num= event.getSource().toString().substring(17,19);
@@ -90,88 +87,49 @@ public class Controller_2 {
 		
 		Button b=(Button) event.getSource();
 
-		if(phase.equals("deploiement")){
+		switch(phase){
 
-			deploiement=partie.phaseDeploiement(p);
+			case "deploiement":
+			deploiement(p,b);
+			break;
 
-			if(deploiement==0){
+			case "confrontation":
+			confrontation(p, b);
+			break;
 
-				joueur=0;
-				phase="confrontation";
-				phase_deploiement.setVisible(false);
-				phase_confrontation.setVisible(true);
-				changerJoueur();
-			
-			}
+			case "lineup":
+			partie.lineUp3(p, b,joueur);
+			break;
 
-			else if(deploiement==1){
-
-				setStyle(b);
-
-				joueur++;
-			}
-		System.err.println(joueur+" J");
 		}
 
-		else if(phase.equals("confrontation")){
+		switch(action){
 
-			if(action.equals("deplacement")){
+			case "piege":
+			piege(p, b);
+			break;
 
-				if(compteur==1){
-
-					positionPion=p;
-
-					if(partie.deplacerPion(anciennePosition, positionPion, joueur)==0){
-
-						setStyle(b);
-						joueur++;
-						changerJoueur();
-						compteur=0;
-
-					}
-
-				
-				}
-
-				else if(compteur==0){
-
-					if(partie.pionJoueur(p, joueur)){
-
-						b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;");
-						anciennePosition=p;
-						compteur++;
-
-					}
-
-				}
-			}
-
-			else if(action.equals("piege")){
-
-				if(partie.caseLibre(p)){
-					b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 7;");
-					joueur++;
-					changerJoueur();
-				}
-				else{
-				
-					Alert alert=new Alert(AlertType.WARNING,"Vous ne pouvez pas poser un piège sur un joueur");
-					alert.show();
-				}
-			}
+			case "blocage":
+			bloquerArc(p,b.getScene());
+			break;
 		}
 
 	}
 
 	@FXML
 	public void actionButtonPlacer(ActionEvent event){
-
-		
+		phase="deploiement";
 	}
 
 	@FXML
 	public void actionButtonAlea(ActionEvent event){
 
+		ToggleButton toggle=(ToggleButton) event.getSource();
+		Scene scene=(Scene) toggle.getScene();
+		partie.placementAleatoire(scene);
+		phase="confrontation";
+		phase_deploiement.setVisible(false);
+		phase_confrontation.setVisible(true);
 	}
 
 	@FXML 
@@ -222,7 +180,7 @@ public class Controller_2 {
 	@FXML
 	public void actionButtonQuitter(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-	      alert.setHeaderText("�tes vous s�r de vouloir quitter le jeu ?\nAvez-vous sauvegard� ?");
+	      alert.setHeaderText("Etes vous sur de vouloir quitter le jeu ?\nAvez-vous sauvegarde ?");
 	 
 	      // option != null.
 	      Optional<ButtonType> option = alert.showAndWait();
@@ -270,5 +228,126 @@ public class Controller_2 {
 		else{
 			b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3; -fx-background-color: darkcyan;");
 		}
+	}
+
+	public void confrontation(Position p,Button b){
+
+		int deplacerPion;
+
+		if(action.equals("deplacement")){
+
+			if(compteur==1){
+
+				positionPion=p;
+				deplacerPion=partie.deplacerPion(anciennePosition, positionPion, joueur,b.getScene());
+
+				if(deplacerPion==0){
+
+					setStyle(b);
+					joueur++;
+					changerJoueur();
+					compteur=0;
+				}
+				else if(deplacerPion==1){
+					setStyle(b);
+					joueur++;
+					lineup();
+				}
+			}
+
+			else if(compteur==0){
+
+				if(partie.pionBloque(joueur, b.getScene(), p)){
+					return;
+
+				}
+
+				if(partie.pionJoueur(p, joueur)){
+
+					b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;");
+					anciennePosition=p;
+					compteur++;
+
+				}
+			}
+			
+		}
+	}
+
+	public void piege(Position p,Button b){
+
+		if(partie.caseLibre(p)){
+			b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 7;");
+			joueur++;
+			changerJoueur();
+		}
+		else{
+		
+			Alert alert=new Alert(AlertType.WARNING,"Vous ne pouvez pas poser un piège sur un joueur");
+			alert.show();
+		}
+	}
+	
+	public void deploiement(Position p,Button b){
+
+		button_alea.setVisible(false);
+		
+		int deploiement;
+		deploiement=partie.phaseDeploiement(p);
+
+		setStyle(b);
+		joueur++;
+
+		if(deploiement==0){
+
+			joueur=0;
+			phase="confrontation";
+			phase_deploiement.setVisible(false);
+			phase_confrontation.setVisible(true);
+			changerJoueur();
+		
+		}
+
+		else if(deploiement==2){
+			lineup();
+		}
+
+	}
+
+	public void lineup(){
+
+		int joueurActuel=joueur;
+		joueurActuel++;
+		if(joueurActuel>1){joueurActuel=0;} //Retourne à 1 quand le nombre de joueurs a été dépassé
+
+		Alert alert=new Alert(AlertType.INFORMATION,"Le joueur "+Situations.values()[joueurActuel].getRepresentations()+" a aligné 3 pions ! il peut donc retirer un pion adverse, selectionnez le pion à retirer\n\n(Attention, si le joueur en face n'a plus que 2 pions, la partie se terminera et vous retournerez au menu)");
+		alert.show();
+		phase="lineup";
+	}
+
+	public void bloquerArc(Position p,Scene scene){
+		
+		if(partie.getNbPiegeArc(joueur)<1){
+			Alert alert=new Alert(AlertType.ERROR,"Vous ne pouvez plus bloquer d'arc");
+			alert.show();
+
+		return;
+		}
+
+		tourActuel=compteurDeTours;
+
+		if(nombrePosition==1){
+
+			positionPion=p;
+			partie.bloquerArc(anciennePosition, positionPion,joueur,scene);
+			joueur++;
+			changerJoueur();
+			nombrePosition=-1;
+		}
+		else{
+			anciennePosition=p;
+		}
+
+	nombrePosition++;
 	}
 }

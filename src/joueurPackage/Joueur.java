@@ -16,10 +16,11 @@ public class Joueur{
 	private int joueurId;
 	private int nbPions;
 	private List<Pion> pions;
-	private int piegeArc;
-	private int piegeCase;
+	private int piegeArc=1;
+	private int piegeCase=2;
 	private int nbPionsPhaseDeploiement;
-	
+	List<Pion> pionsBloques;
+
 	/**
 	 * Constructeur Joueur
 	 * @param name
@@ -32,6 +33,7 @@ public class Joueur{
 		this.nbPionsPhaseDeploiement=nbPions;
 		id++;
 		pions=new ArrayList<Pion>();
+		pionsBloques=new ArrayList<Pion>();
 		this.initialiserPions();
 	}
 
@@ -167,6 +169,30 @@ public class Joueur{
 	 */
 	public void setJoueurId(int joueurId) {
 		this.joueurId = joueurId;
+	}
+
+	public int getPiegesArc(){
+		return this.piegeArc;
+	}
+
+	public int getPiegesCase(){
+		return this.piegeCase;
+	}
+
+	public void diminuerPiegeArc(){
+		this.piegeArc--;
+	}
+
+	public void diminuerPiegeCase(){
+		this.piegeCase--;
+	}
+
+	public void bloquerPion(Pion p){
+		pionsBloques.add(p);
+	}
+
+	public boolean pionBloque(Pion p){
+		return pionsBloques.contains(p);
 	}
 	
 }
