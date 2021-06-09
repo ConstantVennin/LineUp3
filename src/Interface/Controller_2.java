@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -59,14 +60,15 @@ public class Controller_2 {
 
 	public void changerJoueur(){
 
-		if(joueur==0){
+		if(joueur==1){
 			label_tourj1.setVisible(false);
 			label_tourj2.setVisible(true);
 		}
-		if(joueur==1){
+		if(joueur==0){
 			label_tourj1.setVisible(true);
 			label_tourj2.setVisible(false);
 		}
+	
 	}
 
 	/**
@@ -94,10 +96,12 @@ public class Controller_2 {
 
 			if(deploiement==0){
 
+				joueur=0;
 				phase="confrontation";
 				phase_deploiement.setVisible(false);
 				phase_confrontation.setVisible(true);
 				changerJoueur();
+			
 			}
 
 			else if(deploiement==1){
@@ -106,44 +110,57 @@ public class Controller_2 {
 
 				joueur++;
 			}
+		System.err.println(joueur+" J");
 		}
 
 		else if(phase.equals("confrontation")){
 
-			System.out.println(compteur);
+			if(action.equals("deplacement")){
 
-			if(compteur==1){
+				if(compteur==1){
 
-				positionPion=p;
+					positionPion=p;
+
+					if(partie.deplacerPion(anciennePosition, positionPion, joueur)==0){
+
+						setStyle(b);
+						joueur++;
+						changerJoueur();
+						compteur=0;
+
+					}
+
 				
-				compteur=-1;
-
-				System.out.println(p.getCouche()+" "+p.getSommet());
-
-				if(partie.deplacerPion(anciennePosition, positionPion, joueur)==0){
-
-					setStyle(b);
-					System.out.println("ntmqgqgqh");
-
-					joueur++;
 				}
 
+				else if(compteur==0){
 
+					if(partie.pionJoueur(p, joueur)){
+
+						b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;");
+						anciennePosition=p;
+						compteur++;
+
+					}
+
+				}
 			}
 
-			else{
+			else if(action.equals("piege")){
 
-				if(partie.pionJoueur(p, joueur)){
-
-					System.out.println(p.getCouche()+" "+p.getSommet());
-					anciennePosition=p;
+				if(partie.caseLibre(p)){
+					b.setStyle("-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 7;");
+					joueur++;
+					changerJoueur();
 				}
-
 				else{
-					compteur++;
+				
+					Alert alert=new Alert(AlertType.WARNING,"Vous ne pouvez pas poser un piège sur un joueur");
+					alert.show();
 				}
 			}
 		}
+
 	}
 
 	@FXML
@@ -255,4 +272,3 @@ public class Controller_2 {
 		}
 	}
 }
-

@@ -53,7 +53,7 @@ public class Partie {
     public Partie(Plateau plateau,int nbJoueurs,int nbcouches){
         this.plateau=plateau;
         this.nbJoueurs=nbJoueurs;
-        this.nbPions= plateau.getCotes()==4 ? plateau.getCouches()*6 : plateau.getCouches()*4;
+        this.nbPions= 6;
         joueurs=new ArrayList<Joueur>();
         initialisationJoueurs();
     }
@@ -64,7 +64,7 @@ public class Partie {
     public void initialisationJoueurs(){ //Initialisation automatique des joueurs, on pourra modif pour laisser la liberté aux joueurs de choisir leurs noms
 
         for(int indice=1;indice<nbJoueurs+1;indice++){
-            joueurs.add(new Joueur("Joueur "+indice,nbPions/2));
+            joueurs.add(new Joueur("Joueur "+indice,3));
         }
     }
 
@@ -123,7 +123,7 @@ public class Partie {
      */
     public void PhaseDeploiementAleatoire(int typePlateau){
 
-        Pion pionJoueur;
+        Pion pionJoueur=null;
         Joueur joueurActuel;
 
         int pionsRestants=nbPions;
@@ -368,9 +368,12 @@ public class Partie {
      */
     public void lineUp3(int idJoueur){
 
-        if(plateau.getCouches()==3){
+        if(plateau.getCotes()==3){
+
             Menu.afficherPlateauTriangle(plateau);
+
         }else{
+
             Menu.afficherPlateauCarre(plateau);
         }
 

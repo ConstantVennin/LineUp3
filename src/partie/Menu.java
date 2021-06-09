@@ -76,11 +76,12 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 
 		int num=0;
 
-		do {
 
-		if(finMenu){
-			return;
-		}
+		do {
+			
+			if(finMenu){
+				return;
+			}
 		
 		System.out.println(menu_LineUp3);
 		System.out.println(menu_base);
@@ -165,6 +166,7 @@ public static String menu_jouer(int nbjoueur,int nbcouche){return	 "------------
 				break;
 		
 		case 4:
+
 			config[3]=1;
 			finMenu=true;
 			break;

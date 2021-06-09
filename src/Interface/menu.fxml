@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test_affichage_lineup.Controller">
+<Pane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller">
    <children>
       <HBox prefHeight="575.0" prefWidth="900.0">
          <children>
@@ -61,11 +61,11 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="button_charger" mnemonicParsing="false" onAction="#actionButtonCharger" prefHeight="30.0" prefWidth="90.0" text="Charger">
+                 <!--- <Button fx:id="button_charger" mnemonicParsing="false" onAction="#actionButtonCharger" prefHeight="30.0" prefWidth="90.0" text="Charger">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
-                  </Button>
+                  </Button> -->
                   <Button fx:id="button_regle" layoutX="165.0" layoutY="346.0" mnemonicParsing="false" onAction="#actionButtonRegle" prefHeight="30.0" prefWidth="90.0" text="Règle">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
