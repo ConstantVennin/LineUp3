@@ -3,8 +3,8 @@ Le jeu a été créé par Vennin Constant, Mougel Victor, et Lemarié Bastien, d
 Le but consiste à créer un jeu tout en respectuant le cahier des charges qui nous a été fourni.
 
 ## Règles du jeu :
-Line Up 3 est un jeu de plateau en joueur contre joueur, qui se décompose en deux phase :
-- La phase de déploiement, chacun leur tours, les joueurs posent leurs pions
+Line Up 3 est un jeu de plateau en joueur contre joueur, qui se décompose en deux phases :
+- La phase de déploiement, chacun leur tours, les joueurs posent leurs pions.
 - La phase de jeu, chacun leurs tour, les joueurs déplacent leur pions pour en aligner 3 et gagner.
 
 ## Options :
