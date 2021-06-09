@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test_affichage_lineup.Controller_2">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller_2">
    <children>
       <Polygon fx:id="arc3738" fill="#1f93ff00" layoutX="90.0" layoutY="90.0" points="60.4000244140625, 358.79998779296875, 60.4000244140625, 211.60000610351562, 60.4000244140625, 358.79998779296875, 60.4000244140625, 211.60000610351562" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
       <Polygon fx:id="arc3831" fill="#1f93ff00" layoutX="80.0" layoutY="80.0" points="70.4000244140625, 224.80001831054688, 70.0, 69.99998474121094, 70.4000244140625, 224.80001831054688, 70.0, 69.99998474121094" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
