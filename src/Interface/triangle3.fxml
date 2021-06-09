@@ -11,12 +11,32 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller_2">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test_affichage_lineup.Controller_2">
    <children>
-      <Polygon fill="#1f93ff00" points="-50.0, 400.0, 500, 400.0, 225, -50" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" translateX="100.0" translateY="100.0" />
-      <Polygon fill="#1f93ff00" points="41.600006103515625, 352.0, 413.5999755859375, 352.0, 227.20001220703125, 35.19999694824219" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" translateX="100.0" translateY="100.0" />
-      <Polygon fill="#1f93ff00" points="172.0, 216.0, 172.0, 216.0, 148.0, 78.40000915527344, 148.0, 78.40000915527344" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" translateX="100.0" translateY="100.0" />
-      <Polygon fill="#1f93ff00" points="224.79998779296875, 403.20001220703125, 224.79998779296875, 281.6000061035156, 224.79998779296875, 403.20001220703125, 224.79998779296875, 281.6000061035156" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" translateX="100.0" translateY="100.0" />
+      <Polygon fx:id="arc1516" fill="#1f93ff00" layoutX="130.0" layoutY="130.0" points="157.5999755859375, 172.4000244140625, 119.5, 253.0, 119.5, 253.0, 157.5999755859375, 172.4000244140625" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc1611" fill="#1f93ff00" layoutX="120.0" layoutY="120.0" points="157.5999755859375, 194.4000244140625, 157.5999755859375, 194.4000244140625, 157.5999755859375, 194.4000244140625, 205.0, 101.99998474121094" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc1112" fill="#1f93ff00" layoutX="110.0" layoutY="110.0" points="262.79998779296875, 206.0, 214.79998779296875, 113.19999694824219, 262.79998779296875, 206.0, 214.79998779296875, 113.19999694824219" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc1213" fill="#1f93ff00" layoutX="100.0" layoutY="100.0" points="306.4000244140625, 285.60003662109375, 269.5999755859375, 207.20001220703125, 306.4000244140625, 285.60003662109375, 269.5999755859375, 207.20001220703125" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc2223" fill="#1f93ff00" layoutX="90.0" layoutY="90.0" points="424.0, 362.0, 300.0, 154.99998474121094, 424.0, 362.0, 300.0, 154.99998474121094" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc2122" fill="#1f93ff00" layoutX="80.0" layoutY="80.0" points="308.79998779296875, 169.59999084472656, 248.0, 54.99998474121094, 308.79998779296875, 169.59999084472656, 248.0, 54.99998474121094" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc2526" fill="#1f93ff00" layoutX="80.0" layoutY="80.0" points="189.20001220703125, 157.59999084472656, 56.0, 374.4000244140625, 56.0, 374.4000244140625, 189.20001220703125, 157.59999084472656" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc2621" fill="#1f93ff00" layoutX="70.0" layoutY="70.0" points="189.20001220703125, 184.40000915527344, 258.0, 64.99998474121094, 189.20001220703125, 184.40000915527344, 258.0, 64.99998474121094" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc3536" fill="#1f93ff00" layoutX="70.0" layoutY="70.0" points="175.0, 99.99998474121094, -22.79998779296875, 431.60003662109375, 175.0, 99.99998474121094, -22.79998779296875, 431.60003662109375" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc3631" fill="#1f93ff00" layoutX="60.0" layoutY="60.0" points="185.5999755859375, 115.59999084472656, 265.0, -16.999996185302734, 185.5999755859375, 115.59999084472656, 265.0, -16.999996185302734" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc3132" fill="#1f93ff00" layoutX="50.0" layoutY="50.0" points="347.5999755859375, 115.59999084472656, 274.79998779296875, -5.999996185302734, 347.5999755859375, 115.59999084472656, 274.79998779296875, -5.999996185302734" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc3233" fill="#1f93ff00" layoutX="40.0" layoutY="40.0" points="358.4000244140625, 129.59999084472656, 560.4000244140625, 470.0, 560.4000244140625, 470.0, 358.4000244140625, 129.59999084472656" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc3334" fill="#1f93ff00" layoutX="30.0" layoutY="30.0" points="295.0, 470.0, 560.4000244140625, 470.0, 560.4000244140625, 470.0, 295.0, 470.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc3435" fill="#1f93ff00" layoutX="20.0" layoutY="20.0" points="29.600006103515625, 478.4000244140625, 305.5999755859375, 478.4000244140625, 305.5999755859375, 478.4000244140625, 29.600006103515625, 478.4000244140625" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc2425" fill="#1f93ff00" layoutX="40.0" layoutY="40.0" points="100.79998779296875, 411.20001220703125, 282.4000244140625, 411.20001220703125, 100.79998779296875, 411.20001220703125, 282.4000244140625, 411.20001220703125" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc2324" fill="#1f93ff00" layoutX="30.0" layoutY="30.0" points="292.4000244140625, 419.60003662109375, 485.20001220703125, 419.60003662109375, 485.20001220703125, 419.60003662109375, 292.4000244140625, 419.60003662109375" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc1314" fill="#1f93ff00" layoutX="20.0" layoutY="20.0" points="305.0, 360.0, 380.0, 360.0, 380.0, 360.0, 305.0, 360.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc1415" fill="#1f93ff00" layoutX="10.0" layoutY="10.0" points="240.0, 370.0, 315.0, 370.0, 315.0, 370.0, 240.0, 370.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc1222" fill="#1f93ff00" layoutX="20.0" layoutY="20.0" points="358.4000244140625, 293.6000061035156, 358.4000244140625, 293.6000061035156, 370.4000244140625, 221.59999084472656, 370.4000244140625, 221.59999084472656" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc1424" fill="#1f93ff00" layoutX="10.0" layoutY="10.0" points="315.0, 424.4000244140625, 315.0, 363.6000061035156, 315.0, 424.4000244140625, 315.0, 363.6000061035156" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc1626" fill="#1f93ff00" layoutX="23.0" layoutY="29.0" points="252.0, 289.4000244140625, 252.0, 289.4000244140625, 237.0, 215.99998474121094, 237.0, 215.99998474121094" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc2636" fill="#1f93ff00" layoutX="10.0" layoutY="10.0" points="250.0, 237.1999969482422, 250.0, 237.1999969482422, 234.5262451171875, 165.40000915527344, 234.5262451171875, 165.40000915527344" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc2232" fill="#1f93ff00" layoutX="10.0" layoutY="10.0" points="380.4000244140625, 235.59999084472656, 380.4000244140625, 235.59999084472656, 390.0, 159.99998474121094, 390.0, 159.99998474121094" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
+      <Polygon fx:id="arc3424" fill="#1f93ff00" points="224.79998779296875, 403.20001220703125, 224.79998779296875, 339.20001220703125, 224.79998779296875, 403.20001220703125, 224.79998779296875, 339.20001220703125" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" translateX="100.0" translateY="100.0" />
 	  <Button fx:id="button_23" layoutX="494.0" layoutY="432.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
       <Button fx:id="button_31" layoutX="305.0" layoutY="23.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
       <Button fx:id="button_21" layoutX="308.0" layoutY="115.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
@@ -62,7 +82,7 @@
       </Label>
       <Group layoutX="190.0" layoutY="110.0">
          <children>
-            <Label fx:id="tabel_tourj1" layoutX="-8.0" prefHeight="40.0" prefWidth="23.0" text="1" textFill="#ff7f00">
+            <Label fx:id="label_tourj1" layoutX="-8.0" prefHeight="40.0" prefWidth="23.0" text="1" textFill="#ff7f00">
                <font>
                   <Font size="20.0" />
                </font>
@@ -74,12 +94,10 @@
             </Label>
          </children>
       </Group>
-      <Polygon fill="#1f93ff00" layoutX="10.0" layoutY="10.0" points="230.79998779296875, 371.6000061035156, 400.4000244140625, 371.6000061035156, 315.0, 204.99998474121094" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" />
       <Button fx:id="button_11" layoutX="305.0" layoutY="202.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
       <Button fx:id="button_15" layoutX="230.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
       <Button fx:id="button_13" layoutX="380.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
       <Button fx:id="button_14" layoutX="305.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
-      <Polygon fill="#1f93ff00" layoutX="10.0" layoutY="10.0" points="370.0, 297.0, 370.0, 297.0, 390.0, 159.99998474121094, 390.0, 159.99998474121094" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5" />
       <Button fx:id="button_12" layoutX="360.0" layoutY="287.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
       <Button fx:id="button_22" layoutX="370.0" layoutY="225.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
       <Button fx:id="button_32" layoutX="380.0" layoutY="150.0" mnemonicParsing="false" onAction="#actionButtonCase" prefHeight="40.0" prefWidth="40.0" scaleShape="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 3;" />
