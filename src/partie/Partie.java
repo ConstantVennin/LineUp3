@@ -53,7 +53,7 @@ public class Partie {
     public Partie(Plateau plateau,int nbJoueurs,int nbcouches){
         this.plateau=plateau;
         this.nbJoueurs=nbJoueurs;
-        this.nbPions= 6;
+        this.nbPions=6;
         joueurs=new ArrayList<Joueur>();
         initialisationJoueurs();
     }
@@ -179,7 +179,7 @@ public class Partie {
      * @param positionPion
      * @param idJoueur
      */
-    public void deplacerPion(Position anciennePosition,Position positionPion, int idJoueur){
+    public int deplacerPion(Position anciennePosition,Position positionPion, int idJoueur){
         
         Joueur joueur=joueurs.get(idJoueur);
         
@@ -196,9 +196,9 @@ public class Partie {
         plateau.placer_pion(pionJoueur,positionPion);
 
        if(checkLineUp3(idJoueur)){
-        lineUp3(idJoueur);
+        return -1;
        }
-    
+    return 0;
     }
 
     /**
@@ -301,7 +301,9 @@ public class Partie {
             positionPion=verificationEntree();
         }
     
-    deplacerPion(anciennePosition,positionPion,idJoueur);
+        if(deplacerPion(anciennePosition,positionPion,idJoueur)==-1){
+            lineUp3(idJoueur);
+        }
     }
 
     public int demanderAction(int idJoueur, int nbChoix){
@@ -452,8 +454,9 @@ public class Partie {
      * Vérifie si la partie est finie
      * @param idJoueur
      */
-    public void partiFinie(int idJoueur){
+    public boolean partiFinie(int idJoueur){
         finPartie= joueurs.get(idJoueur).getNbPions()<3 ? true : false;
+        return joueurs.get(idJoueur).getNbPions()<3 ? true : false;
     }
 
     /**
