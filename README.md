@@ -1,6 +1,6 @@
 # LineUp
 
-*Règles du jeu :
+##Règles du jeu :
 Line Up 3 est un jeu de plateau en joueur contre joueur, qui se décompose en deux phase :
 - La phase de déploiement, chacun leur tours, les joueurs posent leurs pions
 - La phase de jeu, chacun leurs tour, les joueurs déplacent leur pions pour en aligner 3 et gagner.
